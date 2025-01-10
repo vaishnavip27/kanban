@@ -71,6 +71,25 @@ const KanbanBoard = () => {
     );
   };
 
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>, taskId: string, sourceColumnId: string) => {
+    e.dataTransfer.setData("taskId", taskId);
+    e.dataTransfer.setData("sourceColumnId", sourceColumnId);
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>, targetColumnId: string) => {
+    const taskId = e.dataTransfer.getData("taskId");
+    const sourceColumnId = e.dataTransfer.getData("sourceColumnId");
+
+    if (taskId && sourceColumnId && sourceColumnId !== targetColumnId) {
+      handleMoveTask(taskId, sourceColumnId, targetColumnId);
+    }
+    e.preventDefault();
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="flex h-screen bg-gray-900 overflow-x-hidden">
       {/* Sidebar */}
@@ -102,7 +121,7 @@ const KanbanBoard = () => {
         <main className="flex-1 p-5 overflow-y-auto">
           <h2 className="text-2xl font-normal text-white mb-4">Onboarding Dashboard</h2>
 
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-6">
             <div>
               <HorizontalNavbar/>
             </div>
@@ -122,18 +141,28 @@ const KanbanBoard = () => {
             </div>
           </div>
 
-          <div className="flex gap-6 overflow-x-auto pb-4">
+          {/* horizontalline */}
+          <div className="w-full h-[1px] bg-gray-700"></div>
+
+          <div className="flex gap-4 overflow-x-auto mt-6">
             {columns.map((column) => (
-              <KanbanColumn
+              <div
                 key={column.id}
-                {...column}
-                onAddTask={(task) => handleAddTask(task, column.id)}
-                onMoveTask={(taskId, targetColumnId) =>
-                  handleMoveTask(taskId, column.id, targetColumnId)
-                }
-                onDeleteTask={(taskId) => handleDeleteTask(taskId, column.id)}
-                columns={columns}
-              />
+                className="flex-shrink-0 w-[298px] bg-gray-800 rounded-lg"
+                onDrop={(e) => handleDrop(e, column.id)}
+                onDragOver={handleDragOver}
+              >
+                <KanbanColumn
+                  {...column}
+                  onAddTask={(task) => handleAddTask(task, column.id)}
+                  onMoveTask={(taskId, targetColumnId) =>
+                    handleMoveTask(taskId, column.id, targetColumnId)
+                  }
+                  onDeleteTask={(taskId) => handleDeleteTask(taskId, column.id)}
+                  onDragStart={handleDragStart} // Add this prop to KanbanColumn
+                  columns={columns}
+                />
+              </div>
             ))}
           </div>
         </main>

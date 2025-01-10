@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Image } from 'lucide-react';
 
 interface TaskModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (task: { title: string; description?: string; labels?: string[] }) => void;
+  onSubmit: (task: { title: string; description?: string; labels?: string[]; image?: string }) => void;
 }
 
 const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
@@ -12,6 +12,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [description, setDescription] = useState('');
   const [labelInput, setLabelInput] = useState('');
   const [labels, setLabels] = useState<string[]>([]);
+  const [image, setImage] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,11 +22,13 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
       title: title.trim(),
       description: description.trim() || undefined,
       labels: labels.length > 0 ? labels : undefined,
+      image: image || undefined,
     });
 
     setTitle('');
     setDescription('');
     setLabels([]);
+    setImage('');
   };
 
   const handleAddLabel = (e: React.KeyboardEvent) => {
@@ -33,6 +36,17 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
       e.preventDefault();
       setLabels([...labels, labelInput.trim()]);
       setLabelInput('');
+    }
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -79,6 +93,41 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
               placeholder="Enter task description"
               rows={3}
             />
+          </div>
+
+          <div>
+            <label htmlFor="image" className="block text-sm font-medium text-gray-300 mb-1">
+              Image
+            </label>
+            <div className="mt-1 flex items-center">
+              <label className="w-full flex items-center justify-center px-4 py-2 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 cursor-pointer">
+                <Image className="w-5 h-5 mr-2" />
+                Choose Image
+                <input
+                  type="file"
+                  id="image"
+                  className="sr-only"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                />
+              </label>
+            </div>
+            {image && (
+              <div className="mt-2 relative">
+                <img
+                  src={image}
+                  alt="Task preview"
+                  className="w-full h-40 object-cover rounded-md"
+                />
+                <button
+                  type="button"
+                  onClick={() => setImage('')}
+                  className="absolute top-2 right-2 p-1 bg-gray-800 rounded-full hover:bg-gray-700"
+                >
+                  <X className="w-4 h-4 text-gray-300" />
+                </button>
+              </div>
+            )}
           </div>
 
           <div>
