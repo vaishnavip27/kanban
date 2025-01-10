@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Ellipsis, Plus } from 'lucide-react';
 import TaskModal from './TaskModal';
+import AvatarGroup from './AvatarGroup';
 
 interface Task {
   id: string;
@@ -116,7 +117,16 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
                   </span>
                 ))}
               </div>
+              
             )}
+            <div className="w-full h-[1px] bg-gray-400 mt-3"></div>
+
+            <div className="flex mt-2 justify-between items-center">
+              <div>
+                <AvatarGroup/>
+              </div>
+              <div></div>
+            </div>
           </div>
         ))}
       </div>
