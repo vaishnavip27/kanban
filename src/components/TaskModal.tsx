@@ -60,7 +60,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-[#1A1C1E] text-gray-400">
         <DialogHeader>
           <DialogTitle>Add New Task</DialogTitle>
         </DialogHeader>
@@ -68,6 +68,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
           <div className="space-y-2">
             <Label htmlFor="title">Title</Label>
             <Input
+              className="bg-[#1A1C1E] text-fray-400"
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -76,9 +77,10 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
             />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 ">
             <Label htmlFor="description">Description</Label>
             <Textarea
+            className="bg-[#1A1C1E] text-fray-400"
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -94,16 +96,16 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
                 type="button"
                 variant="outline"
                 size="sm"
-                className="w-full"
+                className="w-full bg-[#1A1C1E]"
                 onClick={() => document.getElementById('image-upload')?.click()}
               >
                 <Image className="w-4 h-4 mr-2" />
                 Choose Image
               </Button>
               <input
+              className="bg-[#1A1C1E] text-gray-400 hidden"
                 id="image-upload"
                 type="file"
-                className="hidden"
                 accept="image/*"
                 onChange={handleImageUpload}
               />
@@ -132,6 +134,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
             <Label htmlFor="labels">Labels</Label>
             <div className="flex items-center space-x-2">
               <Input
+                className="bg-[#1A1C1E] text-gray-400 "
                 id="labels"
                 value={labelInput}
                 onChange={(e) => setLabelInput(e.target.value)}
@@ -139,6 +142,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
                 placeholder="Press Enter to add labels"
               />
               <Button
+              className="bg-[#1A1C1E] text-gray-400 "
                 type="button"
                 size="icon"
                 variant="outline"

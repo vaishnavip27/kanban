@@ -11,6 +11,7 @@ interface Task {
   title: string;
   description?: string;
   labels?: string[];
+  image?: string;
 }
 
 interface Column {
@@ -92,17 +93,13 @@ const KanbanBoard = () => {
 
   return (
     <div className="flex h-screen bg-[#17191A] overflow-x-hidden">
-      {/* Sidebar */}
       <Navbar />
-
-      {/* Main Content */}
       <div className="flex flex-col flex-grow overflow-y-auto">
-        <header className="p-3 border-b border-gray-700 px-6">
+        <header className="p-3 border-b border-gray-800 px-6">
           <div className="flex items-center justify-between">
             <MoveLeft className="h-5 w-5" />
             <div className="flex items-center gap-3">
-              {/* Search Bar UI */}
-              <div className="flex items-center space-x-2 bg-gray-700 p-2 rounded-lg">
+              <div className="flex items-center space-x-2 bg-gray-800 p-2 rounded-lg">
                 <Search className="w-5 h-5 text-gray-400" />
                 <input
                   type="text"
@@ -110,8 +107,7 @@ const KanbanBoard = () => {
                   className="bg-transparent text-white placeholder-gray-400 outline-none"
                 />
               </div>
-              {/* Notifications Icon */}
-              <div className="border border-gray-500 p-2 rounded-sm">
+              <div className="border border-gray-800 p-2 rounded-sm">
                 <Bell className="w-5 h-5" />
               </div>
             </div>
@@ -122,27 +118,24 @@ const KanbanBoard = () => {
           <h2 className="text-2xl font-normal text-white mb-4">Onboarding Dashboard</h2>
 
           <div className="flex items-center justify-between mb-6">
-            <div>
-              <HorizontalNavbar/>
-            </div>
+            <HorizontalNavbar />
             <div className="flex gap-3">
-            <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
-              <span>Invite Member</span>
-              <UserPlus className="ml-2 h-4 w-4" />
-            </Button>
-            <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
-              <span>Customize</span>
-              <Paintbrush className="ml-2 h-4 w-4" />
-            </Button>
-            <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
-              <span>New Board</span>
-              <LayoutGrid className="ml-2 h-4 w-4" />
-            </Button>
+              <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
+                <span>Invite Member</span>
+                <UserPlus className="ml-2 h-4 w-4" />
+              </Button>
+              <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
+                <span>Customize</span>
+                <Paintbrush className="ml-2 h-4 w-4" />
+              </Button>
+              <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
+                <span>New Board</span>
+                <LayoutGrid className="ml-2 h-4 w-4" />
+              </Button>
             </div>
           </div>
 
-          {/* horizontalline */}
-          <div className="w-full h-[1px] bg-gray-700"></div>
+          <div className="w-full h-[1px] bg-gray-800"></div>
 
           <div className="flex gap-4 overflow-x-auto mt-6">
             {columns.map((column) => (
@@ -159,7 +152,7 @@ const KanbanBoard = () => {
                     handleMoveTask(taskId, column.id, targetColumnId)
                   }
                   onDeleteTask={(taskId) => handleDeleteTask(taskId, column.id)}
-                  onDragStart={handleDragStart} // Add this prop to KanbanColumn
+                  onDragStart={handleDragStart}
                   columns={columns}
                 />
               </div>
@@ -172,7 +165,7 @@ const KanbanBoard = () => {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onSubmit={(task) => {
-              handleAddTask(task, "todo"); // Defaulting to 'todo' column
+              handleAddTask(task, "todo");
               setIsModalOpen(false);
             }}
           />
