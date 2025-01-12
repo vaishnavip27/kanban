@@ -91,13 +91,13 @@ const KanbanBoard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-900 overflow-x-hidden">
+    <div className="flex h-screen bg-[#17191A] overflow-x-hidden">
       {/* Sidebar */}
       <Navbar />
 
       {/* Main Content */}
       <div className="flex flex-col flex-grow overflow-y-auto">
-        <header className="bg-gray-800 p-3 border-b border-gray-700 px-6">
+        <header className="p-3 border-b border-gray-700 px-6">
           <div className="flex items-center justify-between">
             <MoveLeft className="h-5 w-5" />
             <div className="flex items-center gap-3">
@@ -126,15 +126,15 @@ const KanbanBoard = () => {
               <HorizontalNavbar/>
             </div>
             <div className="flex gap-3">
-            <Button className="justify-between w-full sm:w-auto h-10">
+            <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
               <span>Invite Member</span>
               <UserPlus className="ml-2 h-4 w-4" />
             </Button>
-            <Button className="justify-between w-full sm:w-auto h-10">
+            <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
               <span>Customize</span>
               <Paintbrush className="ml-2 h-4 w-4" />
             </Button>
-            <Button className="justify-between w-full sm:w-auto h-10">
+            <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
               <span>New Board</span>
               <LayoutGrid className="ml-2 h-4 w-4" />
             </Button>

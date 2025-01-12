@@ -59,14 +59,14 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
 
   return (
     <div 
-      className="flex-shrink-0 w-[298px] bg-gray-800 rounded-lg" 
+      className="flex-shrink-0 w-[298px] bg-[#1A1C1E] rounded-lg" 
       onDrop={handleDrop} 
       onDragOver={handleDragOver}
     >
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center space-x-2">
           <h3 className="font-semibold text-gray-200">{title}</h3>
-          <span className="px-2 py-1 text-xs bg-gray-700 rounded-full text-gray-400">
+          <span className="px-2 py-1 text-xs bg-[#242629] rounded-full text-gray-400">
             {tasks.length}
           </span>
         </div>
@@ -91,11 +91,11 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
             key={task.id}
             draggable
             onDragStart={(e) => handleDragStart(e, task.id)}
-            className="bg-gray-700 p-3 rounded-md shadow cursor-pointer hover:bg-gray-600 transition-colors duration-200"
+            className="bg-[#242629] p-3 rounded-md shadow cursor-pointer hover:bg-gray-600 transition-colors duration-200"
           >
-            <h4 className="text-sm font-medium text-gray-200">{task.title}</h4>
+            <h4 className="text-md font-medium text-gray-200">{task.title}</h4>
             {task.description && (
-              <p className="text-xs text-gray-400 mt-1">{task.description}</p>
+              <p className="text-sm text-gray-400 mt-1">{task.description}</p>
             )}
             {task.image && (
               <div className="mt-2">
@@ -111,7 +111,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
                 {task.labels.map((label) => (
                   <span
                     key={label}
-                    className="px-2 py-1 text-xs rounded bg-gray-600 text-gray-300"
+                    className="px-2 py-1 text-xs rounded bg-[#17191A] text-gray-300"
                   >
                     {label}
                   </span>

@@ -17,7 +17,7 @@ export function HorizontalNavbar() {
   const [activeItem, setActiveItem] = useState("Overview");
 
   return (
-    <nav className="bg-gray-800 p-1 rounded-lg h-11 flex items-center">
+    <nav className="bg-[#1A1C1E] p-1 rounded-lg h-11 flex items-center">
       <ul className="flex justify-center items-center gap-2 w-full">
         {navItems.map((item) => (
           <li key={item.name}>
