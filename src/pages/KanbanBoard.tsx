@@ -99,7 +99,7 @@ const KanbanBoard = () => {
           <div className="flex items-center justify-between">
             <MoveLeft className="h-5 w-5" />
             <div className="flex items-center gap-3">
-              <div className="flex items-center space-x-2 bg-gray-800 p-2 rounded-lg">
+              <div className="flex items-center space-x-2 bg-gray-900 p-2 rounded-lg">
                 <Search className="w-5 h-5 text-gray-400" />
                 <input
                   type="text"
@@ -141,7 +141,7 @@ const KanbanBoard = () => {
             {columns.map((column) => (
               <div
                 key={column.id}
-                className="flex-shrink-0 w-[298px] bg-gray-800 rounded-lg"
+                className="flex-shrink-0 w-[298px] bg-[#17191A] rounded-lg"
                 onDrop={(e) => handleDrop(e, column.id)}
                 onDragOver={handleDragOver}
               >
