@@ -6,11 +6,10 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { name: "Overview", href: "#overview" },
-  { name: "Notes", href: "#notes" },
-  { name: "Calendar", href: "#calendar" },
-  { name: "Plans", href: "#plans" },
-  { name: "Activity", href: "#activity" },
-  { name: "Report", href: "#report" },
+  { name: "Board", href: "#notes" },
+  { name: "List", href: "#calendar" },
+  { name: "Table", href: "#plans" },
+  { name: "Timeline", href: "#activity" },
 ];
 
 export function HorizontalNavbar() {

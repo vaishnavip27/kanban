@@ -22,7 +22,7 @@ const sidebarItems = [
 
 export default function Sidebar() {
   return (
-    <div className="h-screen w-64 bg-[#17191A] text-white border-r border-gray-800">
+    <div className="h-screen w-64 bg-[#191D20] text-white border-r border-gray-800">
       <div className="border-b border-gray-800 p-4">
         <h1 className="text-2xl font-bold">TaskFlow</h1>
       </div>

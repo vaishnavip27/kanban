@@ -92,14 +92,14 @@ const KanbanBoard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#17191A] overflow-x-hidden">
+    <div className="flex h-screen bg-[#121416] overflow-x-hidden">
       <Navbar />
       <div className="flex flex-col flex-grow overflow-y-auto">
-        <header className="p-3 border-b border-gray-800 px-6">
+        <header className="p-3 border-b border-gray-800 px-6 bg-[#1D1E22]">
           <div className="flex items-center justify-between">
             <MoveLeft className="h-5 w-5" />
             <div className="flex items-center gap-3">
-              <div className="flex items-center space-x-2 bg-gray-900 p-2 rounded-lg">
+              <div className="flex items-center space-x-2 bg-[#121416] p-2 rounded-lg">
                 <Search className="w-5 h-5 text-gray-400" />
                 <input
                   type="text"
