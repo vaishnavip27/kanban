@@ -24,6 +24,7 @@
     --ring: 0 0% 3.9%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
+    --swiper-theme-color: #007aff;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
@@ -63,4 +64,68 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+.custom-get-started-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #f4f0ff;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #5a3cb4;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  width: max-content;
+  background: linear-gradient(
+      180deg,
+      rgba(60, 8, 126, 0) 0%,
+      rgba(94, 41, 255, 0.22) 100%
+    ),
+    rgba(100, 28, 255, 0.12); 
+  box-shadow: inset 0 0 12px rgba(191, 151, 255, 0.24);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-get-started-button::before,
+.custom-get-started-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: -1;
+  transition: opacity 0.2s cubic-bezier(0.6, 0.6, 0, 1);
+}
+
+.custom-get-started-button:hover {
+  background: linear-gradient(
+      180deg,
+      rgba(80, 10, 160, 0.2) 0%,
+      rgba(80, 10, 160, 0.5) 100%
+    ),
+    rgba(113, 47, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(191, 151, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.custom-get-started-button:active {
+  background: linear-gradient(
+      180deg,
+      rgba(40, 5, 80, 0.2) 0%,
+      rgba(40, 5, 80, 0.5) 100%
+    ),
+    rgba(113, 47, 255, 0.25);
+  box-shadow: inset 0 2px 6px rgba(113, 47, 255, 0.2);
+  transform: translateY(0);
 }

@@ -1,21 +1,26 @@
 import { Button } from "./ui/button"
+import {Link} from "react-router-dom";
+import "../index.css"
 
-const LandingNav = () =>{
+const LandingNav = () => {
   return (
-    <div className="flex items-center justify-between border border-white p-1 rounded-full mt-6 px-7">
-        <div className="font-bold text-2xl">
-            Taskflow
-        </div>
-        <div className="ml-32 flex items-center gap-4">
-            <div>Pricing</div>
-            <div>Community</div>
-            <div>About</div>
-        </div>
-        <div className="ml-80">
-            <Button className="rounded-full transparent border border-white">Get started</Button>
-        </div>
-    </div>
+    <nav className="flex items-center justify-between p-4 w-full max-w-7xl mx-auto">
+      <div className="flex items-center">
+        <Link to="/" className="font-bold text-2xl text-white">
+          Taskflow
+        </Link>
+      </div>
+      <div className="flex items-center space-x-4">
+        <Button variant="ghost" className="text-sm text-gray-300 hover:text-white transition-colors rounded-full bg-transparent ">
+          Login
+        </Button>
+        <Button className="custom-get-started-button">
+          Get started
+        </Button>
+      </div>
+    </nav>
   )
 }
 
 export default LandingNav
+
