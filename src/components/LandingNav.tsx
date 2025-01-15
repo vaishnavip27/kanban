@@ -1,8 +1,10 @@
 import { Button } from "./ui/button"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "../index.css"
 
 const LandingNav = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className="flex items-center justify-between p-4 w-full max-w-7xl mx-auto">
       <div className="flex items-center">
@@ -11,7 +13,7 @@ const LandingNav = () => {
         </Link>
       </div>
       <div className="flex items-center space-x-4">
-        <Button variant="ghost" className="text-sm text-gray-300 hover:text-white transition-colors rounded-full bg-transparent ">
+        <Button variant="ghost" className="text-sm text-gray-300 hover:text-white transition-colors rounded-full bg-transparent " onClick={() => navigate("/login")}>
           Login
         </Button>
         <Button className="custom-get-started-button">

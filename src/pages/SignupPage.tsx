@@ -1,114 +1,141 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Trello, Mail, Lock, User } from 'lucide-react';
+'use client'
 
-const SignupPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+import React, { useState, useRef} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Trello } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+const SignupPage: React.FC = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('')
+  const [glowPosition, setGlowPosition] = useState({ x: 50, y: 50 })
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Add actual signup logic
-    // For now, just navigate to login
-    navigate('/login');
-  };
+    e.preventDefault()
+    navigate('/login')
+  }
+
+  const handleButtonHover = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect()
+      setGlowPosition({
+        x: ((e.clientX - rect.left) / rect.width) * 100,
+        y: ((e.clientY - rect.top) / rect.height) * 100,
+      })
+    }
+  }
+
+  const handleButtonLeave = () => {
+    setGlowPosition({ x: 50, y: 50 })
+  }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <div className="flex items-center justify-center">
-            <Trello className="w-12 h-12 text-indigo-500" />
-          </div>
-          <h2 className="mt-6 text-3xl font-bold text-white">Create your account</h2>
-          <p className="mt-2 text-sm text-gray-400">
-            Already have an account?{' '}
-            <Link to="/login" className="text-indigo-500 hover:text-indigo-400">
-              Sign in
-            </Link>
-          </p>
-        </div>
-
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="name" className="sr-only">
-                Full name
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-600 rounded-md leading-5 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="Full name"
-                />
-              </div>
+    <div className="min-h-screen flex items-center justify-center bg-[#090B0D] px-4">
+      <div className="flex flex-col items-center space-y-4 w-full max-w-[464px]">
+        <Card className="w-full space-y-6 border border-white py-16 px-9 bg-transparent relative">
+          <CardHeader className="space-y-2 p-0">
+            <div className="flex items-center justify-start">
+              <Trello className="w-12 h-12 text-indigo-500" />
             </div>
-
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email address
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
+            <CardTitle className="mt-6 text-3xl font-bold text-white">Create new account</CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-1">
+                <Label htmlFor="email" className="text-md font-normal text-gray-400">
+                  Email
+                </Label>
+                <Input
                   id="email"
-                  name="email"
                   type="email"
-                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-600 rounded-md leading-5 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full pr-3 py-4 border border-gray-600 rounded-sm leading-5 bg-black text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
                   placeholder="Email address"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
                   required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-600 rounded-md leading-5 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="Password"
                 />
               </div>
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Create account
-            </button>
-          </div>
-        </form>
+              <div className="relative group">
+                {/* Outer glow layer */}
+                <div 
+                  className="absolute -inset-[6px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden"
+                  style={{
+                    background: `radial-gradient(circle at ${glowPosition.x}% ${glowPosition.y}%, rgba(1, 65, 255, 0.8), rgba(118, 15, 255, 0.6), transparent 70%)`,
+                  }}
+                ></div>
+                
+                {/* Button container */}
+                <div className="relative">
+                  <Button
+                    ref={buttonRef}
+                    type="submit"
+                    className="w-full flex justify-center py-6 px-8 rounded-full text-sm font-medium relative overflow-hidden bg-[#0A0A0A] border border-[#1a1a1a] transition-all duration-300 group-hover:bg-[#0F0F0F]"
+                    onMouseMove={handleButtonHover}
+                    onMouseLeave={handleButtonLeave}
+                  >
+                    {/* Glass overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/[0.07] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Primary glow effect */}
+                    <div 
+                      className="absolute w-40 h-40 bg-[#0141ff] rounded-full mix-blend-screen pointer-events-none transition-transform duration-300"
+                      style={{
+                        left: `${glowPosition.x}%`,
+                        top: `${glowPosition.y}%`,
+                        transform: 'translate(-50%, -50%)',
+                        filter: 'blur(40px)',
+                        opacity: 0.5,
+                      }}
+                    />
+                    
+                    {/* Secondary glow effect */}
+                    <div 
+                      className="absolute w-32 h-32 bg-[#760fff] rounded-full mix-blend-screen pointer-events-none transition-transform duration-300"
+                      style={{
+                        left: `${glowPosition.x}%`,
+                        top: `${glowPosition.y}%`,
+                        transform: 'translate(-50%, -50%)',
+                        filter: 'blur(30px)',
+                        opacity: 0.4,
+                      }}
+                    />
+                    
+                    {/* Center bright glow */}
+                    <div 
+                      className="absolute w-16 h-16 bg-white rounded-full mix-blend-screen pointer-events-none transition-transform duration-300"
+                      style={{
+                        left: `${glowPosition.x}%`,
+                        top: `${glowPosition.y}%`,
+                        transform: 'translate(-50%, -50%)',
+                        filter: 'blur(15px)',
+                        opacity: 0.2,
+                      }}
+                    />
+                    
+                    {/* Text with glow effect */}
+                    <span className="relative z-10 text-white font-medium tracking-wider text-sm">
+                      CREATE ACCOUNT
+                    </span>
+                  </Button>
+                </div>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+        <p className="mt-2 text-sm text-gray-400">
+          Already have an account?{' '}
+          <Link to="/login" className="text-indigo-500 hover:text-indigo-400">
+            Sign in
+          </Link>
+        </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignupPage;
+export default SignupPage
+

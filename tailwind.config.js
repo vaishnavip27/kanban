@@ -11,7 +11,8 @@ export default {
   			serif: [
   				'Mona Sans',
   				'serif'
-  			]
+  			],
+			newfont : ["Lato", "serif"]
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
