@@ -91,12 +91,31 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
             key={task.id}
             draggable
             onDragStart={(e) => handleDragStart(e, task.id)}
-            className="bg-[#0B0B0E]/40 backdrop-blur-xl  border border-[#5a3cb4]/30 p-3 rounded-md shadow cursor-pointer hover:bg-gray-600 transition-colors duration-200"
+            className="bg-[#0B0B0E]/40 backdrop-blur-xl border border-[#5a3cb4]/30 p-3 rounded-md shadow cursor-pointer hover:bg-gray-600 transition-colors duration-200"
           >
+            {/* Labels */}
+            {task.labels && (
+              <div className="flex gap-1 mb-2">
+                {task.labels.map((label) => (
+                  <span
+                    key={label}
+                    className="px-2.5 py-1 text-xs bg-transparent border border-[#5a3cb4]/30 text-gray-300 rounded-xl backdrop-blur-xl"
+                  >
+                    {label}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Title */}
             <h4 className="text-md font-medium text-gray-200">{task.title}</h4>
+
+            {/* Description */}
             {task.description && (
               <p className="text-sm text-gray-400 mt-1">{task.description}</p>
             )}
+
+            {/* Image */}
             {task.image && (
               <div className="mt-2">
                 <img 
@@ -106,24 +125,12 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
                 />
               </div>
             )}
-            {task.labels && (
-              <div className="flex gap-2 mt-2">
-                {task.labels.map((label) => (
-                  <span
-                    key={label}
-                    className="px-2 py-1 text-xs rounded bg-[#17191A] text-gray-300"
-                  >
-                    {label}
-                  </span>
-                ))}
-              </div>
-              
-            )}
+
             <div className="w-full h-[1px] bg-gray-400 mt-3"></div>
 
             <div className="flex mt-2 justify-between items-center">
               <div>
-                <AvatarGroup/>
+                <AvatarGroup />
               </div>
               <div></div>
             </div>
