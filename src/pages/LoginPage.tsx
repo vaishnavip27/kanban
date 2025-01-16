@@ -1,107 +1,96 @@
 'use client'
 
 import React, { useState } from 'react'
-import {Link, useNavigate} from 'react-router-dom'
-import { Trello } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Trello, Github, Chrome } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-interface LoginPageProps {
-  onLogin: () => void
-}
-
-const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
-  const navigate = useNavigate();
-
+const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate authentication for now
-    onLogin()
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#090B0D] px-4">
       <div className="flex flex-col items-center space-y-4 w-full max-w-[480px]">
-        <Card className="w-full space-y-8 border border-white py-16 px-9 bg-transparent">
+        {/* Glow effects */}
+        <div className="absolute w-[450px] h-[480px] rounded-full bg-purple-500/20 blur-[120px] translate-x-1/4 -z-100" />
+        
+        <Card className="w-full space-y-5 border border-white/10 py-8 px-9 bg-black/20 backdrop-blur-xl relative overflow-hidden shadow-[0_0_1000px_0_rgba(79,70,229,0.1)] hover:shadow-[0_0_1000px_0_rgba(79,70,229,0.15)] transition-all duration-300">
+          {/* Corner glows */}
+          <div className="absolute -top-20 -right-14 w-44 h-44 bg-indigo-500/20 blur-[32px]" />
+          <div className="absolute bottom-0 -left-28 w-40 h-44 bg-indigo-500/20 blur-[32px]" />
+          
           <CardHeader className="space-y-2 p-0">
             <div className="flex items-center justify-start">
-              <Trello className="w-12 h-12 text-indigo-500" />
+              <Trello className="w-9 h-9 text-indigo-500" />
             </div>
-            <CardTitle className="mt-6 text-3xl font-bold text-white">Welcome back</CardTitle>
+            <CardTitle className="pt-1 text-3xl font-bold text-white">Welcome back!</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-medium text-gray-400">
-                  Email address
+              <div className="space-y-1">
+                <Label htmlFor="email" className="text-md font-normal text-gray-400">
+                  Email
                 </Label>
-                <div className="relative">
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full pr-3 py-2 border border-gray-600 rounded-md leading-5 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    placeholder="Email address"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password" className="text-sm font-medium text-gray-400">
-                  Password
-                </Label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full pr-3 py-2 border border-gray-600 rounded-md leading-5 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    placeholder="Password"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <Checkbox 
-                    id="remember-me" 
-                    className="h-4 w-4 bg-gray-700 border-gray-600 rounded text-indigo-600 focus:ring-indigo-500"
-                  />
-                  <Label htmlFor="remember-me" className="ml-2 block text-sm text-gray-400">
-                    Remember me
-                  </Label>
-                </div>
-                <div className="text-sm">
-                  <Link to="#" className="text-indigo-500 hover:text-indigo-400">
-                    Forgot password?
-                  </Link>
-                </div>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="block w-full pr-3 py-6 border border-gray-600/30 rounded-sm leading-5 bg-black/50 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="Email address"
+                  required
+                />
               </div>
               <Button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="custom-get-started-button" style={{height:"44px"}}
               >
                 Sign in
               </Button>
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-600/30"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-4 bg-[#090B0D] text-gray-400">OR</span>
+                </div>
+              </div>
+
+              <div className="flex gap-2 w-full max-w-md mx-auto pb-9">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
+                >
+                  <Chrome className="w-5 h-5 mr-2" />
+                  Sign up with Google
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
+                >
+                  <Github className="w-5 h-5 mr-2" />
+                  Sign up with GitHub
+                </Button>
+              </div>
             </form>
           </CardContent>
         </Card>
         <p className="mt-2 text-sm text-gray-400">
-          Don't have an account?{' '}
-          <span
-            onClick={() => navigate("/signup")} // Use navigate to programmatically redirect
-            className="text-indigo-500 hover:text-indigo-400 cursor-pointer"
-          >
+          Already have an account?{' '}
+          <Link to="/signup" className="text-indigo-500 hover:text-indigo-400">
             Sign up
-          </span>
+          </Link>
         </p>
       </div>
     </div>
@@ -109,4 +98,3 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
 }
 
 export default LoginPage
-

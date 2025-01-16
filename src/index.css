@@ -70,6 +70,8 @@
 
 
 .custom-get-started-button {
+  width:100%;
+  max-width:none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,7 +86,6 @@
   border-radius: 8px;
   position: relative;
   cursor: pointer;
-  width: max-content;
   background: linear-gradient(
       180deg,
       rgba(60, 8, 126, 0) 0%,
