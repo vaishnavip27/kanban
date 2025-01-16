@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MoveLeft, Search, Bell, UserPlus, Paintbrush, LayoutGrid } from "lucide-react";
+import { MoveLeft, Search, Bell, UserPlus, Paintbrush } from "lucide-react";
 import Navbar from "../components/Navbar"; // Adjust the import path if necessary
 import KanbanColumn from "../components/KanbanColumn";
 import TaskModal from "../components/TaskModal";
@@ -92,10 +92,10 @@ const KanbanBoard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#121416] overflow-x-hidden">
+    <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden">
       <Navbar />
       <div className="flex flex-col flex-grow overflow-y-auto">
-        <header className="p-3 border-b border-gray-800 px-6 bg-[#1D1E22]">
+        <header className="p-3 border-b border-gray-800 px-6 bg-[#121216]">
           <div className="flex items-center justify-between">
             <MoveLeft className="h-5 w-5" />
             <div className="flex items-center gap-3">
@@ -120,17 +120,13 @@ const KanbanBoard = () => {
           <div className="flex items-center justify-between mb-6">
             <HorizontalNavbar />
             <div className="flex gap-3">
-              <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
-                <span>Invite Member</span>
-                <UserPlus className="ml-2 h-4 w-4" />
-              </Button>
-              <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
+              <Button className="justify-between w-full sm:w-auto h-10 bg-[#17171C]">
                 <span>Customize</span>
                 <Paintbrush className="ml-2 h-4 w-4" />
               </Button>
-              <Button className="justify-between w-full sm:w-auto h-10 bg-[#1A1C1E]">
-                <span>New Board</span>
-                <LayoutGrid className="ml-2 h-4 w-4" />
+              <Button className="custom-get-started-button" style={{width:"160px"}}>
+                <span>Invite Member</span>
+                <UserPlus className="ml-1 h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -141,7 +137,7 @@ const KanbanBoard = () => {
             {columns.map((column) => (
               <div
                 key={column.id}
-                className="flex-shrink-0 w-[298px] bg-[#17191A] rounded-lg"
+                className="flex-shrink-0 w-[298px] bg-[#121216] rounded-lg"
                 onDrop={(e) => handleDrop(e, column.id)}
                 onDragOver={handleDragOver}
               >

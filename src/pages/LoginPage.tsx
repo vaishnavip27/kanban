@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Trello, Github, Chrome } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,10 +9,12 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
+    navigate('/board');
   }
 
   return (
@@ -60,7 +62,7 @@ const LoginPage: React.FC = () => {
                   <div className="w-full border-t border-gray-600/30"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-[#090B0D] text-gray-400">OR</span>
+                  <span className="px-4 text-gray-400">OR</span>
                 </div>
               </div>
 

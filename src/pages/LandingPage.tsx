@@ -13,7 +13,7 @@
       <div className="flex flex-col items-center relative justify-center z-10">
         <LandingNav/>
           <div className="mt-36 flex flex-col items-center justify-center">
-          <Button className="custom-get-started-button" style={{borderRadius:'28px', height:"35px", marginBottom:"20px"}}>
+          <Button className="custom-get-started-button" style={{borderRadius:'28px', height:"35px", marginBottom:"20px", width:"150px"}}>
               <Sparkles className="h-8 w-8"/>
               <span>New Task</span>
           </Button>

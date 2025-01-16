@@ -22,20 +22,27 @@ const sidebarItems = [
 
 export default function Sidebar() {
   return (
-    <div className="h-screen w-64 bg-[#191D20] text-white border-r border-gray-800">
+    <div className="h-screen w-64 bg-[#121216] text-white border-r border-gray-800 overflow-hidden">
       <div className="border-b border-gray-800 p-4">
         <h1 className="text-2xl font-bold">TaskFlow</h1>
       </div>
       <nav className="p-3">
         {sidebarItems.map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            className="flex items-center space-x-2 p-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors"
-          >
-            <item.icon className="h-5 w-5" />
-            <span>{item.label}</span>
-          </a>
+          <div key={item.label} className="relative">
+            <a
+              href={item.href}
+              className="relative flex items-center space-x-2 p-2.5  rounded-lg text-gray-400 hover:bg-gray-900/50 hover:text-white transition-colors group"
+            >
+              {/* Hover Background Layer */}
+              <div className="absolute inset-0 w-full h-full bg-transparent group-hover:bg-gray-900/50 rounded-lg transition-colors z-0"></div>
+
+              {/* Content Layer */}
+              <div className="relative z-20 flex items-center space-x-2">
+                <item.icon className="h-5 w-5" />
+                <span>{item.label}</span>
+              </div>
+            </a>
+          </div>
         ))}
       </nav>
     </div>

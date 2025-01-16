@@ -59,7 +59,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
 
   return (
     <div 
-      className="flex-shrink-0 w-[298px] bg-[#1A1C1E] rounded-lg" 
+      className="flex-shrink-0 w-[298px] bg-[#17171C] rounded-lg" 
       onDrop={handleDrop} 
       onDragOver={handleDragOver}
     >
@@ -91,7 +91,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
             key={task.id}
             draggable
             onDragStart={(e) => handleDragStart(e, task.id)}
-            className="bg-[#242629] p-3 rounded-md shadow cursor-pointer hover:bg-gray-600 transition-colors duration-200"
+            className="bg-[#0B0B0E]/40 backdrop-blur-xl  border border-[#5a3cb4]/30 p-3 rounded-md shadow cursor-pointer hover:bg-gray-600 transition-colors duration-200"
           >
             <h4 className="text-md font-medium text-gray-200">{task.title}</h4>
             {task.description && (
