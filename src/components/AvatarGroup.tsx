@@ -12,7 +12,7 @@ const AvatarGroup = () => {
   return (
     <div className="flex -space-x-5">
       {avatars.map((avatar, index) => (
-        <Avatar key={index} className=" h-8 w-8">
+        <Avatar key={index} className=" h-7 w-7">
           <AvatarImage src={avatar.src} alt={avatar.alt} />
           <AvatarFallback className="bg-gray-600 text-gray-200 text-xs">
             {avatar.fallback}

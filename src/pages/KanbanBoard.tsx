@@ -99,7 +99,7 @@ const KanbanBoard = () => {
           <div className="flex items-center justify-between">
             <MoveLeft className="h-5 w-5" />
             <div className="flex items-center gap-3">
-              <div className="flex items-center space-x-2 bg-[#121416] p-2 rounded-lg">
+              <div className="flex items-center space-x-2 bg-[#121416] p-2 rounded-lg border border-white/10">
                 <Search className="w-5 h-5 text-gray-400" />
                 <input
                   type="text"

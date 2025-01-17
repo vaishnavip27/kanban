@@ -63,7 +63,7 @@ const SignupPage: React.FC = () => {
                   <div className="w-full border-t border-gray-600/30"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-[#090B0D] text-gray-400">OR</span>
+                  <span className="px-4 text-gray-400">OR</span>
                 </div>
               </div>
 

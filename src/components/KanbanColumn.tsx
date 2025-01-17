@@ -99,7 +99,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
                 {task.labels.map((label) => (
                   <span
                     key={label}
-                    className="px-2.5 py-1 text-xs bg-transparent border border-[#5a3cb4]/30 text-gray-300 rounded-xl backdrop-blur-xl"
+                    className="px-3 py-2 text-xs bg-transparent border border-[#5a3cb4]/30 text-gray-300 rounded-xl backdrop-blur-xl"
                   >
                     {label}
                   </span>
@@ -108,7 +108,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
             )}
 
             {/* Title */}
-            <h4 className="text-md font-medium text-gray-200">{task.title}</h4>
+            <h4 className="text-md font-normal text-gray-200">{task.title}</h4>
 
             {/* Description */}
             {task.description && (
@@ -126,13 +126,17 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
               </div>
             )}
 
-            <div className="w-full h-[1px] bg-gray-400 mt-3"></div>
+            {/* <div className="w-full h-[1px] bg-gray-400 mt-3"></div> */}
+            
 
+            {/* //Asignees */}
             <div className="flex mt-2 justify-between items-center">
-              <div>
-                <AvatarGroup />
+              <div className="text-xs">
+                Asignees : 
               </div>
-              <div></div>
+              <div>
+              <AvatarGroup />
+              </div>
             </div>
           </div>
         ))}
