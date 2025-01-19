@@ -9,6 +9,7 @@ const AvatarGroup = () => {
     { src: "/profile.png", alt: "User 3", fallback: "CD" },
   ];
 
+  // The following is the avatar group
   return (
     <div className="flex -space-x-5">
       {avatars.map((avatar, index) => (
