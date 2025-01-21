@@ -124,8 +124,12 @@ const KanbanBoard = () => {
                 <span>Customize</span>
                 <Paintbrush className="ml-2 h-4 w-4" />
               </Button>
-              <Button className="custom-get-started-button" style={{width:"160px"}}>
+              <Button className="justify-between w-full sm:w-auto h-10 bg-[#17171C]">
                 <span>Invite Member</span>
+                <UserPlus className="ml-1 h-4 w-4" />
+              </Button>
+              <Button className="custom-get-started-button" style={{width:"120px"}} onClick={() => setIsModalOpen(true)}>
+                <span>Add task</span>
                 <UserPlus className="ml-1 h-4 w-4" />
               </Button>
             </div>
