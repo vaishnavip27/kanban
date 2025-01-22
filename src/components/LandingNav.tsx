@@ -6,7 +6,7 @@ const LandingNav = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="flex items-center justify-between p-4 w-full max-w-7xl mx-auto">
+    <nav className="flex items-center justify-between w-full mx-auto px-10 py-3 ">
       <div className="flex items-center">
         <Link to="/" className="font-bold text-2xl text-white">
           Taskflow

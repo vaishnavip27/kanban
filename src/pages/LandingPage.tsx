@@ -1,6 +1,5 @@
   import LandingNav from "@/components/LandingNav";
-  import { Button } from "@/components/ui/button";
-  import { Sparkles } from 'lucide-react';
+
 
   const LandingPage = () => {
 
@@ -12,16 +11,6 @@
       {/* Content Overlays */}
       <div className="flex flex-col items-center relative justify-center z-10">
         <LandingNav/>
-          <div className="mt-36 flex flex-col items-center justify-center">
-          <Button className="custom-get-started-button" style={{borderRadius:'28px', height:"35px", marginBottom:"20px", width:"150px"}}>
-              <Sparkles className="h-8 w-8"/>
-              <span>New Task</span>
-          </Button>
-          <h1 className="text-gray-200 text-5xl font-extrabold mb-1 ">Introducing Taskflow</h1>
-          <p className="text-gray-300 mt-4 text-xl">
-          Bring order to chaos with our intuitive Kanban solution, designed for effortless productivity.
-          </p>
-          </div>
       </div>
       </div>
 
