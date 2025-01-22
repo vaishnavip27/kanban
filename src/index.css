@@ -133,3 +133,53 @@
   transform: translateY(0);
 }
 
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/kanban/public/fonts/ClashDisplay-Bold.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/kanban/public/fonts/ClashDisplay-Extralight.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/kanban/public/fonts/ClashDisplay-Light.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/kanban/public/fonts/ClashDisplay-Medium.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/kanban/public/fonts/ClashDisplay-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/kanban/public/fonts/ClashDisplay-Semibold.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+

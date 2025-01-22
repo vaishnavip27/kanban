@@ -7,13 +7,15 @@ export default {
   ],
   theme: {
   	extend: {
-  		fontFamily: {
-  			serif: [
-  				'Mona Sans',
-  				'serif'
-  			],
-			newfont : ["Lato", "serif"]
-  		},
+		fontFamily: {
+			'clash': ['Clash Display', 'sans-serif'],
+		},
+		fontWeight: {
+			light: 300,
+			normal: 400,
+			medium: 500,
+			bold: 700,
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

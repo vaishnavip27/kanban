@@ -17,8 +17,8 @@
               <Sparkles className="h-8 w-8"/>
               <span>New Task</span>
           </Button>
-          <h1 className="text-gray-200 text-5xl font-extrabold font-newfont mb-1">Master Your Task with Ease</h1>
-          <p className="text-gray-300 mt-4 text-xl font-newfont">
+          <h1 className="text-gray-200 text-5xl font-extrabold mb-1 ">Introducing Taskflow</h1>
+          <p className="text-gray-300 mt-4 text-xl">
           Bring order to chaos with our intuitive Kanban solution, designed for effortless productivity.
           </p>
           </div>
