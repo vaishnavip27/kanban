@@ -12,6 +12,12 @@ const LandingNav = () => {
           Taskflow
         </Link>
       </div>
+
+      <div>
+          <h1>This is the middle part</h1>
+        </div>
+
+        
       <div className="flex items-center space-x-4">
         <Button variant="ghost" className="text-sm text-gray-300 hover:text-white transition-colors rounded-full bg-transparent " onClick={() => navigate("/login")}>
           Login
