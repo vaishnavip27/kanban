@@ -181,5 +181,15 @@
   font-display: swap;
 }
 
+.header-font {
+  font-family: "Mona Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
 
 

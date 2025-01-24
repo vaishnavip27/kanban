@@ -11,6 +11,13 @@
       {/* Content Overlays */}
       <div className="flex flex-col items-center relative justify-center z-10">
         <LandingNav/>
+
+
+        {/* //the middle section */}
+        <div className="flex flex-col items-center justify-center transform translate-y-36">
+          <h1 className="header-font text-6xl">This is the middle part</h1>
+          <span>Thsi is the subheading</span>
+        </div>
       </div>
       </div>
 
