@@ -15,6 +15,7 @@ const LandingNav = () => {
 
       <div>
           <h1>This is the middle part</h1>
+          <span>Thsi is the subheading</span>
         </div>
 
         
