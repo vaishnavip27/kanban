@@ -21,6 +21,33 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+		  animation: {
+			gradient: 'gradient 15s ease infinite',
+		},
+
+		animation: {
+			nebula: 'nebula 20s linear infinite',
+			'nebula-slow': 'nebula-slow 25s linear infinite',
+		  },
+		  keyframes: {
+			nebula: {
+			  '0%': { transform: 'rotate(0deg) scale(1)' },
+			  '50%': { transform: 'rotate(180deg) scale(1.1)' },
+			  '100%': { transform: 'rotate(360deg) scale(1)' },
+			},
+			'nebula-slow': {
+			  '0%': { transform: 'rotate(360deg) scale(1.1)' },
+			  '50%': { transform: 'rotate(180deg) scale(1)' },
+			  '100%': { transform: 'rotate(0deg) scale(1.1)' },
+			},
+		  },
+		  keyframes: {
+			gradient: {
+			  '0%': { backgroundPosition: '0% 50%' },
+			  '50%': { backgroundPosition: '100% 50%' },
+			  '100%': { backgroundPosition: '0% 50%' },
+			},
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
