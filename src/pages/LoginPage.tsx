@@ -20,6 +20,7 @@ const LoginPage: React.FC = () => {
     try{
       const result = await signInWithPopup(auth, provider)
       const user = result.user
+      navigate('/board'); 
 
       console.log(user);
     }
@@ -34,6 +35,7 @@ const LoginPage: React.FC = () => {
       try{
         const result = await signInWithPopup(auth, provider)
         const user = result.user
+        navigate('/board');
   
         console.log(user);
       }
