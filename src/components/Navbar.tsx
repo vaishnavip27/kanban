@@ -37,7 +37,7 @@ export default function Sidebar() {
               <div className="absolute inset-0 w-full h-full bg-transparent group-hover:bg-gray-900/50 rounded-lg transition-colors z-0"></div>
 
               {/* Content Layer */}
-              <div className="relative z-20 flex items-center space-x-2">
+              <div className="relative z-20 flex items-center space-x-4">
                 <item.icon className="h-5 w-5" />
                 <span>{item.label}</span>
               </div>
