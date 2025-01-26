@@ -46,7 +46,7 @@ const SignupPage: React.FC = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pr-3 py-6 border border-gray-600/30 rounded-sm leading-5 bg-black/50 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full py-4 border border-gray-600/30 rounded-lg leading-5 bg-black/50 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
                   placeholder="Email address"
                   required
                 />
