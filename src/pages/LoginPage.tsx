@@ -1,14 +1,14 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Trello, Github, Chrome } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import { auth } from "../config/FirebaseConfig.jsx"
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth"
+import { auth } from "../config/FirebaseConfig.js"
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -19,8 +19,6 @@ const LoginPage: React.FC = () => {
     const provider = new GoogleAuthProvider();
     try{
       const result = await signInWithPopup(auth, provider)
-      const credential = GoogleAuthProvider.credentialFromResult(result)
-      const token = credential?.accessToken
       const user = result.user
 
       console.log(user);
@@ -35,8 +33,6 @@ const LoginPage: React.FC = () => {
       const provider = new GithubAuthProvider();
       try{
         const result = await signInWithPopup(auth, provider)
-        const credential = GithubAuthProvider.credentialFromResult(result)
-        const token = credential?.accessToken
         const user = result.user
   
         console.log(user);
@@ -46,10 +42,49 @@ const LoginPage: React.FC = () => {
       }
     }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    navigate('/board');
-  }
+    useEffect(() => {
+      // Check for email link sign-in on component mount
+      if (isSignInWithEmailLink(auth, window.location.href)) {
+        let storedEmail = window.localStorage.getItem('emailForSignIn');
+        
+        if (!storedEmail) {
+          storedEmail = window.prompt('Please provide your email for confirmation');
+        }
+  
+        if (storedEmail) {
+          signInWithEmailLink(auth, storedEmail, window.location.href)
+            .then(() => {
+              window.localStorage.removeItem('emailForSignIn');
+              navigate('/board');
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+      }
+    }, [navigate]);
+  
+    const handleEmailSignIn = async (e: React.FormEvent) => {
+      e.preventDefault();
+  
+      // Validate email
+      if (!email || !email.includes('@')) {
+        return;
+      }
+  
+      const actionCodeSettings = {
+        url: window.location.origin + '/board', // Redirect to board after sign-in
+        handleCodeInApp: true,
+      };
+  
+      try {
+        await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+        window.localStorage.setItem('emailForSignIn', email);
+        alert('Sign-in link sent to your email. Please check your inbox.');
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#090B0D] px-4">
@@ -69,7 +104,7 @@ const LoginPage: React.FC = () => {
             <CardTitle className="pt-1 text-3xl font-bold text-white">Welcome back!</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleEmailSignIn} className="space-y-6">
               <div className="space-y-1">
                 <Label htmlFor="email" className="text-md font-normal text-gray-400">
                   Email
