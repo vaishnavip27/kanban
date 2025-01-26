@@ -7,10 +7,26 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+} from "firebase/auth"
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
+
+  // Authentication setup
+  const googleProvider = new GoogleAuthProvider();
+  const auth = getAuth();
+  
+  const googleSignUp = () => {
+    signInWithPopup(auth, googleProvider)
+    .then((response) => {
+      console.log(response.user)
+    })
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,6 +86,7 @@ const LoginPage: React.FC = () => {
                 <Button
                   variant="outline"
                   size="lg"
+                  onClick={googleSignUp}
                   className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
                   <Chrome className="w-5 h-5" />

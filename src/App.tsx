@@ -8,11 +8,18 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-900 text-gray-100 overflow-x-hidden">
-      <Routes>
+        <Routes>
+          {/* Landing Page Route */}
           <Route path="/" element={<LandingPage />} />
+
+          {/* Authentication Routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+
+          {/* Main Application Routes */}
           <Route path="/board" element={<KanbanBoard />} />
+
+          {/* Redirect any unknown routes to the landing page */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
