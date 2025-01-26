@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { auth } from "../config/FirebaseConfig.jsx"
 
 const LoginPage: React.FC = () => {
@@ -29,6 +29,22 @@ const LoginPage: React.FC = () => {
       console.log(error)
     }
   }
+
+    //authentication
+    const handleGithubLogin = async() => {
+      const provider = new GithubAuthProvider();
+      try{
+        const result = await signInWithPopup(auth, provider)
+        const credential = GithubAuthProvider.credentialFromResult(result)
+        const token = credential?.accessToken
+        const user = result.user
+  
+        console.log(user);
+      }
+      catch(error){
+        console.log(error)
+      }
+    }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,6 +114,7 @@ const LoginPage: React.FC = () => {
                 <Button
                   variant="outline"
                   size="lg"
+                  onClick={handleGithubLogin}
                   className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
                   <Github className="w-5 h-5 " />
