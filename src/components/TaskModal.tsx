@@ -114,7 +114,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px] bg-[#1a1a1a] text-white border border-gray-700 rounded-lg p-6">
+      <DialogContent className="sm:max-w-[500px] bg-[#1a1a1a] text-white border border-gray-700 rounded-lg p-6 max-h-[94vh] overflow-y-auto scrollbar-hide">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold">Add New Task</DialogTitle>
         </DialogHeader>
