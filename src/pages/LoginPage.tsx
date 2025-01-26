@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#090B0D] px-4">
-      <div className="flex flex-col items-center space-y-4 w-full max-w-[480px]">
+      <div className="flex flex-col items-center space-y-4 w-full max-w-[430px]">
         {/* Glow effects */}
         <div className="absolute w-[450px] h-[480px] rounded-full bg-purple-500/20 blur-[120px] translate-x-1/4 -z-100" />
         
@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full py-4 border border-gray-600/30 rounded-lg leading-5 bg-black/50 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full py-3.5 border border-gray-600/30 rounded-lg leading-5 bg-black/50 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
                   placeholder="Email address"
                   required
                 />
@@ -72,7 +72,7 @@ const LoginPage: React.FC = () => {
                   size="lg"
                   className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
-                  <Chrome className="w-5 h-5 mr-2" />
+                  <Chrome className="w-5 h-5" />
                   Sign up with Google
                 </Button>
 
@@ -81,7 +81,7 @@ const LoginPage: React.FC = () => {
                   size="lg"
                   className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
-                  <Github className="w-5 h-5 mr-2" />
+                  <Github className="w-5 h-5 " />
                   Sign up with GitHub
                 </Button>
               </div>
