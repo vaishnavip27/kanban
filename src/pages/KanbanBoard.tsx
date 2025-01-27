@@ -5,6 +5,9 @@ import KanbanColumn from "../components/KanbanColumn";
 import TaskModal from "../components/TaskModal";
 import { Button } from "@/components/ui/button";
 import { HorizontalNavbar } from "@/components/HorizontalNavbar";
+import ListView from "@/components/renderView/ListView";
+import TimelineView from "@/components/renderView/TimelineView";
+import CalenderView from "@/components/renderView/CalenderView";
 
 interface Task {
   id: string;
@@ -27,10 +30,10 @@ const initialColumns: Column[] = [
   { id: "done", title: "Done", tasks: [] },
 ];
 
-const PlaceholderComponent = () => (
+const PlaceholderComponent = ({ title }: { title: string }) => (
   <div className="text-white text-center w-full">
-    <h2 className="text-2xl">New Component Placeholder</h2>
-    <p>This is a placeholder component rendered when "Board" is clicked.</p>
+    <h2 className="text-2xl">{title} Placeholder</h2>
+    <p>This is a placeholder component rendered when "{title}" is clicked.</p>
   </div>
 );
 
@@ -99,6 +102,43 @@ const KanbanBoard = () => {
     e.preventDefault();
   };
 
+  const renderView = () => {
+    switch (activeView) {
+      case "Board":
+        return <PlaceholderComponent title="Board" />;
+      case "List":
+        return <ListView/>;
+      case "Timeline":
+        return <TimelineView/>;
+      case "Calendar":
+        return <CalenderView/>;
+      default:
+        return (
+          <div className="flex gap-4 overflow-x-auto mt-6">
+            {columns.map((column) => (
+              <div
+                key={column.id}
+                className="flex-shrink-0 w-[298px] bg-[#121216] rounded-lg"
+                onDrop={(e) => handleDrop(e, column.id)}
+                onDragOver={handleDragOver}
+              >
+                <KanbanColumn
+                  {...column}
+                  onAddTask={(task) => handleAddTask(task, column.id)}
+                  onMoveTask={(taskId, targetColumnId) =>
+                    handleMoveTask(taskId, column.id, targetColumnId)
+                  }
+                  onDeleteTask={(taskId) => handleDeleteTask(taskId, column.id)}
+                  onDragStart={handleDragStart}
+                  columns={columns}
+                />
+              </div>
+            ))}
+          </div>
+        );
+    }
+  };
+
   return (
     <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden">
       <Navbar />
@@ -145,31 +185,7 @@ const KanbanBoard = () => {
 
           <div className="w-full h-[1px] bg-gray-800"></div>
 
-          {activeView === "Board" ? (
-            <PlaceholderComponent />
-          ) : (
-            <div className="flex gap-4 overflow-x-auto mt-6">
-              {columns.map((column) => (
-                <div
-                  key={column.id}
-                  className="flex-shrink-0 w-[298px] bg-[#121216] rounded-lg"
-                  onDrop={(e) => handleDrop(e, column.id)}
-                  onDragOver={handleDragOver}
-                >
-                  <KanbanColumn
-                    {...column}
-                    onAddTask={(task) => handleAddTask(task, column.id)}
-                    onMoveTask={(taskId, targetColumnId) =>
-                      handleMoveTask(taskId, column.id, targetColumnId)
-                    }
-                    onDeleteTask={(taskId) => handleDeleteTask(taskId, column.id)}
-                    onDragStart={handleDragStart}
-                    columns={columns}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+          {renderView()}
         </main>
 
         {isModalOpen && (

@@ -7,7 +7,7 @@ const navItems = [
   { name: "Overview", href: "#overview" },
   { name: "List", href: "#notes" },
   { name: "Timeline", href: "#activity" },
-  { name: "Calender", href: "#calendar" },
+  { name: "Calendar", href: "#calendar" },
 ];
 
 export function HorizontalNavbar({
