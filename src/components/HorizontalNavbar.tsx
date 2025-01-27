@@ -26,7 +26,7 @@ export function HorizontalNavbar({
               className={cn(
                 "text-sm font-medium  hover:text-white border-[1px] border-transparent hover:border hover:border-purple-800 h-8 flex items-center",
                 activeView === item.name
-                  ? "bg-[#5a3cb4] text-white"
+                  ? " text-white bg-gradient-to-r from-[#a563f26f] to-[#4d089b80] border-purple-900"
                   : "text-muted-foreground"
               )}
               onClick={() => setActiveView(item.name)}
