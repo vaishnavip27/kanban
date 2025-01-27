@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { MoveLeft, Search, Bell, UserPlus, Paintbrush } from "lucide-react";
-import Navbar from "../components/Navbar";
-import KanbanColumn from "../components/KanbanColumn";
-import TaskModal from "../components/TaskModal";
+import Navbar from "../../components/Navbar";
+import KanbanColumn from "../../components/KanbanColumn";
+import TaskModal from "../../components/TaskModal";
 import { Button } from "@/components/ui/button";
 import { HorizontalNavbar } from "@/components/HorizontalNavbar";
 import ListView from "@/components/renderView/ListView";

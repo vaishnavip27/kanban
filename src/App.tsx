@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import KanbanBoard from './pages/KanbanBoard';
+import LandingPage from './pages/LandingPage/LandingPage';
+import LoginPage from "../src/pages/Authentication/LoginPage";
+import SignupPage from '../src/pages/Authentication/SignupPage';
+import DashboardPage from './pages/dashboard/page';
+import KanbanBoard from "./pages/kanban/page";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
 
           {/* Main Application Routes */}
-          <Route path="/board" element={<KanbanBoard />} />
+          <Route path="/dashboard" element={<DashboardPage/>} />
+          <Route path="/kanban" element={<KanbanBoard />} />
+        
 
           {/* Redirect any unknown routes to the landing page */}
           <Route path="*" element={<Navigate to="/" replace />} />

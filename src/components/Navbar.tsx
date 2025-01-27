@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 
 const sidebarItems = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/" },
-  { icon: Trello, label: "Kanban", href: "/kanban" },
+  { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
+  { icon: Trello, label: "Project", href: "/kanban" },
   { icon: Calendar, label: "Calendar", href: "/calendar" },
   { icon: Users, label: "Team", href: "/team" },
   { icon: Search, label: "Search", href: "/search" },

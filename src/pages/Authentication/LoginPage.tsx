@@ -8,92 +8,90 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth"
-import { auth } from "../config/FirebaseConfig.js"
+import { auth } from "../../config/FirebaseConfig"
 
-const SignupPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
+  //authentication
+  const handleGoogleLogin = async() => {
+    const provider = new GoogleAuthProvider();
+    try{
+      const result = await signInWithPopup(auth, provider)
+      const user = result.user
+      navigate('/dashboard'); 
+
+      console.log(user);
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
     //authentication
-    const handleGoogleSign = async() => {
-      const provider = new GoogleAuthProvider();
+    const handleGithubLogin = async() => {
+      const provider = new GithubAuthProvider();
       try{
         const result = await signInWithPopup(auth, provider)
         const user = result.user
+        navigate('/dashboard');
   
         console.log(user);
-        navigate('/board')
       }
       catch(error){
         console.log(error)
       }
     }
-  
-      //authentication
-      const handleGithubSign = async() => {
-        const provider = new GithubAuthProvider();
-        try{
-          const result = await signInWithPopup(auth, provider)
-          const user = result.user
-    
-          console.log(user);
-          navigate('/board')
+
+    useEffect(() => {
+      // Check for email link sign-in on component mount
+      if (isSignInWithEmailLink(auth, window.location.href)) {
+        let storedEmail = window.localStorage.getItem('emailForSignIn');
+        
+        if (!storedEmail) {
+          storedEmail = window.prompt('Please provide your email for confirmation');
         }
-        catch(error){
-          console.log(error)
+  
+        if (storedEmail) {
+          signInWithEmailLink(auth, storedEmail, window.location.href)
+            .then(() => {
+              window.localStorage.removeItem('emailForSignIn');
+              navigate('/dashboard');
+            })
+            .catch((error) => {
+              console.error(error);
+            });
         }
       }
-
-
-          useEffect(() => {
-            // Check for email link sign-in on component mount
-            if (isSignInWithEmailLink(auth, window.location.href)) {
-              let storedEmail = window.localStorage.getItem('emailForSignIn');
-              
-              if (!storedEmail) {
-                storedEmail = window.prompt('Please provide your email for confirmation');
-              }
-        
-              if (storedEmail) {
-                signInWithEmailLink(auth, storedEmail, window.location.href)
-                  .then(() => {
-                    window.localStorage.removeItem('emailForSignIn');
-                    navigate('/board');
-                  })
-                  .catch((error) => {
-                    console.error(error);
-                  });
-              }
-            }
-          }, [navigate]);
-        
-          const handleEmailSignIn = async (e: React.FormEvent) => {
-            e.preventDefault();
-        
-            // Validate email
-            if (!email || !email.includes('@')) {
-              return;
-            }
-        
-            const actionCodeSettings = {
-              url: window.location.origin + '/board', // Redirect to board after sign-in
-              handleCodeInApp: true,
-            };
-        
-            try {
-              await sendSignInLinkToEmail(auth, email, actionCodeSettings);
-              window.localStorage.setItem('emailForSignIn', email);
-              alert('Sign-in link sent to your email. Please check your inbox.');
-            } catch (error) {
-              console.error(error);
-            }
-          };
+    }, [navigate]);
+  
+    const handleEmailSignIn = async (e: React.FormEvent) => {
+      e.preventDefault();
+  
+      // Validate email
+      if (!email || !email.includes('@')) {
+        return;
+      }
+  
+      const actionCodeSettings = {
+        url: window.location.origin + '/dashboard', // Redirect to board after sign-in
+        handleCodeInApp: true,
+      };
+  
+      try {
+        await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+        window.localStorage.setItem('emailForSignIn', email);
+        alert('Sign-in link sent to your email. Please check your inbox.');
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#090B0D] px-4">
       <div className="flex flex-col items-center space-y-4 w-full max-w-[430px]">
         {/* Glow effects */}
-        {/* <div className="absolute w-[450px] h-[450px] rounded-full bg-indigo-500/20 blur-[120px] -z-100" /> */}
         <div className="absolute w-[450px] h-[480px] rounded-full bg-purple-500/20 blur-[120px] translate-x-1/4 -z-100" />
         
         <Card className="w-full space-y-5 border border-white/10 py-8 px-9 bg-black/20 backdrop-blur-xl relative overflow-hidden shadow-[0_0_1000px_0_rgba(79,70,229,0.1)] hover:shadow-[0_0_1000px_0_rgba(79,70,229,0.15)] transition-all duration-300">
@@ -105,7 +103,7 @@ const SignupPage: React.FC = () => {
             <div className="flex items-center justify-start">
               <Trello className="w-9 h-9 text-indigo-500" />
             </div>
-            <CardTitle className="pt-1 text-3xl font-semibold text-gray-300">Create new account</CardTitle>
+            <CardTitle className="pt-1 text-3xl font-semibold text-gray-300">Welcome back!</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <form onSubmit={handleEmailSignIn} className="space-y-6">
@@ -125,9 +123,9 @@ const SignupPage: React.FC = () => {
               </div>
               <Button
                 type="submit"
-                className="custom-get-started-button" style={{height:"44px", fontSize:"12px"}}
+                className="custom-get-started-button" style={{height:"44px"}}
               >
-                CREATE ACCOUNT
+                Sign in
               </Button>
 
               <div className="relative">
@@ -142,8 +140,8 @@ const SignupPage: React.FC = () => {
               <div className="flex gap-2 w-full max-w-md mx-auto pb-9">
                 <Button
                   variant="outline"
-                  onClick={handleGoogleSign}
-                  className="w-1/2 h-12 text-xs font-normal text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
+                  onClick={handleGoogleLogin}
+                  className="w-1/2 h-12 text-gray-200 text-xs font-normal hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
                   <Chrome className="w-5 h-5" />
                   Sign up with Google
@@ -151,10 +149,10 @@ const SignupPage: React.FC = () => {
 
                 <Button
                   variant="outline"
-                  onClick={handleGithubSign}
-                  className="w-1/2 h-12 text-xs font-normal text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
+                  onClick={handleGithubLogin}
+                  className="w-1/2 h-12 text-gray-200 text-xs font-normal hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-5 h-5 " />
                   Sign up with GitHub
                 </Button>
               </div>
@@ -163,8 +161,8 @@ const SignupPage: React.FC = () => {
         </Card>
         <p className="mt-2 text-sm text-gray-400">
           Already have an account?{' '}
-          <Link to="/login" className="text-indigo-500 hover:text-indigo-400">
-            Sign in
+          <Link to="/signup" className="text-indigo-500 hover:text-indigo-400">
+            Sign up
           </Link>
         </p>
       </div>
@@ -172,4 +170,4 @@ const SignupPage: React.FC = () => {
   )
 }
 
-export default SignupPage
+export default LoginPage
