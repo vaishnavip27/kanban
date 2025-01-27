@@ -12,8 +12,8 @@ import {
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
-  { icon: Trello, label: "Project", href: "/kanban" },
-  { icon: Calendar, label: "Calendar", href: "/calendar" },
+  { icon: Trello, label: "Project", href: "/project" },
+  { icon: Calendar, label: "Kanban", href: "/kanban" },
   { icon: Users, label: "Team", href: "/team" },
   { icon: Search, label: "Search", href: "/search" },
   { icon: Bell, label: "Notifications", href: "/notifications" },

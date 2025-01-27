@@ -3,6 +3,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from "../src/pages/Authentication/LoginPage";
 import SignupPage from '../src/pages/Authentication/SignupPage';
 import DashboardPage from './pages/dashboard/page';
+import ProjectPage from "./pages/project/page";
 import KanbanBoard from "./pages/kanban/page";
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
 
           {/* Main Application Routes */}
           <Route path="/dashboard" element={<DashboardPage/>} />
-          <Route path="/kanban" element={<KanbanBoard />} />
+          <Route path="/project" element={<ProjectPage />} />
+          <Route path="/kanban" element={<KanbanBoard/>}/>
         
 
           {/* Redirect any unknown routes to the landing page */}

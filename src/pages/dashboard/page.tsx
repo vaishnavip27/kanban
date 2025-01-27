@@ -25,6 +25,10 @@ const DashboardPage = () => {
             </div>
           </div>
         </header>
+
+        <main className="flex-1 p-5 overflow-y-auto">
+            This is the dashboard
+        </main>
         </div>
     </div>
   )
