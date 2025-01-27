@@ -37,7 +37,8 @@ const LandingNav = () => {
           >
             Login
           </Button>
-          <Button className="custom-get-started-button">Get started</Button>
+          <Button className="custom-get-started-button"
+          onClick={() => navigate('/signup')}>Get started</Button>
         </div>
       </div>
 
