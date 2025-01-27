@@ -105,7 +105,7 @@ const SignupPage: React.FC = () => {
             <div className="flex items-center justify-start">
               <Trello className="w-9 h-9 text-indigo-500" />
             </div>
-            <CardTitle className="pt-1 text-3xl font-bold text-white">Create new account</CardTitle>
+            <CardTitle className="pt-1 text-3xl font-semibold text-gray-300">Create new account</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <form onSubmit={handleEmailSignIn} className="space-y-6">
