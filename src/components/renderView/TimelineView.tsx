@@ -1,6 +1,6 @@
 const TimelineView = () => {
   return (
-    <div className="border border-white p-5"> this is the TimelineView</div>
+    <div className="border-t border-gray-500 p-5"> this is the TimelineView</div>
   )
 }
 
