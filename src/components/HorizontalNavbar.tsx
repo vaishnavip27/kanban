@@ -23,11 +23,10 @@ export function HorizontalNavbar({
         {navItems.map((item) => (
           <li key={item.name}>
             <Button
-              variant="ghost"
               className={cn(
-                "text-sm font-medium transition-colors hover:text-primary h-8 flex items-center",
+                "text-sm font-medium  hover:text-white border-[1px] border-transparent hover:border hover:border-purple-800 h-8 flex items-center",
                 activeView === item.name
-                  ? "bg-gray-700 text-white"
+                  ? "bg-[#5a3cb4] text-white"
                   : "text-muted-foreground"
               )}
               onClick={() => setActiveView(item.name)}
