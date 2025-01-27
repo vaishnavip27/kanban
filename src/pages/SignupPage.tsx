@@ -142,9 +142,8 @@ const SignupPage: React.FC = () => {
               <div className="flex gap-2 w-full max-w-md mx-auto pb-9">
                 <Button
                   variant="outline"
-                  size="lg"
                   onClick={handleGoogleSign}
-                  className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
+                  className="w-1/2 h-12 text-xs font-normal text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
                   <Chrome className="w-5 h-5" />
                   Sign up with Google
@@ -152,9 +151,8 @@ const SignupPage: React.FC = () => {
 
                 <Button
                   variant="outline"
-                  size="lg"
                   onClick={handleGithubSign}
-                  className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
+                  className="w-1/2 h-12 text-xs font-normal text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
                   <Github className="w-5 h-5" />
                   Sign up with GitHub

@@ -140,9 +140,8 @@ const LoginPage: React.FC = () => {
               <div className="flex gap-2 w-full max-w-md mx-auto pb-9">
                 <Button
                   variant="outline"
-                  size="lg"
                   onClick={handleGoogleLogin}
-                  className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
+                  className="w-1/2 h-12 text-gray-200 text-xs font-normal hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
                   <Chrome className="w-5 h-5" />
                   Sign up with Google
@@ -150,9 +149,8 @@ const LoginPage: React.FC = () => {
 
                 <Button
                   variant="outline"
-                  size="lg"
                   onClick={handleGithubLogin}
-                  className="w-1/2 h-12 text-gray-200 hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
+                  className="w-1/2 h-12 text-gray-200 text-xs font-normal hover:text-gray-100 bg-black/20 backdrop-blur-md border-gray-600/30 hover:bg-white/5 transition-all duration-300"
                 >
                   <Github className="w-5 h-5 " />
                   Sign up with GitHub
