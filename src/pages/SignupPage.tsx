@@ -22,6 +22,7 @@ const SignupPage: React.FC = () => {
         const user = result.user
   
         console.log(user);
+        navigate('/board')
       }
       catch(error){
         console.log(error)
@@ -36,6 +37,7 @@ const SignupPage: React.FC = () => {
           const user = result.user
     
           console.log(user);
+          navigate('/board')
         }
         catch(error){
           console.log(error)
