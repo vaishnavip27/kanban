@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MoveLeft, Search, Bell, UserPlus, Paintbrush } from "lucide-react";
-import Navbar from "../components/Navbar"; // Adjust the import path if necessary
+import Navbar from "../components/Navbar";
 import KanbanColumn from "../components/KanbanColumn";
 import TaskModal from "../components/TaskModal";
 import { Button } from "@/components/ui/button";
@@ -27,9 +27,17 @@ const initialColumns: Column[] = [
   { id: "done", title: "Done", tasks: [] },
 ];
 
+const PlaceholderComponent = () => (
+  <div className="text-white text-center w-full">
+    <h2 className="text-2xl">New Component Placeholder</h2>
+    <p>This is a placeholder component rendered when "Board" is clicked.</p>
+  </div>
+);
+
 const KanbanBoard = () => {
   const [columns, setColumns] = useState<Column[]>(initialColumns);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeView, setActiveView] = useState("Overview");
 
   const handleAddTask = (task: Omit<Task, "id">, columnId: string) => {
     const newTask = { ...task, id: Math.random().toString(36).substr(2, 9) };
@@ -118,7 +126,7 @@ const KanbanBoard = () => {
           <h2 className="text-2xl font-normal text-white mb-4">Onboarding Dashboard</h2>
 
           <div className="flex items-center justify-between mb-6">
-            <HorizontalNavbar />
+            <HorizontalNavbar activeView={activeView} setActiveView={setActiveView} />
             <div className="flex gap-3">
               <Button className="justify-between w-full sm:w-auto h-10 bg-[#17171C]">
                 <span>Customize</span>
@@ -128,7 +136,7 @@ const KanbanBoard = () => {
                 <span>Invite Member</span>
                 <UserPlus className="ml-1 h-4 w-4" />
               </Button>
-              <Button className="custom-get-started-button" style={{width:"120px"}} onClick={() => setIsModalOpen(true)}>
+              <Button className="custom-get-started-button" style={{ width: "120px" }} onClick={() => setIsModalOpen(true)}>
                 <span>Add task</span>
                 <UserPlus className="ml-1 h-4 w-4" />
               </Button>
@@ -137,27 +145,31 @@ const KanbanBoard = () => {
 
           <div className="w-full h-[1px] bg-gray-800"></div>
 
-          <div className="flex gap-4 overflow-x-auto mt-6">
-            {columns.map((column) => (
-              <div
-                key={column.id}
-                className="flex-shrink-0 w-[298px] bg-[#121216] rounded-lg"
-                onDrop={(e) => handleDrop(e, column.id)}
-                onDragOver={handleDragOver}
-              >
-                <KanbanColumn
-                  {...column}
-                  onAddTask={(task) => handleAddTask(task, column.id)}
-                  onMoveTask={(taskId, targetColumnId) =>
-                    handleMoveTask(taskId, column.id, targetColumnId)
-                  }
-                  onDeleteTask={(taskId) => handleDeleteTask(taskId, column.id)}
-                  onDragStart={handleDragStart}
-                  columns={columns}
-                />
-              </div>
-            ))}
-          </div>
+          {activeView === "Board" ? (
+            <PlaceholderComponent />
+          ) : (
+            <div className="flex gap-4 overflow-x-auto mt-6">
+              {columns.map((column) => (
+                <div
+                  key={column.id}
+                  className="flex-shrink-0 w-[298px] bg-[#121216] rounded-lg"
+                  onDrop={(e) => handleDrop(e, column.id)}
+                  onDragOver={handleDragOver}
+                >
+                  <KanbanColumn
+                    {...column}
+                    onAddTask={(task) => handleAddTask(task, column.id)}
+                    onMoveTask={(taskId, targetColumnId) =>
+                      handleMoveTask(taskId, column.id, targetColumnId)
+                    }
+                    onDeleteTask={(taskId) => handleDeleteTask(taskId, column.id)}
+                    onDragStart={handleDragStart}
+                    columns={columns}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </main>
 
         {isModalOpen && (
