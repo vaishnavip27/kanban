@@ -2,12 +2,11 @@
 
 import { useState, useMemo } from "react"
 import Navbar from "../../components/Navbar"
-import { MoveLeft, Search, Bell, Plus, SortAsc, SortDesc, Filter } from "lucide-react"
+import { MoveLeft, Search, Bell, Plus, SortAsc, SortDesc} from "lucide-react"
 import ProjectCard from "../../components/ProjectCard"
 import CreateProjectForm from "../../components/CreateProjectForm"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
 
 const initialProjects = [
   {
