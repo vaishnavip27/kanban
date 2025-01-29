@@ -26,7 +26,28 @@ const DashboardPage = () => {
         </header>
 
         <main className="flex-1 p-5 overflow-y-auto">
-            This is the dashboard
+            <div className="border border-white p-2.5 w-full flex items-center">
+              <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+                <span>Title</span>
+                <span className="text-3xl">34</span>
+              </div>
+              <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+                <span>Title</span>
+                <span className="text-3xl">34</span>
+              </div>
+              <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+                <span>Title</span>
+                <span className="text-3xl">55</span>
+              </div>
+              <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+                <span>Title</span>
+                <span className="text-3xl">12</span>
+              </div>
+              <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+                <span>Title</span>
+                <span className="text-3xl">67</span>
+              </div>
+            </div>
         </main>
         </div>
     </div>
