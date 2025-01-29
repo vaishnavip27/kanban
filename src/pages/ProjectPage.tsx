@@ -7,7 +7,18 @@ import CreateProjectForm from "../components/CreateProjectForm"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
-const initialProjects = [
+
+
+type Project = {
+  id: number;
+  name: string;
+  description: string;
+  tasksCompleted: number;
+  totalTasks: number;
+};
+
+
+const initialProjects:Project[] = [
   {
     id: 1,
     name: "Website Redesign",
@@ -41,12 +52,12 @@ const ProjectPage = () => {
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc")
   const [filterText, setFilterText] = useState("")
 
-  const handleCreateProject = (newProject) => {
+  const handleCreateProject = (newProject :  Omit<Project, "id" | "tasksCompleted" | "totalTasks">) => {
     setProjects([...projects, { ...newProject, id: projects.length + 1, tasksCompleted: 0, totalTasks: 0 }])
     setShowForm(false)
   }
 
-  const navigateToProject = (projectId) => {
+  const navigateToProject = (projectId:number) => {
     console.log(`Navigating to project ${projectId}`)
     // Implement actual navigation logic here
   }
@@ -86,6 +97,8 @@ const ProjectPage = () => {
                   type="text"
                   placeholder="Search"
                   className="bg-transparent text-white placeholder-gray-400 outline-none"
+                  value={filterText}
+                  onChange={(e) => setFilterText(e.target.value)}
                 />
               </div>
               <div className="border border-gray-800 p-2 rounded-sm">
