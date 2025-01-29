@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { MoveLeft, Search, Bell, UserPlus, Paintbrush } from "lucide-react";
-import Navbar from "../../components/Navbar";
-import KanbanColumn from "../../components/KanbanColumn";
-import TaskModal from "../../components/TaskModal";
+import KanbanColumn from "../components/KanbanColumn";
+import TaskModal from "../components/TaskModal";
 import { Button } from "@/components/ui/button";
 import { HorizontalNavbar } from "@/components/HorizontalNavbar";
 import ListView from "@/components/renderView/ListView";
@@ -141,7 +140,6 @@ const KanbanBoard = () => {
 
   return (
     <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden">
-      <Navbar />
       <div className="flex flex-col flex-grow overflow-y-auto">
         <header className="p-3 border-b border-gray-800 px-6 bg-[#121216]">
           <div className="flex items-center justify-between">

@@ -1,10 +1,9 @@
-import Navbar from "../../components/Navbar"
+
 import { MoveLeft, Search, Bell } from "lucide-react";
 
 const DashboardPage = () => {
   return (
     <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden">
-        <Navbar/>
 
         <div className="flex flex-col flex-grow overflow-y-auto">
         <header className="p-3 border-b border-gray-800 px-6 bg-[#121216]">

@@ -1,10 +1,9 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import Navbar from "../../components/Navbar"
 import { MoveLeft, Search, Bell, Plus, SortAsc, SortDesc} from "lucide-react"
-import ProjectCard from "../../components/ProjectCard"
-import CreateProjectForm from "../../components/CreateProjectForm"
+import ProjectCard from "../components/ProjectCard"
+import CreateProjectForm from "../components/CreateProjectForm"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
@@ -76,7 +75,6 @@ const ProjectPage = () => {
 
   return (
     <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden">
-      <Navbar />
       <div className="flex flex-col flex-grow overflow-y-auto">
         <header className="p-3 border-b border-gray-800 px-6 bg-[#121216]">
           <div className="flex items-center justify-between">
