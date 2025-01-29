@@ -26,7 +26,7 @@ const DashboardPage = () => {
         </header>
 
         <main className="flex-1 p-5 overflow-y-auto">
-            <div className="border border-white p-2.5 w-full flex items-center">
+            <div className="border border-white p-2.5 w-full flex items-center mb-4">
               <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
                 <span>Title</span>
                 <span className="text-3xl">34</span>
@@ -48,6 +48,15 @@ const DashboardPage = () => {
                 <span className="text-3xl">67</span>
               </div>
             </div>
+
+
+            <div className="border border-white grid grid-cols-2 w-full p-4 gap-4">
+                <div className="border border-white h-64"></div>
+                <div className="border border-white h-64"></div>
+                <div className="border border-white h-64"></div>
+                <div className="border border-white h-64"></div>
+            </div>
+
         </main>
         </div>
     </div>
