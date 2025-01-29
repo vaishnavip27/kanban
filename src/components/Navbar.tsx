@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { LayoutDashboard, Trello, Calendar, Users, Search, Bell, Settings } from "lucide-react";
 
 const sidebarItems = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
-  { icon: Trello, label: "Project", href: "/project" },
-  { icon: Calendar, label: "Kanban", href: "/kanban" },
-  { icon: Users, label: "Team", href: "/team" },
-  { icon: Search, label: "Search", href: "/search" },
-  { icon: Bell, label: "Notifications", href: "/notifications" },
-  { icon: Settings, label: "Settings", href: "/settings" },
+  { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
+  { icon: Trello, label: "Project", path: "/project" },
+  { icon: Calendar, label: "Kanban", path: "/kanban" },
+  { icon: Users, label: "Team", path: "/team" },
+  { icon: Search, label: "Search", path: "/search" },
+  { icon: Bell, label: "Notifications", path: "/notifications" },
+  { icon: Settings, label: "Settings", path: "/settings" },
 ];
 
 export default function Navbar() {
@@ -23,7 +23,7 @@ export default function Navbar() {
         {sidebarItems.map((item) => (
           <div key={item.label} className="relative">
             <Link
-              to={item.href}
+              to={item.path}
               className="relative flex items-center space-x-2 p-2.5 rounded-lg text-gray-400 hover:bg-gray-900/50 hover:text-white transition-colors group"
             >
               <div className="absolute inset-0 w-full h-full bg-transparent group-hover:bg-gray-900/50 rounded-lg transition-colors z-0"></div>
