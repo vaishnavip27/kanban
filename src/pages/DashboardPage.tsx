@@ -54,7 +54,7 @@ const DashboardPage = () => {
                 <div className="border border-white h-64"></div>
                 <div className="border border-white h-64"></div>
                 <div className="border border-white h-64"></div>
-                <div className="border border-white h-64"></div>
+                <div className="border border-gray-600 h-64"></div>
             </div>
 
         </main>
