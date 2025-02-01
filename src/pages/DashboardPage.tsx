@@ -53,7 +53,7 @@ const DashboardPage = () => {
             <div className="border border-white grid grid-cols-2 w-full p-4 gap-4">
                 <div className="border border-white h-64"></div>
                 <div className="border border-white h-64"></div>
-                <div className="border border-white h-64"></div>
+                <div className="border border-gray-600 h-64"></div>
                 <div className="border border-gray-600 h-64"></div>
             </div>
 
