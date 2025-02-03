@@ -53,7 +53,6 @@ const DashboardPage = () => {
             <div className="border border-white grid grid-cols-4 w-full p-4 gap-4">
             {/* First Row - 4 Boxes */}
               <div className="border border-white h-80 rounded-xl">
-                <img src="/main-image.png" alt="this" />
               </div>
               <div className="border border-white h-80 rounded-xl"></div>
               <div className="border border-white h-80 rounded-xl"></div>
