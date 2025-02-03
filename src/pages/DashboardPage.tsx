@@ -50,11 +50,26 @@ const DashboardPage = () => {
             </div>
 
 
-            <div className="border border-white grid grid-cols-2 w-full p-4 gap-4">
-                <div className="border border-white h-64"></div>
-                <div className="border border-white h-64"></div>
-                <div className="border border-gray-600 h-64"></div>
-                <div className="border border-gray-600 h-64"></div>
+            <div className="border border-white grid grid-cols-4 w-full p-4 gap-4">
+            {/* First Row - 4 Boxes */}
+              <div className="border border-white h-80 rounded-xl">
+                <img src="/main-image.png" alt="this" />
+              </div>
+              <div className="border border-white h-80 rounded-xl"></div>
+              <div className="border border-white h-80 rounded-xl"></div>
+              <div className="border border-white h-80 rounded-xl"></div>
+
+            {/* Second Row - 3 Boxes (Using col-span-4 to keep the row layout) */}
+            <div className="border border-gray-600  col-span-4 grid grid-cols-[1fr_2fr_1fr] gap-4">
+            {/* First Box - Square */}
+            <div className="border border-gray-600 aspect-square rounded-xl"></div>
+
+            {/* Middle Box - Wider */}
+            <div className="border border-gray-600 w-full rounded-xl"></div>
+
+            {/* Third Box - Square */}
+            <div className="border border-gray-600 aspect-square rounded-xl"></div>
+            </div>
             </div>
 
         </main>
