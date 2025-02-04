@@ -1,6 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { MoveLeft, Search, Bell } from "lucide-react";
+import { MessageCircle, X } from 'lucide-react';
+import ChatBox from "@/components/ChatBox";
 
 const DashboardPage = () => {
   return (
@@ -64,14 +66,32 @@ const DashboardPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="border border-white h-80 rounded-xl bg-[#27292B]"></div>
+
+
+              <div className="border border-white h-80 rounded-xl bg-[#27292B]">
+              </div>
               <div className="border border-white h-80 rounded-xl"></div>
-              <div className="border border-white h-80 rounded-xl"></div>
+
+              {/* fourth box */}
+              <div className="border border-white h-80 rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                {/* Left Side: Chat Icon + Text */}
+                    <div className="flex items-center gap-2">
+                      <MessageCircle size={18} />
+                      <span className="text-lg font-medium">Chat details</span>
+                    </div>
+    
+                {/* Right Side: Close Icon */}
+                      <X size={22} />
+                    </div>
+                    <ChatBox/>
+              </div>
 
             {/* Second Row - 3 Boxes (Using col-span-4 to keep the row layout) */}
             <div className="border border-gray-600  col-span-4 grid grid-cols-[1fr_2fr_1fr] gap-4">
             {/* First Box - Square */}
-            <div className="border border-gray-600 aspect-square rounded-xl"></div>
+            <div className="border border-gray-600 aspect-square rounded-xl">
+            </div>
 
             {/* Middle Box - Wider */}
             <div className="border border-gray-600 w-full rounded-xl"></div>
