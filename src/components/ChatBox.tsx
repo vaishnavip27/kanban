@@ -10,10 +10,10 @@ const ChatBox = () => {
   ];
 
   return (
-    <div className="mt-4 space-y-3">
+    <div className="mt-5 space-y-3">
       {contacts.map((contact, index) => (
         <div key={index} className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
               <User size={16} className="text-gray-300" />
             </div>
