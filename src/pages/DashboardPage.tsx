@@ -1,4 +1,5 @@
 
+import { Button } from "@/components/ui/button";
 import { MoveLeft, Search, Bell } from "lucide-react";
 
 const DashboardPage = () => {
@@ -52,9 +53,18 @@ const DashboardPage = () => {
 
             <div className="border border-white grid grid-cols-4 w-full p-4 gap-4">
             {/* First Row - 4 Boxes */}
-              <div className="border border-white h-80 rounded-xl">
+              <div className="border border-white h-80 rounded-xl p-5 bg-[#27292B]">
+                <div className="bg-black border border-white h-40 rounded-lg mb-3"></div>
+                <div className="flex flex-col">
+                  <span className="font-medium mb-1">New Task</span>
+                  <p className="text-xs mb-4">Involves creating and assigning a new task </p>
+                  <div className="flex items-center gap-2">
+                    <Button className="custom-get-started-button" style={{width:"130px"}}>+ Add new task</Button>
+                    <Button className="border border-gray-700">Learn more</Button>
+                  </div>
+                </div>
               </div>
-              <div className="border border-white h-80 rounded-xl"></div>
+              <div className="border border-white h-80 rounded-xl bg-[#27292B]"></div>
               <div className="border border-white h-80 rounded-xl"></div>
               <div className="border border-white h-80 rounded-xl"></div>
 
