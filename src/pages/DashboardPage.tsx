@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { MoveLeft, Search, Bell } from "lucide-react";
 import { MessageCircle, X } from 'lucide-react';
 import ChatBox from "@/components/ChatBox";
+import { ProjectTable } from "@/components/ProjectTable";
 
 const DashboardPage = () => {
   return (
@@ -88,14 +89,14 @@ const DashboardPage = () => {
               </div>
 
             {/* Second Row - 3 Boxes (Using col-span-4 to keep the row layout) */}
-            <div className="border border-gray-600  col-span-4 grid grid-cols-[1fr_2fr_1fr] gap-4">
+            <div className="border border-gray-600  col-span-4 grid grid-cols-[1fr_2fr_1fr] gap-4 ">
             {/* First Box - Square */}
-            <div className="border border-gray-600 aspect-square rounded-xl">
+            <div className="border border-gray-600 rounded-xl h-80">
             </div>
 
             {/* Middle Box - Wider */}
-            <div className="border border-gray-600 w-full rounded-xl py-4 px-4">
-              <div className="flex items-center justify-between">
+            <div className="border border-gray-600 w-full rounded-xl py-4 px-4 h-80">
+              <div className="flex items-center justify-between mb-1">
                 <div className="text-lg">Recent Task</div>
                 <div className="flex items-center gap-2">
                 <Search size="20"/>
@@ -103,10 +104,22 @@ const DashboardPage = () => {
                 <Button className="px-3 h-8 text-xs font-normal rounded-xl">Weekly</Button>
                 </div>
               </div>
+
+              <div className="flex items-center gap-1 mb-5">
+                <span className="bg-gray-600 px-2 py-1 rounded-xl text-xs">+5%</span>
+                <span className="text-xs">Work grew in the last week</span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <Button className="h-7 px-4 text-xs font-normal rounded-xl">All</Button>
+                <Button className="custom-get-started-button" style={{width:"80px", height:"28px", fontSize:"12px"}}>Export</Button>
+              </div>
+
+              <ProjectTable/>
             </div>
 
             {/* Third Box - Square */}
-            <div className="border border-gray-600 aspect-square rounded-xl"></div>
+            <div className="border border-gray-600 h-80 rounded-xl"></div>
             </div>
             </div>
 
