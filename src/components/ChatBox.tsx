@@ -10,8 +10,8 @@ const ChatBox = () => {
   ];
 
   return (
-    <div className="flex flex-col h-auto border border-white mt-2 bg-gray-800">
-      <div className="mt-3 space-y-3 flex-grow mb-4">
+    <div className="flex flex-col h-auto border border-white bg-gray-800 p-3 rounded-xl">
+      <div className=" space-y-3 flex-grow mb-4">
         {contacts.map((contact, index) => (
           <div key={index} className="flex items-center justify-between">
             <div className="flex items-center gap-4">

@@ -74,7 +74,7 @@ const DashboardPage = () => {
 
               {/* fourth box */}
               <div className="border border-white h-80 rounded-xl p-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-2">
                 {/* Left Side: Chat Icon + Text */}
                     <div className="flex items-center gap-2">
                       <MessageCircle size={18} />
