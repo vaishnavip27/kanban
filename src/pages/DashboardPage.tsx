@@ -94,7 +94,16 @@ const DashboardPage = () => {
             </div>
 
             {/* Middle Box - Wider */}
-            <div className="border border-gray-600 w-full rounded-xl"></div>
+            <div className="border border-gray-600 w-full rounded-xl py-4 px-4">
+              <div className="flex items-center justify-between">
+                <div className="text-lg">Recent Task</div>
+                <div className="flex items-center gap-2">
+                <Search size="20"/>
+                <Button className="px-3 h-8 text-xs font-normal rounded-xl">All Time</Button>
+                <Button className="px-3 h-8 text-xs font-normal rounded-xl">Weekly</Button>
+                </div>
+              </div>
+            </div>
 
             {/* Third Box - Square */}
             <div className="border border-gray-600 aspect-square rounded-xl"></div>
