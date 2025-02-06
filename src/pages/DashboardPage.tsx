@@ -6,7 +6,6 @@ import { ProjectTable } from "@/components/ProjectTable";
 import { TaskLineChart } from "@/components/LineChart";
 import { Checkbox } from "@/components/ui/checkbox";
 import VideoComponent from "@/components/VideoComponent";
-import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Label } from "@/components/ui/label";
 
 const DashboardPage = () => {
@@ -106,36 +105,10 @@ const DashboardPage = () => {
                 </div>
               </div>
               <div className="bg-black px-5 py-2 rounded-md flex flex-col">
-                <span className="font-normal text-sm mb-4">Branch meeting</span>
+                <span className="font-normal text-sm">Branch meeting</span>
 
                 <div className="flex flex-col">
                   <Label>Team</Label>
-                  <div className="px-2 flex items-center gap-1.5 ">
-                    <div className="flex items-center gap-1 border border-white rounded-md ">
-                      <Avatar>
-                        <AvatarImage
-                          src="/profile.png"
-                          alt="User 1"
-                          className="h-6 w-6"
-                        />
-                      </Avatar>
-                      <span className="text-xs">Vaishnavi</span>
-                      <X size="15" />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1 border border-white rounded-md">
-                        <Avatar>
-                          <AvatarImage
-                            src="/profile.png"
-                            alt="User 1"
-                            className="h-6 w-6"
-                          />
-                        </Avatar>
-                        <span className="text-xs">Vaishnavi</span>
-                        <X size="15" />
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
