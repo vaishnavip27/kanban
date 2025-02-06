@@ -132,10 +132,15 @@ const DashboardPage = () => {
                   </Avatar>
                 </div>
                 <div className="flex items-center gap-1 mb-2 text-gray-300">
-                  <Plus size="23"/>
+                  <Plus size="23" />
                   <span className="text-sm">New mate</span>
                 </div>
               </div>
+              <img
+                src="/component.png"
+                alt="image"
+                className="box-content bg-cover"
+              />
             </div>
 
             <div className="h-80 rounded-xl bg-[#121216] border border-gray-800 px-4 py-4">
