@@ -240,15 +240,14 @@
   box-shadow: 0 0 12px 8px rgba(168, 85, 247, 0.5), 0 0 24px 16px rgba(168, 85, 247, 0.3);
 }
 
-/* scroll-bar */
-@layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
+/* Add these CSS classes to your global styles or component styles */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
 }
 
 
