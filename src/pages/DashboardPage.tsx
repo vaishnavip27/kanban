@@ -1,11 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { MoveLeft, Search, Bell, Plus, Flag, LayoutGrid, Calendar, ChevronRight } from "lucide-react";
+import {
+  MoveLeft,
+  Search,
+  Bell,
+  Plus,
+  Flag,
+  LayoutGrid,
+  Calendar,
+  ChevronRight,
+} from "lucide-react";
 import { MessageCircle, X } from "lucide-react";
 import ChatBox from "@/components/ChatBox";
 import { ProjectTable } from "@/components/ProjectTable";
 import { TaskLineChart } from "@/components/LineChart";
 import { Checkbox } from "@/components/ui/checkbox";
 import VideoComponent from "@/components/VideoComponent";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const DashboardPage = () => {
   const attendees = [
@@ -92,7 +102,7 @@ const DashboardPage = () => {
             </div>
 
             <div className="h-80 rounded-xl bg-[#121216] border border-gray-800 px-4 py-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mb-2">
                 <div className="font-semibold text-base">Tasks</div>
                 <div className="flex items-center gap-1">
                   <Checkbox />
@@ -102,6 +112,28 @@ const DashboardPage = () => {
                   >
                     Marked as completed
                   </label>
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="flex -space-x-7 mb-2 mt-2">
+                  <Avatar>
+                    <AvatarImage
+                      src="/profile.png"
+                      alt="User 1"
+                      className="h-8 w-8"
+                    />
+                  </Avatar>
+                  <Avatar>
+                    <AvatarImage
+                      src="/profile.png"
+                      alt="User 2"
+                      className="h-8 w-8"
+                    />
+                  </Avatar>
+                </div>
+                <div className="flex items-center gap-1 mb-2 text-gray-300">
+                  <Plus size="23"/>
+                  <span className="text-sm">New mate</span>
                 </div>
               </div>
             </div>
