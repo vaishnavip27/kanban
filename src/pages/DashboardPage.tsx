@@ -101,7 +101,7 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            <div className="h-80 rounded-xl bg-[#121216] border border-gray-800 px-4 py-4">
+            <div className="h-80 rounded-xl bg-[#121216] border border-gray-800 px-4 py-4 overflow-hidden">
               <div className="flex items-center justify-between mb-2">
                 <div className="font-semibold text-base">Tasks</div>
                 <div className="flex items-center gap-1">
@@ -136,11 +136,13 @@ const DashboardPage = () => {
                   <span className="text-sm">New mate</span>
                 </div>
               </div>
-              <img
-                src="/component.png"
-                alt="image"
-                className="box-content bg-cover"
-              />
+              <div className="w-full h-72 overflow-hidden rounded-lg relative">
+                <img
+                  src="/component.png"
+                  alt="image"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
             </div>
 
             <div className="h-80 rounded-xl bg-[#121216] border border-gray-800 px-4 py-4">
