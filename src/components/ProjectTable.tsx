@@ -21,7 +21,7 @@ const data: Project[] = [
     id: "1",
     name: "Website",
     assignee: {
-      name: "A.J.",
+      name: "Vaishnavi",
       avatar: "/avatars/alice.jpg",
     },
     date: "2023-05-15",
@@ -32,7 +32,7 @@ const data: Project[] = [
     id: "2",
     name: "Mobile",
     assignee: {
-      name: "B.S.",
+      name: "Jill",
       avatar: "/avatars/bob.jpg",
     },
     date: "2023-05-14",
@@ -41,9 +41,9 @@ const data: Project[] = [
   },
   {
     id: "3",
-    name: "DB",
+    name: "Farhat",
     assignee: {
-      name: "C.B.",
+      name: "Farhat",
       avatar: "/avatars/charlie.jpg",
     },
     date: "2023-05-12",
@@ -66,7 +66,7 @@ const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       const assignee = row.getValue("assignee") as Project["assignee"]
       return (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           <Avatar className="h-4 w-4">
             <AvatarImage src={assignee.avatar} alt={assignee.name} />
             <AvatarFallback className="text-[10px]">{assignee.name.charAt(0)}</AvatarFallback>
