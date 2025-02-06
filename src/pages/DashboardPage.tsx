@@ -78,7 +78,13 @@ const DashboardPage = () => {
           <div className="border border-gray-800 grid grid-cols-4 w-full p-4 gap-4">
             {/* First Row - 4 Boxes */}
             <div className="h-80 rounded-xl p-5 bg-[#121216] border border-gray-800/80">
-              <div className="bg-black border border-gray-800/80 h-44 rounded-lg mb-2"></div>
+              <div className="bg-black border border-gray-800/80 h-44 rounded-lg mb-2 overflow-hidden object-cover">
+                <img
+                  src="/gradient.png"
+                  alt="gradient"
+                  className="h-56 w-full"
+                />
+              </div>
               <div className="flex flex-col">
                 <span className="font-medium mb-1">New Task</span>
                 <p className="text-xs mb-3">
