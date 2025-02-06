@@ -1,14 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { MoveLeft, Search, Bell, Plus, Flag, LayoutGrid } from "lucide-react";
+import { MoveLeft, Search, Bell, Plus, Flag, LayoutGrid, Calendar, ChevronRight } from "lucide-react";
 import { MessageCircle, X } from "lucide-react";
 import ChatBox from "@/components/ChatBox";
 import { ProjectTable } from "@/components/ProjectTable";
 import { TaskLineChart } from "@/components/LineChart";
 import { Checkbox } from "@/components/ui/checkbox";
 import VideoComponent from "@/components/VideoComponent";
-import { Label } from "@/components/ui/label";
 
 const DashboardPage = () => {
+  const attendees = [
+    { name: "Amied", color: "bg-rose-100 text-rose-700" },
+    { name: "Lison", color: "bg-green-100 text-green-700" },
+    { id: "+4", isCount: true },
+  ];
+
+  const tags = [
+    { color: "bg-blue-500" },
+    { color: "bg-yellow-500" },
+    { color: "bg-green-500" },
+  ];
   return (
     <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden ">
       <div className="flex flex-col flex-grow overflow-y-auto">
@@ -104,11 +114,56 @@ const DashboardPage = () => {
                   <LayoutGrid size="18" />
                 </div>
               </div>
-              <div className="bg-black px-5 py-2 rounded-md flex flex-col">
-                <span className="font-normal text-sm">Branch meeting</span>
+              <div className="bg-black px-5 py-3 rounded-lg max-w-md">
+                <h2 className="text-white text-md font-semibold mb-4">
+                  Branch meeting
+                </h2>
 
-                <div className="flex flex-col">
-                  <Label>Team</Label>
+                <div className="mb-4">
+                  <p className="text-gray-400 text-xs mb-2">Team</p>
+                  <div className="flex gap-1">
+                    {attendees.map((attendee, index) => (
+                      <div
+                        key={index}
+                        className={`flex items-center ${
+                          attendee.isCount
+                            ? "px-2 py-1 bg-gray-700 text-gray-300"
+                            : `${attendee.color} px-2.5 py-1`
+                        } rounded-full text-xs`}
+                      >
+                        {!attendee.isCount && (
+                          <>
+                            <span className="mr-2">{attendee.name}</span>
+                            <X size={14} className="cursor-pointer" />
+                          </>
+                        )}
+                        {attendee.isCount && attendee.id}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <p className="text-gray-400 text-xs mb-2">Date</p>
+                  <div className="flex items-center justify-between bg-gray-800 px-4 py-2.5 rounded-lg">
+                    <span className="text-white text-xs">25th Sep, 2024</span>
+                    <div className="flex items-center gap-2">
+                      <ChevronRight size={16} className="text-gray-400" />
+                      <Calendar size={16} className="text-gray-400" />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-gray-400 text-sm mb-2">Tags</p>
+                  <div className="flex gap-2">
+                    {tags.map((tag, index) => (
+                      <div
+                        key={index}
+                        className={`w-5 h-5 ${tag.color} rounded-full`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
