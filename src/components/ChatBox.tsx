@@ -10,8 +10,8 @@ const ChatBox = () => {
   ];
 
   return (
-    <div className="flex flex-col h-auto border border-gray-800 bg-[#111111] p-3 rounded-xl">
-      <div className=" space-y-3 flex-grow mb-4">
+    <div className="flex flex-col h-auto border border-gray-800 bg-[#111111] p-3 rounded-xl text-gray-300">
+      <div className=" space-y-4 flex-grow mb-4">
         {contacts.map((contact, index) => (
           <div key={index} className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -19,7 +19,7 @@ const ChatBox = () => {
                 <User size={16} className="text-gray-300" />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-medium">{contact.name}</span>
+                <span className="text-xs font-medium">{contact.name}</span>
                 <span className="text-xs text-gray-400">{contact.status}</span>
               </div>
             </div>

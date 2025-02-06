@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MoveLeft, Search, Bell, Plus, Flag } from "lucide-react";
+import { MoveLeft, Search, Bell, Plus, Flag, LayoutGrid } from "lucide-react";
 import { MessageCircle, X } from "lucide-react";
 import ChatBox from "@/components/ChatBox";
 import { ProjectTable } from "@/components/ProjectTable";
@@ -28,25 +28,25 @@ const DashboardPage = () => {
           </div>
         </header>
 
-        <main className="flex-1 p-5 overflow-y-auto ">
+        <main className="flex-1 p-5 overflow-y-auto text-gray-300 ">
           <div className="border border-gray-800 p-2.5 w-full flex items-center mb-4 bg-[#121216] rounded-md">
-            <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+            <div className="border-r border-dashed border-gray-800 aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
               <span>Title</span>
               <span className="text-3xl">34</span>
             </div>
-            <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+            <div className="border-r border-dashed border-gray-800 aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
               <span>Title</span>
               <span className="text-3xl">34</span>
             </div>
-            <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+            <div className="border-r border-dashed border-gray-800 aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
               <span>Title</span>
               <span className="text-3xl">55</span>
             </div>
-            <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+            <div className="border-r border-dashed border-gray-800 aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
               <span>Title</span>
               <span className="text-3xl">12</span>
             </div>
-            <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
+            <div className="border-r border-dashed border-gray-800 aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
               <span>Title</span>
               <span className="text-3xl">67</span>
             </div>
@@ -78,7 +78,19 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            <div className="h-80 rounded-xl bg-[#121216] border border-gray-800"></div>
+            <div className="h-80 rounded-xl bg-[#121216] border border-gray-800 px-4 py-4">
+              <div className="flex items-center justify-between">
+                <div className="font-semibold text-base">Upcoming</div>
+                <div className="flex items-center gap-2">
+                  <Search size="18"/>
+                  <LayoutGrid size="18"/>
+                </div>
+              </div>
+            </div>
+
+
+
+
             <div className="h-80 rounded-xl bg-[#121216] border border-gray-800"></div>
 
             {/* fourth box */}
@@ -86,12 +98,12 @@ const DashboardPage = () => {
               <div className="flex items-center justify-between mb-2">
                 {/* Left Side: Chat Icon + Text */}
                 <div className="flex items-center gap-2">
-                  <MessageCircle size={18} />
-                  <span className="text-lg font-medium">Chat details</span>
+                  <MessageCircle size={16} />
+                  <span className="text-base font-medium">Chat details</span>
                 </div>
 
                 {/* Right Side: Close Icon */}
-                <X size={22} />
+                <X size={20} />
               </div>
               <ChatBox />
             </div>
@@ -139,7 +151,7 @@ const DashboardPage = () => {
               </div>
 
               {/* Third Box - Square */}
-              <div className="border border-gray-800 h-80 rounded-xl bg-[#121216]">
+              <div className="border border-gray-800 h-80 rounded-xl bg-[#121216] text-gray-200">
                 <div className="flex items-center justify-between p-3">
                   <div>
                     <Button
