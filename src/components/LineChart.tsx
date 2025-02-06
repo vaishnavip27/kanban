@@ -11,7 +11,7 @@ const data = [
 
 export function TaskLineChart() {
   return (
-    <div className="h-[200px] w-full mt-4 border border-white p-2">
+    <div className="h-[200px] w-full mt-4 border border-gray-800 p-2 rounded-lg">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: "#9CA3AF", fontSize: 12 }} />
