@@ -157,7 +157,6 @@ const DashboardPage = () => {
                     Export
                   </Button>
                 </div>
-
                 <ProjectTable />
               </div>
 
