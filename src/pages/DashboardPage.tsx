@@ -94,7 +94,7 @@ const DashboardPage = () => {
             <div className="h-80 rounded-xl bg-[#121216] border border-gray-800"></div>
 
             {/* fourth box */}
-            <div className="h-80 rounded-xl p-4 bg-[#121216] border border-gray-800">
+            <div className="h-80 rounded-xl p-4 bg-[#121216] border border-gray-800 px-4 py-4">
               <div className="flex items-center justify-between mb-2">
                 {/* Left Side: Chat Icon + Text */}
                 <div className="flex items-center gap-2">
@@ -111,7 +111,7 @@ const DashboardPage = () => {
             {/* Second Row - 3 Boxes (Using col-span-4 to keep the row layout) */}
             <div className=" col-span-4 grid grid-cols-[1fr_2fr_1fr] gap-4 ">
               {/* First Box - Square */}
-              <div className="border border-gray-800 rounded-xl h-80 bg-[#121216]"></div>
+              <div className="border border-gray-800 rounded-xl h-80 bg-[#121216] px-4 py-4"></div>
 
               {/* Middle Box - Wider */}
               <div className="border border-gray-800 w-full rounded-xl py-4 px-4 h-80 bg-[#121216]">
@@ -151,8 +151,8 @@ const DashboardPage = () => {
               </div>
 
               {/* Third Box - Square */}
-              <div className="border border-gray-800 h-80 rounded-xl bg-[#121216] text-gray-200">
-                <div className="flex items-center justify-between p-3">
+              <div className="border border-gray-800 h-80 rounded-xl bg-[#121216] text-gray-200 px-4 py-4">
+                <div className="flex items-center justify-between">
                   <div>
                     <Button
                       className="flex items-center gap-1 bg-gray-800 h-8 text-xs font-normal"
@@ -167,7 +167,7 @@ const DashboardPage = () => {
                 </div>
 
                 {/* line chart */}
-                <div className="px-3">
+                <div>
                   <TaskLineChart/>
                 </div>
 
