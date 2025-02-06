@@ -117,7 +117,7 @@ const DashboardPage = () => {
                 </div>
 
                 <div className="flex items-center gap-1 mb-5">
-                  <span className="bg-gray-600 px-2 py-1 rounded-xl text-xs">
+                  <span className="bg-gray-800 px-2 py-1 rounded-xl text-xs">
                     +5%
                   </span>
                   <span className="text-xs">Work grew in the last week</span>
@@ -143,11 +143,10 @@ const DashboardPage = () => {
                 <div className="flex items-center justify-between p-3">
                   <div>
                     <Button
-                      variant="outline"
-                      className="flex items-center gap-1 bg-gray-700 h-8"
+                      className="flex items-center gap-1 bg-gray-800 h-8 text-xs font-normal"
                     >
                       <Plus/>
-                      worker
+                      Workers
                     </Button>
                   </div>
                   <div className="bg-gray-800 p-1.5 rounded-md">

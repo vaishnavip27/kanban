@@ -114,7 +114,7 @@ export function ProjectTable() {
   })
 
   return (
-    <div className="mt-3 border border-gray-600 rounded-xl">
+    <div className="mt-3 border border-gray-800 rounded-xl bg-black">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

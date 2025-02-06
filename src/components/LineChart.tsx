@@ -29,10 +29,10 @@ export function TaskLineChart() {
           <Line
             type="monotone"
             dataKey="pending"
-            stroke="#A3E635"
+            stroke="#331886"
             strokeWidth={2}
-            dot={{ fill: "#A3E635", strokeWidth: 0, r: 4 }}
-            activeDot={{ r: 6, fill: "#A3E635" }}
+            dot={{ fill: "#331886", strokeWidth: 0, r: 4 }}
+            activeDot={{ r: 6, fill: "#331886" }}
           />
           <Line
             type="monotone"
@@ -46,7 +46,7 @@ export function TaskLineChart() {
       </ResponsiveContainer>
       <div className="flex items-center justify-start gap-6 mt-4">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-[#A3E635]" />
+          <div className="w-2 h-2 rounded-full bg-[#331886]" />
           <span className="text-xs text-gray-400">Pending</span>
         </div>
         <div className="flex items-center gap-2">
