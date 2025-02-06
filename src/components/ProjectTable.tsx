@@ -93,10 +93,10 @@ const columns: ColumnDef<Project>[] = [
           variant="outline"
           className={`h-5 text-[10px] px-2 ${
             status === "completed"
-              ? "bg-green-500/10 text-green-500 hover:bg-green-500/20 border-green-500/20"
+              ? "bg-[#6DCB95] text-black hover:bg-green-500/20 border-green-500/20"
               : status === "pending"
-                ? "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20 border-yellow-500/20"
-                : "bg-gray-500/10 text-gray-400 hover:bg-gray-500/20 border-gray-500/20"
+                ? "bg-[#E5F649] text-black hover:bg-yellow-500/20 border-yellow-500/20"
+                : "bg-[#FFCB74] text-black hover:bg-gray-500/20 border-gray-500/20"
           }`}
         >
           {status.charAt(0).toUpperCase() + status.slice(1)}

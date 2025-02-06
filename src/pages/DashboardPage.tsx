@@ -4,6 +4,7 @@ import { MessageCircle, X } from "lucide-react";
 import ChatBox from "@/components/ChatBox";
 import { ProjectTable } from "@/components/ProjectTable";
 import { TaskLineChart } from "@/components/LineChart";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const DashboardPage = () => {
   return (
@@ -80,18 +81,28 @@ const DashboardPage = () => {
 
             <div className="h-80 rounded-xl bg-[#121216] border border-gray-800 px-4 py-4">
               <div className="flex items-center justify-between">
-                <div className="font-semibold text-base">Upcoming</div>
-                <div className="flex items-center gap-2">
-                  <Search size="18"/>
-                  <LayoutGrid size="18"/>
+                <div className="font-semibold text-base">Tasks</div>
+                <div className="flex items-center gap-1">
+                  <Checkbox />
+                  <label
+                    htmlFor="completed-checkbox"
+                    className="text-xs text-gray-300"
+                  >
+                    Marked as completed
+                  </label>
                 </div>
               </div>
             </div>
 
-
-
-
-            <div className="h-80 rounded-xl bg-[#121216] border border-gray-800"></div>
+            <div className="h-80 rounded-xl bg-[#121216] border border-gray-800 px-4 py-4">
+              <div className="flex items-center justify-between">
+                <div className="font-semibold text-base">Upcoming</div>
+                <div className="flex gap-2">
+                  <Search size="18" />
+                  <LayoutGrid size="18" />
+                </div>
+              </div>
+            </div>
 
             {/* fourth box */}
             <div className="h-80 rounded-xl p-4 bg-[#121216] border border-gray-800 px-4 py-4">
@@ -154,24 +165,20 @@ const DashboardPage = () => {
               <div className="border border-gray-800 h-80 rounded-xl bg-[#121216] text-gray-200 px-4 py-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <Button
-                      className="flex items-center gap-1 bg-gray-800 h-8 text-xs font-normal"
-                    >
-                      <Plus/>
+                    <Button className="flex items-center gap-1 bg-gray-800 h-8 text-xs font-normal">
+                      <Plus />
                       Workers
                     </Button>
                   </div>
                   <div className="bg-gray-800 p-1.5 rounded-md">
-                  <Flag size="16"/>
+                    <Flag size="16" />
                   </div>
                 </div>
 
                 {/* line chart */}
                 <div>
-                  <TaskLineChart/>
+                  <TaskLineChart />
                 </div>
-
-
               </div>
             </div>
           </div>
