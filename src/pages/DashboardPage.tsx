@@ -28,8 +28,8 @@ const DashboardPage = () => {
           </div>
         </header>
 
-        <main className="flex-1 p-5 overflow-y-auto">
-          <div className="border border-white p-2.5 w-full flex items-center mb-4">
+        <main className="flex-1 p-5 overflow-y-auto ">
+          <div className="border border-gray-800 p-2.5 w-full flex items-center mb-4 bg-[#121216] rounded-md">
             <div className="border-r border-dashed border-white aspect-auto flex-1 px-3 py-2.5 flex items-left flex-col gap-4">
               <span>Title</span>
               <span className="text-3xl">34</span>
@@ -52,10 +52,10 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="border border-white grid grid-cols-4 w-full p-4 gap-4">
+          <div className="border border-gray-800 grid grid-cols-4 w-full p-4 gap-4">
             {/* First Row - 4 Boxes */}
-            <div className="border border-white h-80 rounded-xl p-5 bg-[#27292B]">
-              <div className="bg-black border border-white h-44 rounded-lg mb-2"></div>
+            <div className="h-80 rounded-xl p-5 bg-[#121216] border border-gray-800">
+              <div className="bg-black border border-gray-800 h-44 rounded-lg mb-2"></div>
               <div className="flex flex-col">
                 <span className="font-medium mb-1">New Task</span>
                 <p className="text-xs mb-3">
@@ -78,11 +78,11 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            <div className="border border-white h-80 rounded-xl bg-[#27292B]"></div>
-            <div className="border border-white h-80 rounded-xl"></div>
+            <div className="h-80 rounded-xl bg-[#121216] border border-gray-800"></div>
+            <div className="h-80 rounded-xl bg-[#121216] border border-gray-800"></div>
 
             {/* fourth box */}
-            <div className="border border-white h-80 rounded-xl p-4">
+            <div className="h-80 rounded-xl p-4 bg-[#121216] border border-gray-800">
               <div className="flex items-center justify-between mb-2">
                 {/* Left Side: Chat Icon + Text */}
                 <div className="flex items-center gap-2">
@@ -97,12 +97,12 @@ const DashboardPage = () => {
             </div>
 
             {/* Second Row - 3 Boxes (Using col-span-4 to keep the row layout) */}
-            <div className="border border-gray-600  col-span-4 grid grid-cols-[1fr_2fr_1fr] gap-4 ">
+            <div className=" col-span-4 grid grid-cols-[1fr_2fr_1fr] gap-4 ">
               {/* First Box - Square */}
-              <div className="border border-gray-600 rounded-xl h-80"></div>
+              <div className="border border-gray-800 rounded-xl h-80 bg-[#121216]"></div>
 
               {/* Middle Box - Wider */}
-              <div className="border border-gray-600 w-full rounded-xl py-4 px-4 h-80">
+              <div className="border border-gray-800 w-full rounded-xl py-4 px-4 h-80 bg-[#121216]">
                 <div className="flex items-center justify-between mb-1">
                   <div className="text-lg">Recent Task</div>
                   <div className="flex items-center gap-2">
@@ -139,7 +139,7 @@ const DashboardPage = () => {
               </div>
 
               {/* Third Box - Square */}
-              <div className="border border-gray-600 h-80 rounded-xl">
+              <div className="border border-gray-800 h-80 rounded-xl bg-[#121216]">
                 <div className="flex items-center justify-between p-3">
                   <div>
                     <Button
@@ -150,7 +150,7 @@ const DashboardPage = () => {
                       worker
                     </Button>
                   </div>
-                  <div className="bg-slate-300 p-1.5 rounded-md">
+                  <div className="bg-gray-800 p-1.5 rounded-md">
                   <Flag size="16"/>
                   </div>
                 </div>
