@@ -98,7 +98,7 @@ const DashboardPage = () => {
                     + Add new task
                   </Button>
                   <Button
-                    className="border border-gray-800/80"
+                    className="border border-gray-800/70"
                     style={{ height: "38px" }}
                   >
                     Learn more
