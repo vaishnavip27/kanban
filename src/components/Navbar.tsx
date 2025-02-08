@@ -2,6 +2,8 @@
 
 import { Link } from "react-router-dom";
 import { LayoutDashboard, Trello, Calendar, Users, Search, Bell, Settings } from "lucide-react";
+import { Button } from "./ui/button";
+import { getAuth, signOut } from "firebase/auth";
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
@@ -14,6 +16,18 @@ const sidebarItems = [
 ];
 
 export default function Navbar() {
+  const auth = getAuth();
+
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      window.location.href = "/"; // Redirect to homepage or login page
+    } catch (error) {
+      console.error("Logout Error:", error);
+    }
+  };
+
   return (
     <div className="h-screen w-64 bg-[#121216] text-white border-r border-gray-800 overflow-hidden">
       <div className="border-b border-gray-800 p-4">
@@ -34,6 +48,7 @@ export default function Navbar() {
             </Link>
           </div>
         ))}
+        <Button className="custom-get-started-button" style={{marginTop:"250px"}} onClick={handleLogout}>Logout</Button>
       </nav>
     </div>
   );
