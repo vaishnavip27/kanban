@@ -1,13 +1,16 @@
-"use client"
+"use client";
 
-import { useState, useMemo } from "react"
-import { MoveLeft, Search, Bell, Plus, SortAsc, SortDesc} from "lucide-react"
-import ProjectCard from "../components/ProjectCard"
-import CreateProjectForm from "../components/CreateProjectForm"
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-
-
+import { useState, useMemo } from "react";
+import { MoveLeft, Search, Bell, Plus, SortAsc, SortDesc } from "lucide-react";
+import ProjectCard from "../components/ProjectCard";
+import CreateProjectForm from "../components/CreateProjectForm";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type Project = {
   id: number;
@@ -17,8 +20,7 @@ type Project = {
   totalTasks: number;
 };
 
-
-const initialProjects:Project[] = [
+const initialProjects: Project[] = [
   {
     id: 1,
     name: "Website Redesign",
@@ -40,49 +42,70 @@ const initialProjects:Project[] = [
     tasksCompleted: 1,
     totalTasks: 5,
   },
-]
+  {
+    id: 4,
+    name: "Marketing Campaign",
+    description: "Plan and execute Q4 marketing campaign.",
+    tasksCompleted: 1,
+    totalTasks: 5,
+  },
+];
 
-type SortOption = "name" | "progress"
-type SortDirection = "asc" | "desc"
+type SortOption = "name" | "progress";
+type SortDirection = "asc" | "desc";
 
 const ProjectPage = () => {
-  const [projects, setProjects] = useState(initialProjects)
-  const [showForm, setShowForm] = useState(false)
-  const [sortBy, setSortBy] = useState<SortOption>("name")
-  const [sortDirection, setSortDirection] = useState<SortDirection>("asc")
-  const [filterText, setFilterText] = useState("")
+  const [projects, setProjects] = useState(initialProjects);
+  const [showForm, setShowForm] = useState(false);
+  const [sortBy, setSortBy] = useState<SortOption>("name");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
+  const [filterText, setFilterText] = useState("");
 
-  const handleCreateProject = (newProject :  Omit<Project, "id" | "tasksCompleted" | "totalTasks">) => {
-    setProjects([...projects, { ...newProject, id: projects.length + 1, tasksCompleted: 0, totalTasks: 0 }])
-    setShowForm(false)
-  }
+  const handleCreateProject = (
+    newProject: Omit<Project, "id" | "tasksCompleted" | "totalTasks">
+  ) => {
+    setProjects([
+      ...projects,
+      {
+        ...newProject,
+        id: projects.length + 1,
+        tasksCompleted: 0,
+        totalTasks: 0,
+      },
+    ]);
+    setShowForm(false);
+  };
 
-  const navigateToProject = (projectId:number) => {
-    console.log(`Navigating to project ${projectId}`)
+  const navigateToProject = (projectId: number) => {
+    console.log(`Navigating to project ${projectId}`);
     // Implement actual navigation logic here
-  }
+  };
 
   const toggleSortDirection = () => {
-    setSortDirection(sortDirection === "asc" ? "desc" : "asc")
-  }
+    setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+  };
 
   const sortedAndFilteredProjects = useMemo(() => {
     return projects
       .filter(
         (project) =>
           project.name.toLowerCase().includes(filterText.toLowerCase()) ||
-          project.description.toLowerCase().includes(filterText.toLowerCase()),
+          project.description.toLowerCase().includes(filterText.toLowerCase())
       )
       .sort((a, b) => {
         if (sortBy === "name") {
-          return sortDirection === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+          return sortDirection === "asc"
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name);
         } else {
-          const progressA = a.tasksCompleted / a.totalTasks
-          const progressB = b.tasksCompleted / b.totalTasks
-          return sortDirection === "asc" ? progressA - progressB : progressB - progressA
+          const progressA = a.tasksCompleted / a.totalTasks;
+          const progressB = b.tasksCompleted / b.totalTasks;
+          return sortDirection === "asc"
+            ? progressA - progressB
+            : progressB - progressA;
         }
-      })
-  }, [projects, sortBy, sortDirection, filterText])
+      });
+  }, [projects, sortBy, sortDirection, filterText]);
 
   return (
     <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden">
@@ -127,11 +150,20 @@ const ProjectPage = () => {
                       Sort by
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="bg-[#121216] border-gray-700">
-                    <DropdownMenuItem onClick={() => setSortBy("name")} className="text-white hover:bg-[#1A1A1F]">
+                  <DropdownMenuContent
+                    align="start"
+                    className="bg-[#121216] border-gray-700"
+                  >
+                    <DropdownMenuItem
+                      onClick={() => setSortBy("name")}
+                      className="text-white hover:bg-[#1A1A1F]"
+                    >
                       Name
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setSortBy("progress")} className="text-white hover:bg-[#1A1A1F]">
+                    <DropdownMenuItem
+                      onClick={() => setSortBy("progress")}
+                      className="text-white hover:bg-[#1A1A1F]"
+                    >
                       Progress
                     </DropdownMenuItem>
                   </DropdownMenuContent>
@@ -142,35 +174,47 @@ const ProjectPage = () => {
                   onClick={toggleSortDirection}
                   className="bg-[#121216] text-white border-gray-700 hover:bg-[#1A1A1F]"
                 >
-                  {sortDirection === "asc" ? <SortAsc className="h-4 w-4" /> : <SortDesc className="h-4 w-4" />}
+                  {sortDirection === "asc" ? (
+                    <SortAsc className="h-4 w-4" />
+                  ) : (
+                    <SortDesc className="h-4 w-4" />
+                  )}
                 </Button>
                 <Button
-                onClick={() => setShowForm(true)}
-                size="icon"
-                className="custom-get-started-button"
-                style={{padding:"16px"}}
-              >
-                <Plus className="h-4 w-4" />
-                <span>Create new project</span>
-              </Button>
+                  onClick={() => setShowForm(true)}
+                  size="icon"
+                  className="custom-get-started-button"
+                  style={{ padding: "16px" }}
+                >
+                  <Plus className="h-4 w-4" />
+                  <span>Create new project</span>
+                </Button>
               </div>
             </div>
 
             <div className="w-full h-[1px] bg-gray-800 mb-6"></div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
               {sortedAndFilteredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} onClick={() => navigateToProject(project.id)} />
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onClick={() => navigateToProject(project.id)}
+                />
               ))}
             </div>
           </div>
         </main>
 
-        {showForm && <CreateProjectForm onSubmit={handleCreateProject} onCancel={() => setShowForm(false)} />}
+        {showForm && (
+          <CreateProjectForm
+            onSubmit={handleCreateProject}
+            onCancel={() => setShowForm(false)}
+          />
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectPage
-
+export default ProjectPage;

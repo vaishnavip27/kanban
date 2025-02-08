@@ -25,8 +25,8 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
         onClick={onClick}
       >
         <CardContent className="p-6">
-          <h2 className="text-xl font-semibold mb-2 text-white">{project.name}</h2>
-          <p className="text-gray-400 mb-4 line-clamp-2">{project.description}</p>
+          <h2 className="text-lg font-semibold mb-2 text-white">{project.name}</h2>
+          <p className="text-gray-400 mb-4 line-clamp-2 text-sm">{project.description}</p>
         </CardContent>
         <CardFooter className="bg-[#0B0B0E] px-6 py-4">
           <div className="w-full">
