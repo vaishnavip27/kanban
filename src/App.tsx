@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import LandingPage from "./pages/LandingPage";
@@ -28,6 +29,7 @@ function Layout() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
+      <Analytics /> 
     </div>
   );
 }
@@ -36,6 +38,7 @@ function App() {
   return (
     <Router>
       <Layout />
+      <Analytics /> 
     </Router>
   );
 }
