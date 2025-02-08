@@ -1,12 +1,12 @@
-import { MessageCircle, Phone, User } from 'lucide-react';
+import { MessageCircle, Phone, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ChatBox = () => {
   const contacts = [
-    { name: 'John Smith', status: 'Online' },
-    { name: 'Sarah Wilson', status: 'Away' },
-    { name: 'Mike Johnson', status: 'Busy' },
-    { name: 'Emma Davis', status: 'Online' },
+    { name: "Vaishnavi", status: "Online" },
+    { name: "Jill", status: "Away" },
+    { name: "Farhat", status: "Busy" },
+    { name: "Manav", status: "Online" },
   ];
 
   return (
@@ -24,8 +24,14 @@ const ChatBox = () => {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <MessageCircle size={16} className="text-gray-400 hover:text-white cursor-pointer" />
-              <Phone size={16} className="text-gray-400 hover:text-white cursor-pointer" />
+              <MessageCircle
+                size={16}
+                className="text-gray-400 hover:text-white cursor-pointer"
+              />
+              <Phone
+                size={16}
+                className="text-gray-400 hover:text-white cursor-pointer"
+              />
             </div>
           </div>
         ))}
