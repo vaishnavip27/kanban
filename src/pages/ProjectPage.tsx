@@ -110,11 +110,11 @@ const ProjectPage = () => {
   return (
     <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden">
       <div className="flex flex-col flex-grow overflow-y-auto">
-        <header className="p-3 border-b border-gray-800 px-6 bg-[#121216]">
+        <header className="p-3 border-b border-gray-800/50 px-6 bg-[#121216]">
           <div className="flex items-center justify-between">
             <MoveLeft className="h-5 w-5" />
             <div className="flex items-center gap-3">
-              <div className="flex items-center space-x-2 bg-[#121416] p-2 rounded-lg border border-white/10">
+              <div className="flex items-center space-x-2 bg-[#121416] p-2 rounded-lg border border-gray-800/50">
                 <Search className="w-5 h-5 text-gray-400" />
                 <input
                   type="text"
@@ -124,7 +124,7 @@ const ProjectPage = () => {
                   onChange={(e) => setFilterText(e.target.value)}
                 />
               </div>
-              <div className="border border-gray-800 p-2 rounded-sm">
+              <div className="border border-gray-800/50 p-2 rounded-sm">
                 <Bell className="w-5 h-5" />
               </div>
             </div>
@@ -144,7 +144,7 @@ const ProjectPage = () => {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="bg-[#121216] text-white border-gray-700 hover:bg-[#1A1A1F]"
+                      className="bg-[#121216] text-white border-gray-800/50 hover:bg-[#1A1A1F]"
                     >
                       <SortAsc className="mr-2 h-4 w-4" />
                       Sort by
@@ -152,7 +152,7 @@ const ProjectPage = () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="start"
-                    className="bg-[#121216] border-gray-700"
+                    className="bg-[#121216] border-gray-800/50"
                   >
                     <DropdownMenuItem
                       onClick={() => setSortBy("name")}
@@ -172,7 +172,7 @@ const ProjectPage = () => {
                   variant="outline"
                   size="sm"
                   onClick={toggleSortDirection}
-                  className="bg-[#121216] text-white border-gray-700 hover:bg-[#1A1A1F]"
+                  className="bg-[#121216] text-white border-gray-800/50 hover:bg-[#1A1A1F]"
                 >
                   {sortDirection === "asc" ? (
                     <SortAsc className="h-4 w-4" />
