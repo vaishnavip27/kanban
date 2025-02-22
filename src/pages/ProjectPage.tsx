@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { MoveLeft, Search, Bell, Plus, SortAsc, SortDesc } from "lucide-react";
 import ProjectCard from "../components/ProjectCard";
 import CreateProjectForm from "../components/CreateProjectForm";
+import KanbanBoard from "./KanbanPage";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,13 +13,35 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-type Project = {
+export type Project = {
   id: number;
   name: string;
   description: string;
   tasksCompleted: number;
   totalTasks: number;
+  columns?: Column[];
 };
+
+export interface Task {
+  id: string;
+  title: string;
+  description?: string;
+  labels?: string[];
+  image?: string;
+}
+
+export interface Column {
+  id: string;
+  title: string;
+  tasks: Task[];
+}
+
+const initialColumns: Column[] = [
+  { id: "todo", title: "To Do", tasks: [] },
+  { id: "inProgress", title: "In Progress", tasks: [] },
+  { id: "review", title: "Review", tasks: [] },
+  { id: "done", title: "Done", tasks: [] },
+];
 
 const initialProjects: Project[] = [
   {
@@ -27,6 +50,7 @@ const initialProjects: Project[] = [
     description: "Redesign the company website to improve user experience.",
     tasksCompleted: 3,
     totalTasks: 10,
+    columns: initialColumns,
   },
   {
     id: 2,
@@ -34,6 +58,7 @@ const initialProjects: Project[] = [
     description: "Create a new mobile app for our customers.",
     tasksCompleted: 2,
     totalTasks: 8,
+    columns: initialColumns,
   },
   {
     id: 3,
@@ -41,13 +66,7 @@ const initialProjects: Project[] = [
     description: "Plan and execute Q4 marketing campaign.",
     tasksCompleted: 1,
     totalTasks: 5,
-  },
-  {
-    id: 4,
-    name: "Marketing Campaign",
-    description: "Plan and execute Q4 marketing campaign.",
-    tasksCompleted: 1,
-    totalTasks: 5,
+    columns: initialColumns,
   },
 ];
 
@@ -60,9 +79,10 @@ const ProjectPage = () => {
   const [sortBy, setSortBy] = useState<SortOption>("name");
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
   const [filterText, setFilterText] = useState("");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const handleCreateProject = (
-    newProject: Omit<Project, "id" | "tasksCompleted" | "totalTasks">
+    newProject: Omit<Project, "id" | "tasksCompleted" | "totalTasks" | "columns">
   ) => {
     setProjects([
       ...projects,
@@ -71,14 +91,34 @@ const ProjectPage = () => {
         id: projects.length + 1,
         tasksCompleted: 0,
         totalTasks: 0,
+        columns: initialColumns,
       },
     ]);
     setShowForm(false);
   };
 
-  const navigateToProject = (projectId: number) => {
-    console.log(`Navigating to project ${projectId}`);
-    // Implement actual navigation logic here
+  const handleProjectSelect = (project: Project) => {
+    setSelectedProject(project);
+  };
+
+  const handleBackToProjects = () => {
+    setSelectedProject(null);
+  };
+
+  const updateProjectTasks = (projectId: number, updatedColumns: Column[]) => {
+    setProjects(projects.map(project => {
+      if (project.id === projectId) {
+        const totalTasks = updatedColumns.reduce((sum, col) => sum + col.tasks.length, 0);
+        const completedTasks = updatedColumns.find(col => col.id === 'done')?.tasks.length || 0;
+        return {
+          ...project,
+          columns: updatedColumns,
+          totalTasks,
+          tasksCompleted: completedTasks
+        };
+      }
+      return project;
+    }));
   };
 
   const toggleSortDirection = () => {
@@ -106,6 +146,16 @@ const ProjectPage = () => {
         }
       });
   }, [projects, sortBy, sortDirection, filterText]);
+
+  if (selectedProject) {
+    return (
+      <KanbanBoard 
+        project={selectedProject}
+        onBack={handleBackToProjects}
+        onUpdateColumns={(columns) => updateProjectTasks(selectedProject.id, columns)}
+      />
+    );
+  }
 
   return (
     <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden">
@@ -199,7 +249,7 @@ const ProjectPage = () => {
                 <ProjectCard
                   key={project.id}
                   project={project}
-                  onClick={() => navigateToProject(project.id)}
+                  onClick={() => handleProjectSelect(project)}
                 />
               ))}
             </div>

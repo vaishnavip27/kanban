@@ -7,27 +7,13 @@ import { HorizontalNavbar } from "@/components/HorizontalNavbar";
 import ListView from "@/components/renderView/ListView";
 import TimelineView from "@/components/renderView/TimelineView";
 import CalenderView from "@/components/renderView/CalenderView";
+import { Project, Column, Task } from "./ProjectPage";
 
-interface Task {
-  id: string;
-  title: string;
-  description?: string;
-  labels?: string[];
-  image?: string;
+interface KanbanBoardProps {
+  project: Project;
+  onBack: () => void;
+  onUpdateColumns: (columns: Column[]) => void;
 }
-
-interface Column {
-  id: string;
-  title: string;
-  tasks: Task[];
-}
-
-const initialColumns: Column[] = [
-  { id: "todo", title: "To Do", tasks: [] },
-  { id: "inProgress", title: "In Progress", tasks: [] },
-  { id: "review", title: "Review", tasks: [] },
-  { id: "done", title: "Done", tasks: [] },
-];
 
 const PlaceholderComponent = ({ title }: { title: string }) => (
   <div className="text-white text-center w-full">
@@ -36,21 +22,26 @@ const PlaceholderComponent = ({ title }: { title: string }) => (
   </div>
 );
 
-const KanbanBoard = () => {
-  const [columns, setColumns] = useState<Column[]>(initialColumns);
+const KanbanBoard = ({ project, onBack, onUpdateColumns }: KanbanBoardProps) => {
+  const [columns, setColumns] = useState<Column[]>(project.columns || []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeView, setActiveView] = useState("Overview");
+
+  const updateColumns = (newColumns: Column[]) => {
+    setColumns(newColumns);
+    onUpdateColumns(newColumns);
+  };
 
   const handleAddTask = (task: Omit<Task, "id">, columnId: string) => {
     const newTask = { ...task, id: Math.random().toString(36).substr(2, 9) };
 
-    setColumns(
-      columns.map((column) =>
-        column.id === columnId
-          ? { ...column, tasks: [...column.tasks, newTask] }
-          : column
-      )
+    const newColumns = columns.map((column) =>
+      column.id === columnId
+        ? { ...column, tasks: [...column.tasks, newTask] }
+        : column
     );
+    
+    updateColumns(newColumns);
   };
 
   const handleMoveTask = (taskId: string, sourceColumnId: string, targetColumnId: string) => {
@@ -59,27 +50,27 @@ const KanbanBoard = () => {
 
     if (!task) return;
 
-    setColumns(
-      columns.map((column) => {
-        if (column.id === sourceColumnId) {
-          return { ...column, tasks: column.tasks.filter((t) => t.id !== taskId) };
-        }
-        if (column.id === targetColumnId) {
-          return { ...column, tasks: [...column.tasks, task] };
-        }
-        return column;
-      })
-    );
+    const newColumns = columns.map((column) => {
+      if (column.id === sourceColumnId) {
+        return { ...column, tasks: column.tasks.filter((t) => t.id !== taskId) };
+      }
+      if (column.id === targetColumnId) {
+        return { ...column, tasks: [...column.tasks, task] };
+      }
+      return column;
+    });
+
+    updateColumns(newColumns);
   };
 
   const handleDeleteTask = (taskId: string, columnId: string) => {
-    setColumns(
-      columns.map((column) =>
-        column.id === columnId
-          ? { ...column, tasks: column.tasks.filter((task) => task.id !== taskId) }
-          : column
-      )
+    const newColumns = columns.map((column) =>
+      column.id === columnId
+        ? { ...column, tasks: column.tasks.filter((task) => task.id !== taskId) }
+        : column
     );
+
+    updateColumns(newColumns);
   };
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, taskId: string, sourceColumnId: string) => {
@@ -143,7 +134,9 @@ const KanbanBoard = () => {
       <div className="flex flex-col flex-grow overflow-y-auto">
         <header className="p-3 border-b border-gray-800 px-6 bg-[#121216]">
           <div className="flex items-center justify-between">
-            <MoveLeft className="h-5 w-5" />
+            <button onClick={onBack} className="hover:opacity-80">
+              <MoveLeft className="h-5 w-5" />
+            </button>
             <div className="flex items-center gap-3">
               <div className="flex items-center space-x-2 bg-[#121416] p-2 rounded-lg border border-white/10">
                 <Search className="w-5 h-5 text-gray-400" />
@@ -161,7 +154,7 @@ const KanbanBoard = () => {
         </header>
 
         <main className="flex-1 p-5 overflow-y-auto">
-          <h2 className="text-2xl font-normal text-white mb-4">Onboarding Dashboard</h2>
+          <h2 className="text-2xl font-normal text-white mb-4">{project.name}</h2>
 
           <div className="flex items-center justify-between mb-6">
             <HorizontalNavbar activeView={activeView} setActiveView={setActiveView} />

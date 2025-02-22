@@ -6,7 +6,6 @@ import LoginPage from "./pages/Authentication/LoginPage";
 import SignupPage from "./pages/Authentication/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProjectPage from "./pages/ProjectPage";
-import KanbanPage from "./pages/KanbanPage";
 
 function Layout() {
   const location = useLocation();
@@ -25,7 +24,6 @@ function Layout() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/project" element={<ProjectPage />} />
-          <Route path="/kanban" element={<KanbanPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

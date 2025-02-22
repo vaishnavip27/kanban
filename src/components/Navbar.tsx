@@ -1,14 +1,13 @@
 "use client";
 
 import { Link } from "react-router-dom";
-import { LayoutDashboard, Trello, Calendar, Users, Search, Bell, Settings } from "lucide-react";
+import { LayoutDashboard, Trello, Users, Search, Bell, Settings } from "lucide-react";
 import { Button } from "./ui/button";
 import { getAuth, signOut } from "firebase/auth";
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
   { icon: Trello, label: "Project", path: "/project" },
-  { icon: Calendar, label: "Kanban", path: "/kanban" },
   { icon: Users, label: "Team", path: "/team" },
   { icon: Search, label: "Search", path: "/search" },
   { icon: Bell, label: "Notifications", path: "/notifications" },
@@ -35,7 +34,7 @@ export default function Navbar() {
       </div>
       <nav className="p-3">
         {sidebarItems.map((item) => (
-          <div key={item.label} className="relative">
+          <div key={item.label} className="relative ">
             <Link
               to={item.path}
               className="relative flex items-center space-x-2 p-2.5 rounded-lg text-gray-400 hover:bg-gray-900/50 hover:text-white transition-colors group"
@@ -48,7 +47,7 @@ export default function Navbar() {
             </Link>
           </div>
         ))}
-        <Button className="custom-get-started-button" style={{marginTop:"250px"}} onClick={handleLogout}>Logout</Button>
+        <Button className="custom-get-started-button mt-80" onClick={handleLogout}>Logout</Button>
       </nav>
     </div>
   );
