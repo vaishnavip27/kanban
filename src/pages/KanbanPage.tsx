@@ -97,11 +97,11 @@ const KanbanBoard = ({ project, onBack, onUpdateColumns }: KanbanBoardProps) => 
       case "Board":
         return <PlaceholderComponent title="Board" />;
       case "List":
-        return <ListView/>;
+        return <ListView columns = {columns}/>;
       case "Timeline":
-        return <TimelineView/>;
+        return <TimelineView columns={columns}/>;
       case "Calendar":
-        return <CalenderView/>;
+        return <CalenderView columns={columns}/>;
       default:
         return (
           <div className="flex gap-4 overflow-x-auto mt-6">
