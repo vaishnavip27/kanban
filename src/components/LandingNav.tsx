@@ -1,70 +1,52 @@
-import { useState } from "react"
-import { Button } from "./ui/button"
-import { Link, useNavigate } from "react-router-dom"
-import { Menu, X } from "lucide-react"
-import "../index.css"
+"use client";
+
+import { Button } from "./ui/button";
+import { Link, useNavigate } from "react-router-dom";
+import "../index.css";
 
 const LandingNav = () => {
-  const navigate = useNavigate()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+  const navigate = useNavigate();
 
   return (
-    <nav className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-10 py-3">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center">
-          <Link to="/" className="font-bold text-xl sm:text-2xl text-white">
-            Taskflow
-          </Link>
-        </div>
-
-        {/* Mobile menu button */}
-        <div className="md:hidden">
-          <Button variant="ghost" size="icon" className="text-white" onClick={toggleMenu}>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
-        </div>
-
-        {/* Desktop navigation */}
-        <div className="hidden md:flex items-center space-x-4">
-          <Button
-            variant="ghost"
-            className="text-sm text-gray-300 hover:text-white transition-colors rounded-full bg-transparent"
-            onClick={() => navigate("/login")}
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full mx-auto lg:px-2 py-3.5 backdrop-blur-sm font-medium">
+      {/* Desktop navigation */}
+      <div className="hidden md:flex items-center justify-between w-full">
+        {/* Navigation items with equal spacing */}
+        <div className="flex-1 flex items-center justify-around">
+          <Link
+            to="/features"
+            className="text-md text-gray-300 hover:text-white transition-colors"
           >
-            Login
+            Features
+          </Link>
+          <Link
+            to="/why-taskflow"
+            className="text-md text-gray-300 hover:text-white transition-colors"
+          >
+            Why Taskflow?
+          </Link>
+
+          {/* Logo in the middle */}
+          <Link to="/" className="font-bold text-xl sm:text-2xl text-white">
+           <img src="/icon.png" width={24} height={24}/>
+          </Link>
+
+          <Link
+            to="/pricing"
+            className="text-md text-gray-300 hover:text-white transition-colors"
+          >
+            Pricing
+          </Link>
+          <Button
+            className="w-36 bg-white text-black rounded-xl"
+            onClick={() => navigate("/signup")}
+          >
+            Get started
           </Button>
-          <Button className="custom-get-started-button"
-          onClick={() => navigate('/signup')}>Get started</Button>
         </div>
       </div>
-
-      {/* Mobile navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-purple-900 bg-opacity-95 backdrop-blur-sm py-2 px-4">
-          <div className="flex flex-col space-y-2">
-            <Button
-              variant="ghost"
-              className="text-sm text-gray-300 hover:text-white transition-colors rounded-full bg-transparent w-full text-left"
-              onClick={() => {
-                navigate("/login")
-                toggleMenu()
-              }}
-            >
-              Login
-            </Button>
-            <Button className="custom-get-started-button w-full" onClick={toggleMenu}>
-              Get started
-            </Button>
-          </div>
-        </div>
-      )}
     </nav>
-  )
-}
+  );
+};
 
-export default LandingNav
-
+export default LandingNav;
