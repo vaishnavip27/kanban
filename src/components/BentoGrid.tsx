@@ -6,8 +6,11 @@ const BentoGrid: React.FC = () => {
     <div className="flex items-center h-[660px] gap-3 px-52">
       {/* Left flex */}
       <div className="w-3/4 flex flex-col gap-3">
-        {/* Real-Time Global Collaboration */}
-        <div className="w-full h-[420px] overflow-hidden relative p-6 rounded-md bg-[#131417]">
+        <div
+          className="w-full h-[420px] overflow-hidden relative p-6 rounded-2xl 
+          bg-white/5 backdrop-blur-md border border-white/10 
+     hover:border-white/20 transition-all duration-300"
+        >
           <Earth />
           <div className="absolute top-6 left-6 text-white">
             <h2 className="text-xl font-semibold">
@@ -21,15 +24,17 @@ const BentoGrid: React.FC = () => {
           </div>
         </div>
 
-        {/* Seamless Integrations */}
-        <div className="relative w-full h-[226px] p-6 flex items-center rounded-lg bg-[#131417] shadow-md border border-[#1e1f22]">
-          {/* Icon */}
+        <div
+          className="relative w-full h-[226px] p-6 flex items-center rounded-2xl 
+          bg-white/5 backdrop-blur-md border border-white/10 
+         hover:border-white/20 transition-all duration-300"
+        >
           <img
-            src="/image.png" // Ensure this is correctly placed in public folder
+            src="/image.png"
             alt="Integration Icon"
             width={50}
             height={50}
-            className="rounded-md"
+            className="rounded-md border-2 border-white/20 "
           />
           <div className="ml-4">
             <h2 className="text-white text-lg font-semibold">
@@ -41,7 +46,6 @@ const BentoGrid: React.FC = () => {
             </p>
           </div>
 
-          {/* Speech Bubble Icon */}
           <div className="absolute bottom-4 left-6 opacity-40">
             <img
               src="/speech-bubble.png"
@@ -56,11 +60,14 @@ const BentoGrid: React.FC = () => {
 
       {/* Right flex */}
       <div className="w-1/2 h-[660px] flex flex-col items-center gap-3">
-        {/* Advance Analytics */}
-        <div className="w-full h-[232px] p-6 flex items-end gap-4 rounded-md bg-[#131417]">
-          <div className="w-14 h-20 bg-gradient-to-b from-red-400 to-orange-600 rounded-full"></div>
-          <div className="w-14 h-36 bg-gradient-to-b from-red-400 to-orange-600 rounded-full"></div>
-          <div className="w-14 h-28 bg-gradient-to-b from-red-400 to-orange-600 rounded-full"></div>
+        <div
+          className="w-full h-[232px] p-6 flex items-end gap-4 rounded-2xl 
+          bg-white/5 backdrop-blur-md border border-white/10 
+          hover:border-white/20 transition-all duration-300"
+        >
+          <div className="w-14 h-20 bg-gradient-to-b from-purple-400/70 to-purple-600/70 rounded-full"></div>
+          <div className="w-14 h-36 bg-gradient-to-b from-purple-400/70 to-purple-600/70 rounded-full"></div>
+          <div className="w-14 h-28 bg-gradient-to-b from-purple-400/70 to-purple-600/70 rounded-full"></div>
           <div>
             <h2 className="text-white text-lg font-semibold">
               Advance Analytics
@@ -73,7 +80,11 @@ const BentoGrid: React.FC = () => {
         </div>
 
         {/* Lightning Fast Performance */}
-        <div className="w-full h-[426px] p-6 flex flex-col justify-between rounded-md bg-[#131417]">
+        <div
+          className="w-full h-[426px] p-6 flex flex-col justify-between rounded-2xl 
+          bg-white/5 backdrop-blur-md border border-white/10 
+           hover:border-white/20 transition-all duration-300"
+        >
           <h2 className="text-white text-lg font-semibold">
             Lightning Fast Performance
           </h2>
@@ -87,6 +98,7 @@ const BentoGrid: React.FC = () => {
               alt="Lightning Icon"
               width={128}
               height={128}
+              className="opacity-80"
             />
           </div>
         </div>

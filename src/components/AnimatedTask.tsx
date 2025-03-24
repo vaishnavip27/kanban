@@ -48,27 +48,33 @@ const TaskManagementSection: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative w-full h-full flex flex-col space-y-6 justify-center"
         >
-          {/* Task Cards with Profile Images Only */}
+          {/* Task Cards with Glassmorphic Design */}
           {tasks.map((task, index) => (
             <motion.div
               key={task.id}
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
-              className="flex items-center w-full md:w-4/5 border border-white/20 rounded-full p-2 bg-gray-800/50 backdrop-blur-sm"
+              className="flex items-center w-full md:w-4/5 border border-white/10 rounded-full p-2 
+                bg-white/5 backdrop-blur-md 
+                shadow-xl shadow-blue-500/10 
+                hover:bg-white/10 transition-all duration-300 
+                hover:border-white/20"
             >
               {/* Avatar */}
               <div className="flex-shrink-0">
                 <img
                   src={task.avatar}
                   alt="User Avatar"
-                  className="rounded-full w-14 h-14 object-cover"
+                  className="rounded-full w-14 h-14 object-cover 
+                    border-2 border-white/20 
+                    shadow-lg shadow-blue-500/20"
                 />
               </div>
 
               {/* Progress Bar Container */}
               <div className="flex-grow ml-4">
-                <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                   {/* Animated Progress Bar */}
                   <motion.div
                     initial={{ width: 0 }}
@@ -78,7 +84,7 @@ const TaskManagementSection: React.FC = () => {
                       duration: 0.8,
                       ease: "easeOut",
                     }}
-                    className="h-full bg-blue-500 rounded-full"
+                    className="h-full bg-blue-500/80 rounded-full"
                   />
                 </div>
               </div>

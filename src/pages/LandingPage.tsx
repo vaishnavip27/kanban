@@ -105,7 +105,7 @@ const LandingPage = () => {
         </ContainerScroll>
         <div className="absolute bottom-72 left-1/2 -translate-x-1/2 w-80 h-80 bg-purple-700 opacity-25 blur-3xl rounded-full z-20"></div>
         <div className="relative flex justify-center z-[5] ">
-          <div className="w-full max-w-6xl mx-auto px-4 relative">
+          <div className="w-full max-w-5xl mx-auto px-4 relative">
             <Marquee speed={40} gradient={false} direction="left" className="py-4 -mt-64">
               <div className="flex items-center space-x-8 text-[#F4EDFF] font-medium text-xl px-4">
                 <span>Trusted by 2 million+ teams</span>

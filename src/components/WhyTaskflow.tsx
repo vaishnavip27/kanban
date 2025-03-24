@@ -53,7 +53,7 @@ const FeatureComparison: React.FC = () => {
   ];
 
   return (
-    <div className=" text-white py-16 px-4 bg-[#060B1F]">
+    <div className="text-white py-16 px-4 bg-[#060B1F]">
       <div className="max-w-4xl mx-auto">
         {/* Why Choose Taskflow Section */}
         <h2 className="text-center text-4xl font-bold mb-2">
@@ -75,9 +75,13 @@ const FeatureComparison: React.FC = () => {
               <h3 className="text-xl text-amber-500">Taskflow</h3>
             </div>
             
-            <div className="bg-gray-800/50 rounded-lg p-6">
+            <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 
+              shadow-xl shadow-blue-500/10 hover:border-white/20 transition-all duration-300 overflow-hidden">
+              {/* Inner Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 opacity-50 pointer-events-none"></div>
+              
               {taskflowFeatures.map((feature, index) => (
-                <div key={index} className="flex items-center mb-4 last:mb-0">
+                <div key={index} className="flex items-center mb-4 last:mb-0 relative z-10">
                   <div className="mr-3 text-green-500">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -95,9 +99,13 @@ const FeatureComparison: React.FC = () => {
               <h3 className="text-xl">Other tools</h3>
             </div>
             
-            <div className="bg-gray-800/50 rounded-lg p-6">
+            <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 
+              shadow-xl shadow-blue-500/10 hover:border-white/20 transition-all duration-300 overflow-hidden">
+              {/* Inner Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 opacity-50 pointer-events-none"></div>
+              
               {otherToolsFeatures.map((feature, index) => (
-                <div key={index} className="flex items-center mb-4 last:mb-0">
+                <div key={index} className="flex items-center mb-4 last:mb-0 relative z-10">
                   <div className="mr-3 text-red-500">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -125,15 +133,23 @@ const FeatureComparison: React.FC = () => {
             {benefitCards.map((card, index) => (
               <div 
                 key={index} 
-                className={`${card.backgroundClass} rounded-lg p-8 ${card.colSpan || ""}`}
+                className={`relative overflow-hidden rounded-lg p-8 ${card.colSpan || ""} 
+                  bg-white/5 backdrop-blur-md border border-white/10 
+                  shadow-xl shadow-blue-500/10 hover:border-white/20 transition-all duration-300`}
               >
-                <h3 className="text-2xl mb-4">
-                  <span className="italic font-light">{card.titlePrefix}</span>{" "}
-                  <span className="font-semibold">{card.title}</span>
-                </h3>
-                <p className="text-gray-300">
-                  {card.description}
-                </p>
+                {/* Inner Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 opacity-50 pointer-events-none"></div>
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  <h3 className="text-2xl mb-4">
+                    <span className="italic font-light">{card.titlePrefix}</span>{" "}
+                    <span className="font-semibold">{card.title}</span>
+                  </h3>
+                  <p className="text-gray-300">
+                    {card.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
