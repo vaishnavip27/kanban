@@ -27,7 +27,7 @@ const TaskManagementSection: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-44 py-6 text-white bg-gray-900 mb-64">
+    <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-44 py-6 text-white bg-[#060B1F]  mb-64">
       {/* Left Side: Text Content */}
       <div className="max-w-xl text-left mb-10 md:mb-0">
         <h2 className="text-4xl md:text-5xl font-semibold mb-4">

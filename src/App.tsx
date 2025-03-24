@@ -15,7 +15,7 @@ function Layout() {
   const shouldShowNavbar = !hideNavbarRoutes.includes(location.pathname);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 overflow-x-hidden flex">
+    <div className="min-h-screen bg-[#060B1F] text-gray-100 overflow-x-hidden flex">
       {shouldShowNavbar && <Navbar />}
       <div className="flex-grow">
         <Routes>

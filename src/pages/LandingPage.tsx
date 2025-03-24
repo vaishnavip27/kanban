@@ -6,6 +6,9 @@ import LandingNav from "@/components/LandingNav";
 import { ContainerScroll } from "../components/ui/container-scroll-animation";
 import TaskManagementSection from "../components/AnimatedTask";
 import BentoGrid from "@/components/BentoGrid";
+import FeatureComparison from "@/components/WhyTaskflow";
+import PricingSection from "@/components/PricingSection";
+import Footer from "../components/footer";
 
 const LandingPage = () => {
   const [loading, setLoading] = useState(true);
@@ -32,7 +35,7 @@ const LandingPage = () => {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-black overflow-hidden">
+      <div className="h-screen flex items-center justify-center bg-[#060B1F] overflow-hidden">
         <div
           className={`text-center transition-all duration-800 ease-in-out ${
             exitAnimation ? "transform -translate-y-20 opacity-0" : ""
@@ -55,10 +58,10 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden">
+    <div className="min-h-screen flex flex-col overflow-hidden">
       <LandingNav />
 
-      <div className="flex justify-center flex-col pt-44 z-10 relative">
+      <div className="flex-grow flex justify-center flex-col pt-44 z-10 relative">
         <a
           href="https://x.com/vai_shhh27"
           target="_blank"
@@ -83,7 +86,7 @@ const LandingPage = () => {
           <p className="text-center text-[#F4EDFF] text-wrap:balance md:text-2xl pt-4 font-normal mb-10">
             Streamline your Workflow with Ease
           </p>
-          <button className="flex justify-center items-center bg-purple-600 py-3 px-20 text-sm w-24 text-center border border-white rounded-full">
+          <button className="flex justify-center items-center bg-purple-600 py-3 px-20 text-sm text-center border border-white rounded-full">
             Login
           </button>
         </div>
@@ -120,9 +123,15 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <TaskManagementSection/>
+      <TaskManagementSection />
 
-      <BentoGrid/>
+      <BentoGrid />
+
+      <FeatureComparison />
+
+      <PricingSection />
+
+      <Footer />
     </div>
   );
 };
