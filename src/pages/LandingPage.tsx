@@ -1,6 +1,11 @@
+"use client";
+
 import { useState, useEffect } from "react";
+import Marquee from "react-fast-marquee";
 import LandingNav from "@/components/LandingNav";
 import { ContainerScroll } from "../components/ui/container-scroll-animation";
+import TaskManagementSection from "../components/AnimatedTask";
+import BentoGrid from "@/components/BentoGrid";
 
 const LandingPage = () => {
   const [loading, setLoading] = useState(true);
@@ -8,38 +13,37 @@ const LandingPage = () => {
   const [exitAnimation, setExitAnimation] = useState(false);
 
   useEffect(() => {
-    // Simulate a loading progress that increases over time
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
         if (prevProgress >= 100) {
           clearInterval(interval);
-          // Start exit animation when progress reaches 100%
           setExitAnimation(true);
-          // Set a timeout to actually change the page after animation completes
           setTimeout(() => {
             setLoading(false);
-          }, 800); // Animation duration
+          }, 800);
           return 100;
         }
-        return prevProgress + 5; // Increase by 5% each time
+        return prevProgress + 5;
       });
-    }, 100); // Update every 100ms
+    }, 100);
 
-    return () => {
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   if (loading) {
     return (
       <div className="h-screen flex items-center justify-center bg-black overflow-hidden">
-        <div className={`text-center transition-all duration-800 ease-in-out ${exitAnimation ? "transform -translate-y-20 opacity-0" : ""}`}>
+        <div
+          className={`text-center transition-all duration-800 ease-in-out ${
+            exitAnimation ? "transform -translate-y-20 opacity-0" : ""
+          }`}
+        >
           <h2 className="text-4xl font-bold bg-gradient-to-br from-[#bea2ff] to-[#F4EDFF] bg-clip-text text-transparent italic">
             TaskFlow
           </h2>
           <div className="mt-4 relative">
             <div className="h-1 w-48 bg-gray-800 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-1 bg-[#5B21B6] rounded-full transition-all duration-100 ease-in-out"
                 style={{ width: `${progress}%` }}
               ></div>
@@ -49,40 +53,12 @@ const LandingPage = () => {
       </div>
     );
   }
-  
-  // Title component for ContainerScroll
-  const TitleComponent = (
-    <div className="flex flex-col items-center mb-8">
-      <h1 className="z-10 bg-gradient-to-br from-[#bea2ff] to-[#F4EDFF] bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.05em] text-transparent drop-shadow-sm md:text-7xl">
-        <div className="flex flex-col items-center">
-          <div>Streamline Your Workflow</div>
-          <div className="flex gap-5">
-            <div>with</div>
-            <div>Ease</div>
-          </div>
-        </div>
-      </h1>
-      <p className="text-center text-[#F4EDFF] text-wrap:balance md:text-xl pt-4 font-normal">
-        Effortless task management for every team
-      </p>
-    </div>
-  );
-  
+
   return (
     <div className="min-h-screen relative overflow-x-hidden">
-      {/* Nav is fixed at the top */}
       <LandingNav />
-      
-      <div className="flex flex-col items-center">
-        <img
-          src="/lightbeam.svg"
-          alt="bg-image"
-          className="absolute inset-0 translate-x-[-50%] translate-y-[-40%] top-1/2 left-1/2 z-0"
-        />
-      </div>
 
-      {/* Twitter link section */}
-      <div className="flex justify-center pt-20 z-10 relative">
+      <div className="flex justify-center flex-col pt-44 z-10 relative">
         <a
           href="https://x.com/vai_shhh27"
           target="_blank"
@@ -94,27 +70,59 @@ const LandingPage = () => {
             viewBox="0 0 248 204"
             className="h-5 w-5 text-purple-800"
           >
-            <path
-              fill="currentColor"
-              d="M221.95 51.29c.15 2.17.15 4.34.15 6.53 0 66.73-50.8 143.69-143.69 143.69v-.04c-27.44.04-54.31-7.82-77.41-22.64 3.99.48 8 .72 12.02.73 22.74.02 44.83-7.61 62.72-21.66-21.61-.41-40.56-14.5-47.18-35.07 7.57 1.46 15.37 1.16 22.8-.87-23.56-4.76-40.51-25.46-40.51-49.5v-.64c7.02 3.91 14.88 6.08 22.92 6.32C11.58 63.31 4.74 33.79 18.14 10.71c25.64 31.55 63.47 50.73 104.08 52.76-4.07-17.54 1.49-35.92 14.61-48.25 20.34-19.12 52.33-18.14 71.45 2.19 11.31-2.23 22.15-6.38 32.07-12.26-3.77 11.69-11.66 21.62-22.2 27.93 10.01-1.18 19.79-3.86 29-7.95-6.78 10.16-15.32 19.01-25.2 26.16z"
-            ></path>
+            <path fill="currentColor" d="M221.95 51.29c.15 2.17.15 4.34.15 6.53 0 66.73-50.8 143.69-143.69 143.69v-.04c-27.44.04-54.31-7.82-77.41-22.64 3.99.48 8 .72 12.02.73 22.74.02 44.83-7.61 62.72-21.66-21.61-.41-40.56-14.5-47.18-35.07"></path>
           </svg>
-          <p className="text-sm font-semibold text-purple-800">
-            Introducing TaskFlow
-          </p>
+          <p className="text-sm font-semibold text-purple-800">Introducing TaskFlow</p>
         </a>
+        <div className="flex flex-col items-center mb-9">
+          <h1 className="z-10 bg-gradient-to-br from-[#bea2ff] to-[#F4EDFF] bg-clip-text text-center font-display text-4xl font-semibold tracking-[-0.05em] text-transparent md:text-9xl">
+            <div className="flex flex-col items-center">
+              <div>Taskflow</div>
+            </div>
+          </h1>
+          <p className="text-center text-[#F4EDFF] text-wrap:balance md:text-2xl pt-4 font-normal mb-10">
+            Streamline your Workflow with Ease
+          </p>
+          <button className="flex justify-center items-center bg-purple-600 py-3 px-20 text-sm w-24 text-center border border-white rounded-full">
+            Login
+          </button>
+        </div>
       </div>
 
-      {/* Container Scroll Animation */}
-      <ContainerScroll titleComponent={TitleComponent}>
-        <div className="flex items-center justify-center h-full w-full">
-          <img
-            src="/main-image.png"
-            alt="TaskFlow Dashboard"
-            className="w-full h-full object-contain"
-          />
+      <div className="relative -mt-72 z-0">
+        <div className="absolute top-52 left-1/2 -translate-x-1/2 w-80 h-80 bg-purple-500 opacity-30 blur-3xl rounded-full z-0"></div>
+        <ContainerScroll>
+          <div className="relative flex items-center justify-center h-[560px] w-full">
+            <img
+              src="/main-image.png"
+              alt="TaskFlow Dashboard"
+              className="w-full h-[560px] object-cover relative z-10"
+            />
+          </div>
+        </ContainerScroll>
+        <div className="absolute bottom-72 left-1/2 -translate-x-1/2 w-80 h-80 bg-purple-700 opacity-25 blur-3xl rounded-full z-20"></div>
+        <div className="relative flex justify-center z-[5] ">
+          <div className="w-full max-w-6xl mx-auto px-4 relative">
+            <Marquee speed={40} gradient={false} direction="left" className="py-4 -mt-64">
+              <div className="flex items-center space-x-8 text-[#F4EDFF] font-medium text-xl px-4">
+                <span>Trusted by 2 million+ teams</span>
+                <span className="text-purple-400">•</span>
+                <span>Streamline your tasks</span>
+                <span className="text-purple-400">•</span>
+                <span>Boost productivity</span>
+                <span className="text-purple-400">•</span>
+                <span>Seamless collaboration</span>
+                <span className="text-purple-400">•</span>
+                <span>Smart task management</span>
+              </div>
+            </Marquee>
+          </div>
         </div>
-      </ContainerScroll>
+      </div>
+
+      <TaskManagementSection/>
+
+      <BentoGrid/>
     </div>
   );
 };
