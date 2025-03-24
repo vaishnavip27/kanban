@@ -21,12 +21,12 @@ const BentoGrid: React.FC = () => {
           </div>
         </div>
 
-        {/* Seamless Integrations - Updated for your UI */}
+        {/* Seamless Integrations */}
         <div className="relative w-full h-[226px] p-6 flex items-center rounded-lg bg-[#131417] shadow-md border border-[#1e1f22]">
-          {/* Google Calendar Icon */}
+          {/* Icon */}
           <img
-            src="/google-calendar-icon.png"
-            alt="Google Calendar"
+            src="/image.png" // Ensure this is correctly placed in public folder
+            alt="Integration Icon"
             width={50}
             height={50}
             className="rounded-md"
@@ -37,14 +37,14 @@ const BentoGrid: React.FC = () => {
             </h2>
             <p className="text-gray-400 text-sm mt-1">
               Connect Aligno with your favorite tools to streamline workflows
-              and boost C̶p̶r̶o̶d̶u̶c̶t̶i̶v̶i̶t̶y̶.
+              and boost productivity.
             </p>
           </div>
 
-          {/* Speech Bubble Icon - Blurry Effect */}
+          {/* Speech Bubble Icon */}
           <div className="absolute bottom-4 left-6 opacity-40">
             <img
-              src="/speech-bubble.png" // Ensure you have this in `public/`
+              src="/speech-bubble.png"
               alt="Speech Bubble"
               width={30}
               height={30}
@@ -85,7 +85,8 @@ const BentoGrid: React.FC = () => {
             <img
               src="/lightning.svg"
               alt="Lightning Icon"
-              className="w-32 h-32"
+              width={128}
+              height={128}
             />
           </div>
         </div>
