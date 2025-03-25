@@ -27,7 +27,7 @@ const TaskManagementSection: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between py-6 px-44  text-white bg-[#0c041c] mb-64">
+    <div className="flex flex-col md:flex-row items-center justify-between  px-44  text-white bg-[#0c041c] mb-32 ml-20">
       {/* Left Side: Text Content */}
       <div className="max-w-xl mb-10 md:mb-0">
         <h2 className="text-4xl md:text-5xl font-semibold mb-4">
@@ -71,7 +71,7 @@ const TaskManagementSection: React.FC = () => {
               </div>
 
               {/* Progress Bar Container */}
-              <div className="flex-grow ml-4">
+              <div className="flex-grow ml-4 mr-8">
                 <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                   {/* Animated Progress Bar */}
                   <motion.div

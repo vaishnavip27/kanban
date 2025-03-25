@@ -4,9 +4,9 @@ import KanbanColumn from "../components/KanbanColumn";
 import TaskModal from "../components/TaskModal";
 import { Button } from "@/components/ui/button";
 import { HorizontalNavbar } from "@/components/HorizontalNavbar";
-import ListView from "@/components/renderView/ListView";
-import TimelineView from "@/components/renderView/TimelineView";
-import CalenderView from "@/components/renderView/CalenderView";
+// import ListView from "@/components/renderView/ListView";
+// import TimelineView from "@/components/renderView/TimelineView";
+// import CalenderView from "@/components/renderView/CalenderView";
 import { Project, Column, Task } from "./ProjectPage";
 
 interface KanbanBoardProps {
@@ -33,7 +33,12 @@ const KanbanBoard = ({ project, onBack, onUpdateColumns }: KanbanBoardProps) => 
   };
 
   const handleAddTask = (task: Omit<Task, "id">, columnId: string) => {
-    const newTask = { ...task, id: Math.random().toString(36).substr(2, 9) };
+    const newTask: Task = { 
+      ...task, 
+      id: Math.random().toString(36).substr(2, 9),
+      dueDate: task.dueDate || new Date(), 
+      priority: task.priority || 'medium'
+    };
 
     const newColumns = columns.map((column) =>
       column.id === columnId
@@ -96,12 +101,12 @@ const KanbanBoard = ({ project, onBack, onUpdateColumns }: KanbanBoardProps) => 
     switch (activeView) {
       case "Board":
         return <PlaceholderComponent title="Board" />;
-      case "List":
-        return <ListView columns = {columns}/>;
-      case "Timeline":
-        return <TimelineView columns={columns}/>;
-      case "Calendar":
-        return <CalenderView columns={columns}/>;
+      // case "List":
+      //   return <ListView columns={columns}/>;
+      // case "Timeline":
+      //   return <TimelineView columns={columns}/>;
+      // case "Calendar":
+      //   return <CalenderView columns={columns}/>;
       default:
         return (
           <div className="flex gap-4 overflow-x-auto mt-6">

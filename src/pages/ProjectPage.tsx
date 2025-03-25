@@ -28,6 +28,8 @@ export interface Task {
   description?: string;
   labels?: string[];
   image?: string;
+  dueDate?: Date;
+  priority?: 'low' | 'medium' | 'high';
 }
 
 export interface Column {

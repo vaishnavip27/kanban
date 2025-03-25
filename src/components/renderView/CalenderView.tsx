@@ -3,12 +3,29 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-const CalendarView = ({ columns = [] }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+// Define interfaces for better type safety
+interface Task {
+  id: number;
+  title: string;
+  dueDate?: string;
+  priority: 'low' | 'medium' | 'high';
+}
 
-  // Get all tasks from all columns
-  const getAllTasks = () => {
-    return columns.reduce((acc, column) => {
+interface Column {
+  title: string;
+  tasks: Task[];
+}
+
+interface CalendarViewProps {
+  columns?: Column[];
+}
+
+const CalendarView: React.FC<CalendarViewProps> = ({ columns = [] }) => {
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
+
+  // Get all tasks from all columns with type safety
+  const getAllTasks = (): (Task & { status: string })[] => {
+    return columns.reduce<(Task & { status: string })[]>((acc, column) => {
       const tasksWithStatus = column.tasks.map(task => ({
         ...task,
         status: column.title
@@ -17,19 +34,20 @@ const CalendarView = ({ columns = [] }) => {
     }, []);
   };
 
-  const daysInMonth = (date) => {
+  // Add type annotations to functions
+  const daysInMonth = (date: Date): number => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
 
-  const startOfMonth = (date) => {
+  const startOfMonth = (date: Date): number => {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
-  const formatDate = (date) => {
+  const formatDate = (date: Date): string => {
     return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
   };
 
-  const getTasksForDate = (date) => {
+  const getTasksForDate = (date: number): (Task & { status: string })[] => {
     return getAllTasks().filter(task => {
       if (!task.dueDate) return false;
       const taskDate = new Date(task.dueDate);
@@ -51,11 +69,11 @@ const CalendarView = ({ columns = [] }) => {
     const days = daysInMonth(currentDate);
     const startDay = startOfMonth(currentDate);
     const weeks = Math.ceil((days + startDay) / 7);
-    const calendar = [];
+    const calendar: JSX.Element[] = [];
     let dayCount = 1;
 
     for (let week = 0; week < weeks; week++) {
-      const weekDays = [];
+      const weekDays: JSX.Element[] = [];
       for (let day = 0; day < 7; day++) {
         if ((week === 0 && day < startDay) || dayCount > days) {
           weekDays.push(
@@ -80,7 +98,7 @@ const CalendarView = ({ columns = [] }) => {
                 </span>
               </div>
               <div className="space-y-1">
-                {tasksForDay.map((task, index) => (
+                {tasksForDay.map((task) => (
                   <div 
                     key={task.id} 
                     className={`p-1 rounded text-xs truncate ${

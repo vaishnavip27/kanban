@@ -52,7 +52,7 @@ const PricingSection: React.FC = () => {
   ];
 
   return (
-    <div className="text-white py-16 px-4">
+    <div className="text-white px-4">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-center text-4xl font-bold mb-2">
           Choose the <span className="italic font-normal">Right Plan</span> for

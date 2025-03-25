@@ -3,13 +3,35 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, User } from 'lucide-react';
 
-const TimelineView = ({ columns = [] }) => {
-  const [timeframe, setTimeframe] = useState('month'); // 'week', 'month', 'quarter'
-  const [startDate, setStartDate] = useState(new Date());
+// Define interfaces for task and column types
+interface Task {
+  id: string;
+  title: string;
+  description?: string;
+  dueDate: string;
+  priority: 'low' | 'medium' | 'high';
+  status?: string;
+  people?: string[];
+  labels?: string[];
+}
+
+interface Column {
+  title: string;
+  tasks: Task[];
+}
+
+interface TimelineViewProps {
+  columns?: Column[];
+}
+
+const TimelineView: React.FC<TimelineViewProps> = ({ columns = [] }) => {
+  type TimeframeType = 'week' | 'month' | 'quarter';
+  const [timeframe, setTimeframe] = useState<TimeframeType>('month');
+  const [startDate, setStartDate] = useState<Date>(new Date());
 
   // Get all tasks from all columns
-  const getAllTasks = () => {
-    return columns.reduce((acc, column) => {
+  const getAllTasks = (): Task[] => {
+    return columns.reduce((acc: Task[], column) => {
       const tasksWithStatus = column.tasks.map(task => ({
         ...task,
         status: column.title
@@ -18,7 +40,7 @@ const TimelineView = ({ columns = [] }) => {
     }, []).filter(task => task.dueDate);
   };
 
-  const formatDate = (date) => {
+  const formatDate = (date: string | Date): string => {
     return new Date(date).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric'
@@ -26,7 +48,7 @@ const TimelineView = ({ columns = [] }) => {
   };
 
   // Get date range for current view
-  const getDateRange = () => {
+  const getDateRange = (): { startDate: Date; endDate: Date } => {
     const endDate = new Date(startDate);
     if (timeframe === 'week') {
       endDate.setDate(endDate.getDate() + 7);
@@ -39,7 +61,7 @@ const TimelineView = ({ columns = [] }) => {
   };
 
   // Navigation functions
-  const moveTimeline = (direction) => {
+  const moveTimeline = (direction: number): void => {
     const newDate = new Date(startDate);
     if (timeframe === 'week') {
       newDate.setDate(newDate.getDate() + (direction * 7));
@@ -51,18 +73,18 @@ const TimelineView = ({ columns = [] }) => {
     setStartDate(newDate);
   };
 
-  const filterTasksByDateRange = () => {
+  const filterTasksByDateRange = (): Task[] => {
     const { startDate: start, endDate: end } = getDateRange();
     return getAllTasks().filter(task => {
       const taskDate = new Date(task.dueDate);
       return taskDate >= start && taskDate <= end;
-    }).sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    }).sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
   };
 
   // Group tasks by date
-  const groupTasksByDate = () => {
+  const groupTasksByDate = (): Record<string, Task[]> => {
     const tasks = filterTasksByDateRange();
-    const groups = {};
+    const groups: Record<string, Task[]> = {};
     
     tasks.forEach(task => {
       const dateKey = task.dueDate.split('T')[0];
@@ -89,7 +111,7 @@ const TimelineView = ({ columns = [] }) => {
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <div className="flex space-x-2">
-            {['week', 'month', 'quarter'].map((tf) => (
+            {(['week', 'month', 'quarter'] as const).map((tf) => (
               <Button
                 key={tf}
                 onClick={() => setTimeframe(tf)}
@@ -149,7 +171,7 @@ const TimelineView = ({ columns = [] }) => {
                           `}>
                             {task.priority}
                           </Badge>
-                          <Badge className="bg-gray-600">{task.status}</Badge>
+                          {task.status && <Badge className="bg-gray-600">{task.status}</Badge>}
                         </div>
                         
                         {task.description && (
@@ -161,7 +183,7 @@ const TimelineView = ({ columns = [] }) => {
                             <div className="flex -space-x-2">
                               {task.people.map((person, index) => (
                                 <div
-                                  key={index}
+                                  key={`${person}-${index}`}
                                   className="w-6 h-6 rounded-full bg-gray-600 flex items-center justify-center border-2 border-gray-800"
                                   title={person}
                                 >
@@ -171,10 +193,10 @@ const TimelineView = ({ columns = [] }) => {
                             </div>
                           )}
                           
-                          {task.labels && (
+                          {task.labels && task.labels.length > 0 && (
                             <div className="flex gap-1">
                               {task.labels.map((label, index) => (
-                                <Badge key={index} variant="outline" className="text-xs">
+                                <Badge key={`${label}-${index}`} variant="outline" className="text-xs">
                                   {label}
                                 </Badge>
                               ))}

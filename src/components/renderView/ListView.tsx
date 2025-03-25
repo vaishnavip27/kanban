@@ -1,59 +1,103 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { User, Search, ChevronUp, ChevronDown } from "lucide-react";
 
-const ListView = ({ columns }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+// Define interfaces for type safety
+interface Task {
+  id: number;
+  title: string;
+  status: string;
+  priority: "low" | "medium" | "high";
+  dueDate?: string | Date; // Allow both string and Date formats
+  people?: string[];
+  labels?: string[];
+}
 
-  // Combine all tasks from all columns into a single array
-  const getAllTasks = () => {
-    return columns?.reduce((acc, column) => {
-      const tasksWithStatus = column.tasks.map(task => ({
-        ...task,
-        status: column.title
-      }));
-      return [...acc, ...tasksWithStatus];
-    }, []) || [];
+interface Column {
+  title: string;
+  tasks: Task[];
+}
+
+interface ListViewProps {
+  columns?: Column[];
+}
+
+interface SortConfig {
+  key: keyof Task | null;
+  direction: "asc" | "desc";
+}
+
+const ListView: React.FC<ListViewProps> = ({ columns = [] }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortConfig, setSortConfig] = useState<SortConfig>({
+    key: null,
+    direction: "asc",
+  });
+
+  const getAllTasks = (): (Task & { status: string })[] => {
+    return (
+      columns?.reduce<(Task & { status: string })[]>((acc, column) => {
+        const tasksWithStatus = column.tasks.map((task) => ({
+          ...task,
+          status: column.title,
+          dueDate:
+            typeof task.dueDate === "string"
+              ? task.dueDate
+              : task.dueDate?.toISOString(), // Convert Date to string if needed
+        }));
+        return [...acc, ...tasksWithStatus];
+      }, []) || []
+    );
   };
 
-  // Sorting function
-  const sortTasks = (tasks) => {
+  const sortTasks = (tasks: (Task & { status: string })[]) => {
     if (!sortConfig.key) return tasks;
 
     return [...tasks].sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) {
-        return sortConfig.direction === 'asc' ? -1 : 1;
+      const valueA = a[sortConfig.key!];
+      const valueB = b[sortConfig.key!];
+
+      if (valueA == null) return sortConfig.direction === "asc" ? 1 : -1;
+      if (valueB == null) return sortConfig.direction === "asc" ? -1 : 1;
+
+      if (typeof valueA === "string" && typeof valueB === "string") {
+        return sortConfig.direction === "asc"
+          ? valueA.localeCompare(valueB)
+          : valueB.localeCompare(valueA);
       }
-      if (a[sortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.direction === 'asc' ? 1 : -1;
+
+      if (typeof valueA === "number" && typeof valueB === "number") {
+        return sortConfig.direction === "asc" ? valueA - valueB : valueB - valueA;
       }
+
       return 0;
     });
   };
 
-  // Handle sorting
-  const requestSort = (key) => {
-    let direction = 'asc';
-    if (sortConfig.key === key && sortConfig.direction === 'asc') {
-      direction = 'desc';
+  const requestSort = (key: keyof Task) => {
+    let direction: "asc" | "desc" = "asc";
+    if (sortConfig.key === key && sortConfig.direction === "asc") {
+      direction = "desc";
     }
     setSortConfig({ key, direction });
   };
 
-  // Filter tasks based on search term
-  const filteredTasks = getAllTasks().filter(task =>
-    task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    task.status.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredTasks = getAllTasks().filter(
+    (task) =>
+      task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      task.status.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const sortedTasks = sortTasks(filteredTasks);
 
-  // Get sort icon
-  const getSortIcon = (key) => {
+  const getSortIcon = (key: keyof Task) => {
     if (sortConfig.key === key) {
-      return sortConfig.direction === 'asc' ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />;
+      return sortConfig.direction === "asc" ? (
+        <ChevronUp className="w-4 h-4" />
+      ) : (
+        <ChevronDown className="w-4 h-4" />
+      );
     }
     return null;
   };
@@ -79,35 +123,35 @@ const ListView = ({ columns }) => {
             <tr className="border-b border-gray-700">
               <th className="p-4 text-left">
                 <button
-                  onClick={() => requestSort('title')}
+                  onClick={() => requestSort("title")}
                   className="flex items-center text-gray-400 hover:text-white"
                 >
-                  Task {getSortIcon('title')}
+                  Task {getSortIcon("title")}
                 </button>
               </th>
               <th className="p-4 text-left">
                 <button
-                  onClick={() => requestSort('status')}
+                  onClick={() => requestSort("status")}
                   className="flex items-center text-gray-400 hover:text-white"
                 >
-                  Status {getSortIcon('status')}
+                  Status {getSortIcon("status")}
                 </button>
               </th>
               <th className="p-4 text-left">
                 <button
-                  onClick={() => requestSort('priority')}
+                  onClick={() => requestSort("priority")}
                   className="flex items-center text-gray-400 hover:text-white"
                 >
-                  Priority {getSortIcon('priority')}
+                  Priority {getSortIcon("priority")}
                 </button>
               </th>
               <th className="p-4 text-left">Assignees</th>
               <th className="p-4 text-left">
                 <button
-                  onClick={() => requestSort('dueDate')}
+                  onClick={() => requestSort("dueDate")}
                   className="flex items-center text-gray-400 hover:text-white"
                 >
-                  Due Date {getSortIcon('dueDate')}
+                  Due Date {getSortIcon("dueDate")}
                 </button>
               </th>
               <th className="p-4 text-left">Labels</th>
@@ -121,11 +165,15 @@ const ListView = ({ columns }) => {
                   <Badge className="bg-gray-700 text-white">{task.status}</Badge>
                 </td>
                 <td className="p-4">
-                  <Badge className={`
-                    ${task.priority === 'high' ? 'bg-red-500/20 text-red-500' : 
-                      task.priority === 'medium' ? 'bg-yellow-500/20 text-yellow-500' : 
-                      'bg-green-500/20 text-green-500'}
-                  `}>
+                  <Badge
+                    className={`${
+                      task.priority === "high"
+                        ? "bg-red-500/20 text-red-500"
+                        : task.priority === "medium"
+                        ? "bg-yellow-500/20 text-yellow-500"
+                        : "bg-green-500/20 text-green-500"
+                    }`}
+                  >
                     {task.priority}
                   </Badge>
                 </td>
@@ -143,7 +191,7 @@ const ListView = ({ columns }) => {
                   </div>
                 </td>
                 <td className="p-4">
-                  {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : '-'}
+                  {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : "-"}
                 </td>
                 <td className="p-4">
                   <div className="flex flex-wrap gap-2">

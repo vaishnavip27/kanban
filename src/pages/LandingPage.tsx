@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import Marquee from "react-fast-marquee";
 import LandingNav from "@/components/LandingNav";
 import { ContainerScroll } from "../components/ui/container-scroll-animation";
@@ -10,6 +12,32 @@ import FeatureComparison from "@/components/WhyTaskflow";
 import PricingSection from "@/components/PricingSection";
 import Footer from "../components/footer";
 import { LightRays } from "@/components/LightRays";
+
+const ScrollSection = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
+  const y = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, 100]);
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{
+        opacity,
+        scale,
+        y,
+      }}
+      className="will-change-transform"
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const LandingPage = () => {
   const [loading, setLoading] = useState(true);
@@ -62,12 +90,17 @@ const LandingPage = () => {
     <div className="min-h-screen flex flex-col overflow-hidden relative">
       <LandingNav />
 
-      <div className="flex-grow flex justify-center flex-col pt-44 z-10 relative">
-        {/* LightRays component added below the text layer */}
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex-grow flex justify-center flex-col pt-44 z-10 relative"
+      >
+        {/* Hero section content remains the same */}
         <div className="absolute inset-0 pointer-events-none">
           <LightRays />
         </div>
-        
+
         <a
           href="https://x.com/vai_shhh27"
           target="_blank"
@@ -79,9 +112,14 @@ const LandingPage = () => {
             viewBox="0 0 248 204"
             className="h-5 w-5 text-purple-800"
           >
-            <path fill="currentColor" d="M221.95 51.29c.15 2.17.15 4.34.15 6.53 0 66.73-50.8 143.69-143.69 143.69v-.04c-27.44.04-54.31-7.82-77.41-22.64 3.99.48 8 .72 12.02.73 22.74.02 44.83-7.61 62.72-21.66-21.61-.41-40.56-14.5-47.18-35.07"></path>
+            <path
+              fill="currentColor"
+              d="M221.95 51.29c.15 2.17.15 4.34.15 6.53 0 66.73-50.8 143.69-143.69 143.69v-.04c-27.44.04-54.31-7.82-77.41-22.64 3.99.48 8 .72 12.02.73 22.74.02 44.83-7.61 62.72-21.66-21.61-.41-40.56-14.5-47.18-35.07"
+            ></path>
           </svg>
-          <p className="text-sm font-semibold text-purple-800">Introducing TaskFlow</p>
+          <p className="text-sm font-semibold text-purple-800">
+            Introducing TaskFlow
+          </p>
         </a>
         <div className="flex flex-col items-center mb-9">
           <h1 className="z-10 bg-gradient-to-br from-[#bea2ff] to-[#F4EDFF] bg-clip-text text-center font-display text-4xl font-semibold tracking-[-0.05em] text-transparent md:text-9xl">
@@ -96,14 +134,11 @@ const LandingPage = () => {
             Login
           </button>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Rest of the component remains the same */}
       <div className="relative -mt-72 z-0">
-        
         <ContainerScroll>
           <div className="relative flex items-center justify-center h-[600px] w-full rounded-lg">
-            {/* Glassmorphic layer wrapper */}
             <div className="relative w-full h-full px-4 py-4">
               <div className="absolute inset-0 bg-white/10 backdrop-blur-lg rounded-lg shadow-2xl"></div>
               <div className="relative z-50 w-full h-full">
@@ -120,7 +155,12 @@ const LandingPage = () => {
 
         <div className="relative flex justify-center z-[5] ">
           <div className="w-full max-w-5xl mx-auto px-4 relative">
-            <Marquee speed={40} gradient={false} direction="left" className="py-4 -mt-80">
+            <Marquee
+              speed={40}
+              gradient={false}
+              direction="left"
+              className="py-4 -mt-80"
+            >
               <div className="flex items-center space-x-8 text-slate-400 font-normal text-2xl px-4">
                 <span>Trusted by 2 million+ teams</span>
                 <span className="text-purple-400">•</span>
@@ -137,13 +177,21 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <TaskManagementSection /> 
+      <ScrollSection>
+        <TaskManagementSection />
+      </ScrollSection>
 
-      <BentoGrid />
+      <ScrollSection>
+        <BentoGrid />
+      </ScrollSection>
 
-      <FeatureComparison />
+      <ScrollSection>
+        <FeatureComparison />
+      </ScrollSection>
 
-      <PricingSection />
+      <ScrollSection>
+        <PricingSection />
+      </ScrollSection>
 
       <Footer />
     </div>
