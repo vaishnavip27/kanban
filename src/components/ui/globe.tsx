@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import createGlobe from 'cobe';
+import createGlobe, { COBEOptions } from 'cobe';
 import { cn } from '@/lib/utils';
 
 interface EarthProps {
@@ -64,11 +64,11 @@ const Earth: React.FC<EarthProps> = ({
       opacity: 1,
       offset: [0, 0],
       markers: [],
-      onRender: (state: GlobeState) => {
-        state.phi = phi;
+      onRender: (state) => {
+        (state as GlobeState).phi = phi;
         phi += 0.003;
       },
-    });
+    } as COBEOptions);
 
     return () => {
       globe.destroy();

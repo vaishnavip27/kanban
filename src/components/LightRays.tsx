@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { Spotlight, GridBackground } from "../components/spotlight-new";
 
 export function LightRays() {
