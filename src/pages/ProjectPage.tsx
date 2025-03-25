@@ -28,7 +28,7 @@ export interface Task {
   description?: string;
   labels?: string[];
   image?: string;
-  dueDate?: Date;
+  dueDate?: string | Date;
   priority?: 'low' | 'medium' | 'high';
 }
 
