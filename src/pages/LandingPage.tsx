@@ -36,7 +36,7 @@ const LandingPage = () => {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-purple-950 overflow-hidden">
+      <div className="h-screen flex items-center justify-center bg-[#0c041c] overflow-hidden">
         <div
           className={`text-center transition-all duration-800 ease-in-out ${
             exitAnimation ? "transform -translate-y-20 opacity-0" : ""
@@ -100,7 +100,7 @@ const LandingPage = () => {
 
       {/* Rest of the component remains the same */}
       <div className="relative -mt-72 z-0">
-        <div className="absolute top-64 left-1/2 -translate-x-1/2 w-86 h-86 bg-purple-500 opacity-30 blur-3xl rounded-full z-0 "></div>
+        
         <ContainerScroll>
           <div className="relative flex items-center justify-center h-[600px] w-full rounded-lg">
             {/* Glassmorphic layer wrapper */}
@@ -116,12 +116,12 @@ const LandingPage = () => {
             </div>
           </div>
         </ContainerScroll>
-        <div className="absolute bottom-64 left-1/2 -translate-x-1/2 w-96 h-80 bg-purple-700 opacity-25 blur-3xl rounded-full z-20"></div>
+        <div className="absolute bottom-80 left-1/2 -translate-x-1/2 w-96 h-80 bg-purple-700 opacity-25 blur-3xl rounded-full z-20"></div>
 
         <div className="relative flex justify-center z-[5] ">
           <div className="w-full max-w-5xl mx-auto px-4 relative">
-            <Marquee speed={40} gradient={false} direction="left" className="py-4 -mt-64">
-              <div className="flex items-center space-x-8 text-[#F4EDFF] font-medium text-xl px-4">
+            <Marquee speed={40} gradient={false} direction="left" className="py-4 -mt-80">
+              <div className="flex items-center space-x-8 text-slate-400 font-normal text-2xl px-4">
                 <span>Trusted by 2 million+ teams</span>
                 <span className="text-purple-400">•</span>
                 <span>Streamline your tasks</span>
@@ -137,7 +137,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <TaskManagementSection />
+      <TaskManagementSection /> 
 
       <BentoGrid />
 

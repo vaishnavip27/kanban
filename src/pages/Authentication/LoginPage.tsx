@@ -45,7 +45,6 @@ const LoginPage: React.FC = () => {
     }
 
     useEffect(() => {
-      // Check for email link sign-in on component mount
       if (isSignInWithEmailLink(auth, window.location.href)) {
         let storedEmail = window.localStorage.getItem('emailForSignIn');
         
@@ -69,13 +68,13 @@ const LoginPage: React.FC = () => {
     const handleEmailSignIn = async (e: React.FormEvent) => {
       e.preventDefault();
   
-      // Validate email
+    
       if (!email || !email.includes('@')) {
         return;
       }
   
       const actionCodeSettings = {
-        url: window.location.origin + '/dashboard', // Redirect to board after sign-in
+        url: window.location.origin + '/dashboard', 
         handleCodeInApp: true,
       };
   
@@ -89,7 +88,7 @@ const LoginPage: React.FC = () => {
     };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#090B0D] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#3B246E] px-4">
       <div className="flex flex-col items-center space-y-4 w-full max-w-[430px]">
         {/* Glow effects */}
         <div className="absolute w-[450px] h-[480px] rounded-full bg-purple-500/20 blur-[120px] translate-x-1/4 -z-100" />

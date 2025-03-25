@@ -27,13 +27,13 @@ const TaskManagementSection: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-44 py-6 text-white bg-[#060B1F]  mb-64">
+    <div className="flex flex-col md:flex-row items-center justify-between py-6 px-44  text-white bg-[#0c041c] mb-64">
       {/* Left Side: Text Content */}
-      <div className="max-w-xl text-left mb-10 md:mb-0">
+      <div className="max-w-xl mb-10 md:mb-0">
         <h2 className="text-4xl md:text-5xl font-semibold mb-4">
           <em>Faster</em>, smarter Project Management
         </h2>
-        <p className="text-gray-400 max-w-lg">
+        <p className="text-gray-400 max-w-lg text-xl">
           Our intuitive platform provides everything you need to efficiently
           manage your projects, from real-time collaboration to detailed task
           tracking.
@@ -41,7 +41,7 @@ const TaskManagementSection: React.FC = () => {
       </div>
 
       {/* Right Side: Animated UI */}
-      <div className="relative w-full md:w-1/2 h-96 flex items-center justify-center">
+      <div className="relative w-full md:w-1/2 h-96 flex items-center justify-center cursor-pointer">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,9 +55,9 @@ const TaskManagementSection: React.FC = () => {
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
-              className="flex items-center w-full md:w-4/5 border border-white/10 rounded-full p-2 
+              className="flex items-center w-full md:w-4/5 border border-white/5 rounded-full 
                 bg-white/5 backdrop-blur-md 
-                shadow-xl shadow-blue-500/10 
+                shadow-xl
                 hover:bg-white/10 transition-all duration-300 
                 hover:border-white/20"
             >
@@ -66,9 +66,7 @@ const TaskManagementSection: React.FC = () => {
                 <img
                   src={task.avatar}
                   alt="User Avatar"
-                  className="rounded-full w-14 h-14 object-cover 
-                    border-2 border-white/20 
-                    shadow-lg shadow-blue-500/20"
+                  className="rounded-full w-14 h-14"
                 />
               </div>
 
@@ -84,7 +82,7 @@ const TaskManagementSection: React.FC = () => {
                       duration: 0.8,
                       ease: "easeOut",
                     }}
-                    className="h-full bg-blue-500/80 rounded-full"
+                    className="h-full bg-purple-900/80 rounded-full"
                   />
                 </div>
               </div>

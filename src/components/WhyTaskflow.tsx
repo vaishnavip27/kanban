@@ -63,7 +63,7 @@ const FeatureComparison: React.FC = () => {
   ];
 
   return (
-    <div className="text-white py-36 px-4 bg-[#060B1F]">
+    <div className="text-white py-36 px-4 bg-[#0c041c]">
       <div className="max-w-4xl mx-auto">
         {/* Why Choose Taskflow Section */}
         <h2 className="text-center text-4xl font-bold mb-2">

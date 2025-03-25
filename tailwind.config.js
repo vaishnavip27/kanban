@@ -4,16 +4,37 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      animation: {
+        "star-movement-bottom":
+          "star-movement-bottom linear infinite alternate",
+        "star-movement-top": "star-movement-top linear infinite alternate",
+      },
       keyframes: {
-        float: {
-          "0%, 100%": { transform: "translate(0, 0) rotate(0deg)" },
-          "25%": { transform: "translate(10px, -10px) rotate(45deg)" },
-          "50%": { transform: "translate(-10px, 10px) rotate(-45deg)" },
-          "75%": { transform: "translate(10px, 5px) rotate(20deg)" },
+        "star-movement-bottom": {
+          "0%": { transform: "translate(0%, 0%)", opacity: "1" },
+          "100%": { transform: "translate(-100%, 0%)", opacity: "0" },
+        },
+        "star-movement-top": {
+          "0%": { transform: "translate(0%, 0%)", opacity: "1" },
+          "100%": { transform: "translate(100%, 0%)", opacity: "0" },
+        },
+      },
+      keyframes: {
+        gradient: {
+          "0%": {
+            backgroundPosition: "0% 50%",
+          },
+          "50%": {
+            backgroundPosition: "100% 50%",
+          },
+          "100%": {
+            backgroundPosition: "0% 50%",
+          },
         },
       },
       animation: {
-        float: "float ease-in-out infinite",
+        nebula: "nebula 20s linear infinite",
+        "nebula-slow": "nebula-slow 25s linear infinite",
       },
       fontFamily: {
         clash: ["Clash Display", "sans-serif"],
@@ -28,33 +49,6 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      },
-      animation: {
-        gradient: "gradient 15s ease infinite",
-      },
-
-      animation: {
-        nebula: "nebula 20s linear infinite",
-        "nebula-slow": "nebula-slow 25s linear infinite",
-      },
-      keyframes: {
-        nebula: {
-          "0%": { transform: "rotate(0deg) scale(1)" },
-          "50%": { transform: "rotate(180deg) scale(1.1)" },
-          "100%": { transform: "rotate(360deg) scale(1)" },
-        },
-        "nebula-slow": {
-          "0%": { transform: "rotate(360deg) scale(1.1)" },
-          "50%": { transform: "rotate(180deg) scale(1)" },
-          "100%": { transform: "rotate(0deg) scale(1.1)" },
-        },
-      },
-      keyframes: {
-        gradient: {
-          "0%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" },
-        },
       },
       colors: {
         background: "hsl(var(--background))",
