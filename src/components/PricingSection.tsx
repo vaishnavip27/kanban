@@ -52,7 +52,7 @@ const PricingSection: React.FC = () => {
   ];
 
   return (
-    <div className=" text-white py-16 px-4">
+    <div className="text-white py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-center text-4xl font-bold mb-2">
           Choose the <span className="italic font-normal">Right Plan</span> for
@@ -66,7 +66,14 @@ const PricingSection: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-6">
           {plans.map((plan, index) => (
-            <div key={index} className="bg-gray-900/70 rounded-lg p-6 relative">
+            <div key={index} className="bg-gray-900/70 rounded-lg p-6 relative overflow-hidden">
+              {/* Gradient overlay - now in purple shades */}
+              <div className={`absolute inset-0 ${
+                index === 0
+                  ? "bg-[radial-gradient(circle_at_left,rgba(128,0,128,0.3)_0%,rgba(128,0,128,0.1)_40%,transparent_70%)]"
+                  : "bg-[radial-gradient(circle_at_right,rgba(128,0,128,0.3)_0%,rgba(128,0,128,0.1)_40%,transparent_70%)]"
+              } pointer-events-none`}></div>
+              
               {plan.name === "Pro Plan" && (
                 <div className="absolute top-6 right-6 flex items-center">
                   <span className="text-xs mr-2">Bill yearly</span>
@@ -76,41 +83,43 @@ const PricingSection: React.FC = () => {
                 </div>
               )}
 
-              <h3 className="text-xl mb-4">{plan.name}</h3>
+              <div className="relative z-10">
+                <h3 className="text-xl mb-4">{plan.name}</h3>
 
-              <div className="mb-4">
-                <span className="text-amber-500 text-4xl font-bold">
-                  {plan.price}
-                </span>
-                <span className="text-amber-500">{plan.period}</span>
+                <div className="mb-4">
+                  <span className="text-purple-500 text-4xl font-bold">
+                    {plan.price}
+                  </span>
+                  <span className="text-purple-500">{plan.period}</span>
+                </div>
+
+                <p className="text-gray-400 mb-6">{plan.description}</p>
+
+                <button
+                  className={`w-full py-3 px-6 rounded-full mb-2 flex justify-center ${
+                    plan.isPrimary
+                      ? "bg-gradient-to-r from-purple-500 to-purple-400 text-black"
+                      : "bg-gray-700/70 text-white"
+                  }`}
+                >
+                  {plan.buttonText}
+                </button>
+
+                <p className="text-center text-sm text-gray-500 mb-8">
+                  {plan.subtext}
+                </p>
+
+                <ul className="space-y-4">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-start">
+                      <div className="mr-3 mt-1 text-purple-500 flex-shrink-0">
+                        <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                      </div>
+                      <span className="text-gray-300">{feature.text}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-
-              <p className="text-gray-400 mb-6">{plan.description}</p>
-
-              <button
-                className={`w-full py-3 px-6 rounded-full mb-2 flex justify-center ${
-                  plan.isPrimary
-                    ? "bg-gradient-to-r from-amber-500 to-amber-400 text-black"
-                    : "bg-gray-700/70 text-white"
-                }`}
-              >
-                {plan.buttonText}
-              </button>
-
-              <p className="text-center text-sm text-gray-500 mb-8">
-                {plan.subtext}
-              </p>
-
-              <ul className="space-y-4">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start">
-                    <div className="mr-3 mt-1 text-amber-500 flex-shrink-0">
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
-                    </div>
-                    <span className="text-gray-300">{feature.text}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
@@ -118,25 +127,25 @@ const PricingSection: React.FC = () => {
 
       <div className="w-full h-screen flex flex-col items-center justify-center text-center text-white relative">
         {/* Top Text */}
-        <p className="text-gray-300 text-sm max-w-lg mx-auto mb-4">
+        <p className="text-gray-300 text-sm max-w-lg mx-auto mb-8">
           Taskflow provides pre-configured options for quick start-ups. As your
           team grows, adaptation becomes effortless.
         </p>
 
         {/* Main Content */}
-        <div className="bg-white/10 backdrop-blur-md px-8 py-10 rounded-lg shadow-lg max-w-xl">
+        <div className="bg-white/5 backdrop-blur-md py-16 rounded-lg shadow-lg border border-white/10 px-56 flex flex-col items-center">
           <h1 className="text-4xl font-light mb-2">Ready to manage your</h1>
           <h1 className="text-4xl font-light">
             team like a <span className="italic font-normal">pro</span>?
           </h1>
 
-          <p className="text-gray-300 text-sm max-w-md mx-auto mt-4">
+          <p className="text-gray-300 text-md max-w-md mx-auto mt-4">
             Taskflow offers ready-made solutions to get you going fast. Easily
             customize as your team's needs expand.
           </p>
 
           {/* Button */}
-          <button className="mt-6 bg-transparent hover:bg-gray-700 text-white font-normal py-2 px-6 border border-gray-500 rounded-full transition-colors duration-300 relative">
+          <button className="custom-get-started-button mt-6 bg-transparent w-44 rounded-full hover:bg-gray-700 text-white font-normal py-2 border border-gray-500  transition-colors duration-300 relative">
             Get Started
           </button>
         </div>

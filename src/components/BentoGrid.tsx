@@ -9,7 +9,7 @@ const BentoGrid: React.FC = () => {
         <div
           className="w-full h-[420px] overflow-hidden relative p-6 rounded-2xl 
           bg-white/5 backdrop-blur-md border border-white/10 
-     hover:border-white/20 transition-all duration-300"
+          hover:border-white/20 transition-all duration-300"
         >
           <Earth />
           <div className="absolute top-6 left-6 text-white">
@@ -25,35 +25,27 @@ const BentoGrid: React.FC = () => {
         </div>
 
         <div
-          className="relative w-full h-[226px] p-6 flex items-center rounded-2xl 
+          className="relative w-full h-[226px] px-16 flex items-center rounded-2xl 
           bg-white/5 backdrop-blur-md border border-white/10 
-         hover:border-white/20 transition-all duration-300"
+          hover:border-white/20 transition-all duration-300"
         >
-          <img
-            src="/image.png"
-            alt="Integration Icon"
-            width={50}
-            height={50}
-            className="rounded-md border-2 border-white/20 "
-          />
+          <div className="border border-white/20 p-3 bg-white/5 backdrop-blur-md rounded-md">
+            <img
+              src="/google-calendar.png"
+              alt="Integration Icon"
+              width={70}
+              height={70}
+              className="rounded-md border-2 border-white/20"
+            />
+          </div>
           <div className="ml-4">
-            <h2 className="text-white text-lg font-semibold">
+            <h2 className="text-white text-xl font-semibold">
               Seamless Integrations with Your Favorite Tools
             </h2>
-            <p className="text-gray-400 text-sm mt-1">
+            <p className="text-gray-400 text-sm mt-2">
               Connect Aligno with your favorite tools to streamline workflows
               and boost productivity.
             </p>
-          </div>
-
-          <div className="absolute bottom-4 left-6 opacity-40">
-            <img
-              src="/speech-bubble.png"
-              alt="Speech Bubble"
-              width={30}
-              height={30}
-              className="blur-sm"
-            />
           </div>
         </div>
       </div>
@@ -70,7 +62,7 @@ const BentoGrid: React.FC = () => {
           <div className="w-14 h-28 bg-gradient-to-b from-purple-400/70 to-purple-600/70 rounded-full"></div>
           <div>
             <h2 className="text-white text-lg font-semibold">
-              Advance Analytics
+              Advanced Analytics
             </h2>
             <p className="text-gray-400 text-sm mt-1">
               Unlock valuable insights into project performance, helping you
@@ -83,22 +75,22 @@ const BentoGrid: React.FC = () => {
         <div
           className="w-full h-[426px] p-6 flex flex-col justify-between rounded-2xl 
           bg-white/5 backdrop-blur-md border border-white/10 
-           hover:border-white/20 transition-all duration-300"
+          hover:border-white/20 transition-all duration-300"
         >
-          <h2 className="text-white text-lg font-semibold">
+          <h2 className="text-white text-xl font-semibold">
             Lightning Fast Performance
           </h2>
           <p className="text-gray-400 text-sm">
             Experience blazing fast performance with cutting-edge technology
             optimized for speed and efficiency.
           </p>
-          <div className="flex justify-center items-center mt-4">
+          <div className="flex justify-center items-center">
             <img
               src="/lightning.svg"
               alt="Lightning Icon"
-              width={128}
-              height={128}
-              className="opacity-80"
+              width={230}
+              height={230}
+              className="opacity-70"
             />
           </div>
         </div>

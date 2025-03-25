@@ -72,7 +72,6 @@
 
 
 .custom-get-started-button {
-  width:100%;
   max-width:none;
   display: flex;
   align-items: center;
@@ -85,7 +84,6 @@
   text-align: center;
   text-decoration: none;
   border: 1px solid #5a3cb4;
-  border-radius: 8px;
   position: relative;
   cursor: pointer;
   background: linear-gradient(
@@ -108,7 +106,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: inherit;
   z-index: -1;
   transition: opacity 0.2s cubic-bezier(0.6, 0.6, 0, 1);
 }
@@ -240,14 +237,39 @@
   box-shadow: 0 0 12px 8px rgba(168, 85, 247, 0.5), 0 0 24px 16px rgba(168, 85, 247, 0.3);
 }
 
-/* Add these CSS classes to your global styles or component styles */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari and Opera */
+  display: none; 
+}
+
+
+@keyframes rayAnimation {
+  0% {
+    opacity: 0.3;
+    transform: rotate(var(--rotation)) translateY(-100%);
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+    transform: rotate(var(--rotation)) translateY(100%);
+  }
+}
+
+.ray {
+  --rotation: 0deg;
+  transform-origin: center;
+  animation: rayAnimation 8s infinite linear;
+  will-change: transform, opacity;
+}
+
+.light-rays {
+  mix-blend-mode: screen;
 }
 
 

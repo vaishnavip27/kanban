@@ -9,6 +9,7 @@ import BentoGrid from "@/components/BentoGrid";
 import FeatureComparison from "@/components/WhyTaskflow";
 import PricingSection from "@/components/PricingSection";
 import Footer from "../components/footer";
+import LightRays from "@/components/LightRays"; // Import the LightRays component
 
 const LandingPage = () => {
   const [loading, setLoading] = useState(true);
@@ -58,10 +59,12 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden">
+    <div className="min-h-screen flex flex-col overflow-hidden relative">
       <LandingNav />
 
       <div className="flex-grow flex justify-center flex-col pt-44 z-10 relative">
+        <LightRays /> {/* Add LightRays component here */}
+        
         <a
           href="https://x.com/vai_shhh27"
           target="_blank"
@@ -93,17 +96,18 @@ const LandingPage = () => {
       </div>
 
       <div className="relative -mt-72 z-0">
-        <div className="absolute top-52 left-1/2 -translate-x-1/2 w-80 h-80 bg-purple-500 opacity-30 blur-3xl rounded-full z-0"></div>
+        <div className="absolute top-64 left-1/2 -translate-x-1/2 w-86 h-86 bg-purple-500 opacity-30 blur-3xl rounded-full z-0 border border-white"></div>
         <ContainerScroll>
-          <div className="relative flex items-center justify-center h-[560px] w-full">
+          <div className="relative flex items-center justify-center h-[600px] w-full border border-white">
             <img
-              src="/main-image.png"
+              src="/image.png"
               alt="TaskFlow Dashboard"
-              className="w-full h-[560px] object-cover relative z-10"
+              className="w-full h-[600px] object-cover relative z-10"
             />
           </div>
         </ContainerScroll>
-        <div className="absolute bottom-72 left-1/2 -translate-x-1/2 w-80 h-80 bg-purple-700 opacity-25 blur-3xl rounded-full z-20"></div>
+        <div className="absolute bottom-64 left-1/2 -translate-x-1/2 w-96 h-80 bg-purple-700 opacity-25 blur-3xl rounded-full z-20"></div>
+
         <div className="relative flex justify-center z-[5] ">
           <div className="w-full max-w-5xl mx-auto px-4 relative">
             <Marquee speed={40} gradient={false} direction="left" className="py-4 -mt-64">
