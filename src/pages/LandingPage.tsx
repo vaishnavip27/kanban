@@ -9,7 +9,7 @@ import BentoGrid from "@/components/BentoGrid";
 import FeatureComparison from "@/components/WhyTaskflow";
 import PricingSection from "@/components/PricingSection";
 import Footer from "../components/footer";
-import LightRays from "@/components/LightRays";
+import { LightRays } from "@/components/LightRays";
 
 const LandingPage = () => {
   const [loading, setLoading] = useState(true);
@@ -59,11 +59,14 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden relative ">
+    <div className="min-h-screen flex flex-col overflow-hidden relative">
       <LandingNav />
 
       <div className="flex-grow flex justify-center flex-col pt-44 z-10 relative">
-        <LightRays />
+        {/* LightRays component added below the text layer */}
+        <div className="absolute inset-0 pointer-events-none">
+          <LightRays />
+        </div>
         
         <a
           href="https://x.com/vai_shhh27"
@@ -95,6 +98,7 @@ const LandingPage = () => {
         </div>
       </div>
 
+      {/* Rest of the component remains the same */}
       <div className="relative -mt-72 z-0">
         <div className="absolute top-64 left-1/2 -translate-x-1/2 w-86 h-86 bg-purple-500 opacity-30 blur-3xl rounded-full z-0 "></div>
         <ContainerScroll>
@@ -102,7 +106,7 @@ const LandingPage = () => {
             {/* Glassmorphic layer wrapper */}
             <div className="relative w-full h-full px-4 py-4">
               <div className="absolute inset-0 bg-white/10 backdrop-blur-lg rounded-lg shadow-2xl"></div>
-              <div className="relative z-10 w-full h-full">
+              <div className="relative z-50 w-full h-full">
                 <img
                   src="/image.png"
                   alt="TaskFlow Dashboard"
