@@ -5,21 +5,34 @@ export default {
   theme: {
     extend: {
       animation: {
-        "star-movement-bottom":
-          "star-movement-bottom linear infinite alternate",
+        "star-movement-bottom": "star-movement-bottom linear infinite alternate",
         "star-movement-top": "star-movement-top linear infinite alternate",
+        "slide-in-left": "slide-in-left 0.8s ease-out forwards",
+        "slide-in-right": "slide-in-right 0.8s ease-out forwards",
+        nebula: "nebula 20s linear infinite",
+        "nebula-slow": "nebula-slow 25s linear infinite",
       },
       keyframes: {
-        "star-movement-bottom": {
-          "0%": { transform: "translate(0%, 0%)", opacity: "1" },
-          "100%": { transform: "translate(-100%, 0%)", opacity: "0" },
+        "slide-in-left": {
+          "0%": {
+            transform: "translateX(-100%)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: "1",
+          },
         },
-        "star-movement-top": {
-          "0%": { transform: "translate(0%, 0%)", opacity: "1" },
-          "100%": { transform: "translate(100%, 0%)", opacity: "0" },
+        "slide-in-right": {
+          "0%": {
+            transform: "translateX(100%)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: "1",
+          },
         },
-      },
-      keyframes: {
         gradient: {
           "0%": {
             backgroundPosition: "0% 50%",
@@ -31,10 +44,6 @@ export default {
             backgroundPosition: "0% 50%",
           },
         },
-      },
-      animation: {
-        nebula: "nebula 20s linear infinite",
-        "nebula-slow": "nebula-slow 25s linear infinite",
       },
       fontFamily: {
         clash: ["Clash Display", "sans-serif"],

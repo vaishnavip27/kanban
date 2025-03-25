@@ -1,12 +1,72 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Earth from "./ui/globe";
 
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
 const BentoGrid: React.FC = () => {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const earthCardRef = useRef<HTMLDivElement>(null);
+  const integrationCardRef = useRef<HTMLDivElement>(null);
+  const analyticsCardRef = useRef<HTMLDivElement>(null);
+  const performanceCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Ensure we have refs and GSAP is available
+    if (!gridRef.current) return;
+
+    const cards = [
+      { ref: earthCardRef, x: -100 },
+      { ref: integrationCardRef, x: 100 },
+      { ref: analyticsCardRef, x: -100 },
+      { ref: performanceCardRef, x: 100 }
+    ];
+
+    cards.forEach(({ ref, x }, index) => {
+      if (!ref.current) return;
+
+      gsap.fromTo(
+        ref.current,
+        {
+          x,
+          opacity: 0,
+          scale: 0.9
+        },
+        {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          delay: index * 0.2, // Stagger the animations
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 75%',
+            end: 'top 25%',
+            scrub: true,
+            markers: false
+          }
+        }
+      );
+    });
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, []);
+
   return (
-    <div className="flex items-center h-[660px] gap-3 px-52">
+    <div 
+      ref={gridRef}
+      className="flex items-center h-[660px] gap-3 px-52"
+    >
       {/* Left flex */}
       <div className="w-3/4 flex flex-col gap-3">
         <div
+          ref={earthCardRef}
           className="w-full h-[420px] overflow-hidden relative p-6 rounded-2xl 
           bg-white/5 backdrop-blur-md border border-white/10 
           hover:border-white/20 transition-all duration-300"
@@ -25,6 +85,7 @@ const BentoGrid: React.FC = () => {
         </div>
 
         <div
+          ref={integrationCardRef}
           className="relative w-full h-[226px] px-16 flex items-center rounded-2xl 
           bg-white/5 backdrop-blur-md border border-white/10 
           hover:border-white/20 transition-all duration-300"
@@ -53,6 +114,7 @@ const BentoGrid: React.FC = () => {
       {/* Right flex */}
       <div className="w-1/2 h-[660px] flex flex-col items-center gap-3">
         <div
+          ref={analyticsCardRef}
           className="w-full h-[232px] p-6 flex items-end gap-4 rounded-2xl 
           bg-white/5 backdrop-blur-md border border-white/10 
           hover:border-white/20 transition-all duration-300"
@@ -73,6 +135,7 @@ const BentoGrid: React.FC = () => {
 
         {/* Lightning Fast Performance */}
         <div
+          ref={performanceCardRef}
           className="w-full h-[426px] p-6 flex flex-col justify-between rounded-2xl 
           bg-white/5 backdrop-blur-md border border-white/10 
           hover:border-white/20 transition-all duration-300"

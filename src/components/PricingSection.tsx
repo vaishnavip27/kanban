@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 interface PlanFeature {
   text: string;
@@ -16,6 +21,45 @@ interface PricingPlan {
 }
 
 const PricingSection: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    // Ensure we have refs and GSAP is available
+    if (!sectionRef.current || cardRefs.current.length === 0) return;
+
+    // Create scroll-triggered animations for each card
+    cardRefs.current.forEach((card, index) => {
+      if (!card) return;
+
+      gsap.fromTo(
+        card,
+        {
+          x: index === 0 ? '-100%' : '100%', // Slide from opposite sides
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%', // Start when section enters viewport
+            end: 'top 25%', // End when section is fully in view
+            scrub: true, // Smooth scrubbing effect
+            markers: false, // Set to true for debugging
+          }
+        }
+      );
+    });
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, []);
+
   const plans: PricingPlan[] = [
     {
       name: "Free Plan",
@@ -52,7 +96,11 @@ const PricingSection: React.FC = () => {
   ];
 
   return (
-    <div className="text-white px-4">
+    <div 
+      ref={sectionRef} 
+      id="pricing-section" 
+      className="text-white px-4"
+    >
       <div className="max-w-3xl mx-auto">
         <h2 className="text-center text-4xl font-bold mb-2">
           Choose the <span className="italic font-normal">Right Plan</span> for
@@ -66,8 +114,12 @@ const PricingSection: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-6">
           {plans.map((plan, index) => (
-            <div key={index} className="bg-gray-900/70 rounded-lg p-6 relative overflow-hidden">
-              {/* Gradient overlay - now in purple shades */}
+            <div 
+              key={index}
+              ref={el => cardRefs.current[index] = el}
+              className="bg-gray-900/70 rounded-lg p-6 relative overflow-hidden"
+            >
+              {/* Existing card content remains the same */}
               <div className={`absolute inset-0 ${
                 index === 0
                   ? "bg-[radial-gradient(circle_at_left,rgba(128,0,128,0.3)_0%,rgba(128,0,128,0.1)_40%,transparent_70%)]"
@@ -125,14 +177,13 @@ const PricingSection: React.FC = () => {
         </div>
       </div>
 
+      {/* Rest of the existing content */}
       <div className="w-full h-screen flex flex-col items-center justify-center text-center text-white relative">
-        {/* Top Text */}
         <p className="text-gray-300 text-sm max-w-lg mx-auto mb-8">
           Taskflow provides pre-configured options for quick start-ups. As your
           team grows, adaptation becomes effortless.
         </p>
 
-        {/* Main Content */}
         <div className="bg-white/5 backdrop-blur-md py-16 rounded-lg shadow-lg border border-white/10 px-56 flex flex-col items-center">
           <h1 className="text-4xl font-light mb-2">Ready to manage your</h1>
           <h1 className="text-4xl font-light">
@@ -144,7 +195,6 @@ const PricingSection: React.FC = () => {
             customize as your team's needs expand.
           </p>
 
-          {/* Button */}
           <button className="custom-get-started-button mt-6 bg-transparent w-44 rounded-full hover:bg-gray-700 text-white font-normal py-2 border border-gray-500  transition-colors duration-300 relative">
             Get Started
           </button>
