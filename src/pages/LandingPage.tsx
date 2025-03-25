@@ -9,7 +9,7 @@ import BentoGrid from "@/components/BentoGrid";
 import FeatureComparison from "@/components/WhyTaskflow";
 import PricingSection from "@/components/PricingSection";
 import Footer from "../components/footer";
-import LightRays from "@/components/LightRays"; // Import the LightRays component
+import LightRays from "@/components/LightRays";
 
 const LandingPage = () => {
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ const LandingPage = () => {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-[#060B1F] overflow-hidden">
+      <div className="h-screen flex items-center justify-center bg-purple-950 overflow-hidden">
         <div
           className={`text-center transition-all duration-800 ease-in-out ${
             exitAnimation ? "transform -translate-y-20 opacity-0" : ""
@@ -59,11 +59,11 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden relative">
+    <div className="min-h-screen flex flex-col overflow-hidden relative ">
       <LandingNav />
 
       <div className="flex-grow flex justify-center flex-col pt-44 z-10 relative">
-        <LightRays /> {/* Add LightRays component here */}
+        <LightRays />
         
         <a
           href="https://x.com/vai_shhh27"
@@ -89,21 +89,27 @@ const LandingPage = () => {
           <p className="text-center text-[#F4EDFF] text-wrap:balance md:text-2xl pt-4 font-normal mb-10">
             Streamline your Workflow with Ease
           </p>
-          <button className="flex justify-center items-center bg-purple-600 py-3 px-20 text-sm text-center border border-white rounded-full">
+          <button className="custom-get-started-button flex justify-center items-center bg-purple-600 py-3 w-44 text-sm text-center border border-white rounded-full">
             Login
           </button>
         </div>
       </div>
 
       <div className="relative -mt-72 z-0">
-        <div className="absolute top-64 left-1/2 -translate-x-1/2 w-86 h-86 bg-purple-500 opacity-30 blur-3xl rounded-full z-0 border border-white"></div>
+        <div className="absolute top-64 left-1/2 -translate-x-1/2 w-86 h-86 bg-purple-500 opacity-30 blur-3xl rounded-full z-0 "></div>
         <ContainerScroll>
-          <div className="relative flex items-center justify-center h-[600px] w-full border border-white">
-            <img
-              src="/image.png"
-              alt="TaskFlow Dashboard"
-              className="w-full h-[600px] object-cover relative z-10"
-            />
+          <div className="relative flex items-center justify-center h-[600px] w-full rounded-lg">
+            {/* Glassmorphic layer wrapper */}
+            <div className="relative w-full h-full px-4 py-4">
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-lg rounded-lg shadow-2xl"></div>
+              <div className="relative z-10 w-full h-full">
+                <img
+                  src="/image.png"
+                  alt="TaskFlow Dashboard"
+                  className="w-full h-[530px] object-cover rounded-lg"
+                />
+              </div>
+            </div>
           </div>
         </ContainerScroll>
         <div className="absolute bottom-64 left-1/2 -translate-x-1/2 w-96 h-80 bg-purple-700 opacity-25 blur-3xl rounded-full z-20"></div>
