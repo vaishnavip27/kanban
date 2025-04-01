@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import {
   MoveLeft,
   Search,
@@ -6,18 +8,22 @@ import {
   Plus,
   Flag,
   LayoutGrid,
-  Calendar,
   ChevronRight,
+  CalendarIcon
 } from "lucide-react";
 import { MessageCircle, X } from "lucide-react";
 import ChatBox from "@/components/ChatBox";
+import { format } from "date-fns";
 import { ProjectTable } from "@/components/ProjectTable";
+import { Calendar } from "@/components/ui/calendar";
 import { TaskLineChart } from "@/components/LineChart";
 import { Checkbox } from "@/components/ui/checkbox";
 import VideoComponent from "@/components/VideoComponent";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const DashboardPage = () => {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+
   const attendees = [
     { name: "Farhat", color: "bg-rose-100 text-rose-700" },
     { name: "Jill", color: "bg-green-100 text-green-700" },
@@ -29,6 +35,9 @@ const DashboardPage = () => {
     { color: "bg-yellow-500" },
     { color: "bg-green-500" },
   ];
+
+   // Format date as "25th Sep, 2024"
+  const formattedDate = date ? format(date, "do MMM, yyyy") : "Select date"
   return (
     <div className="flex h-screen bg-[#0B0B0E] overflow-x-hidden ">
       <div className="flex flex-col flex-grow overflow-y-auto">
@@ -190,11 +199,30 @@ const DashboardPage = () => {
 
                 <div className="mb-4">
                   <p className="text-gray-400 text-xs mb-2">Date</p>
-                  <div className="flex items-center justify-between bg-gray-800 px-4 py-2.5 rounded-lg">
-                    <span className="text-white text-xs">25th Sep, 2024</span>
+                  <div className="flex items-center justify-between bg-gray-800/60 px-4 py-2.5 rounded-lg">
+                    <span className="text-white text-xs">{formattedDate}</span>
                     <div className="flex items-center gap-2">
                       <ChevronRight size={16} className="text-gray-400" />
-                      <Calendar size={16} className="text-gray-400" />
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-auto w-auto p-0"
+                          >
+                            <CalendarIcon size={16} className="text-gray-400" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="end">
+                          <Calendar
+                            mode="single"
+                            selected={date}
+                            onSelect={setDate}
+                            initialFocus
+                            className="bg-black border border-slate-900 text-white rounded-md"
+                          />
+                        </PopoverContent>
+                      </Popover>
                     </div>
                   </div>
                 </div>

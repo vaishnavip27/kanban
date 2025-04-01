@@ -32,9 +32,9 @@ export default function Navbar() {
       <div className="border-b border-gray-800 p-4">
         <h1 className="text-2xl font-bold">TaskFlow</h1>
       </div>
-      <nav className="p-3">
+      <nav className="p-3 ">
         {sidebarItems.map((item) => (
-          <div key={item.label} className="relative ">
+          <div key={item.label} className="relative">
             <Link
               to={item.path}
               className="relative flex items-center space-x-2 p-2.5 rounded-lg text-gray-400 hover:bg-gray-900/50 hover:text-white transition-colors group"
@@ -47,7 +47,7 @@ export default function Navbar() {
             </Link>
           </div>
         ))}
-        <Button className="custom-get-started-button mt-80" onClick={handleLogout}>Logout</Button>
+        <Button className="custom-get-started-button w-full mt-80" onClick={handleLogout}>Logout</Button>
       </nav>
     </div>
   );
