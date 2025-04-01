@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import { MoveLeft, Search, Bell, UserPlus, Paintbrush } from "lucide-react";
 import KanbanColumn from "../components/KanbanColumn";
