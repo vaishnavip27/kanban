@@ -12,6 +12,7 @@ import FeatureComparison from "@/components/WhyTaskflow";
 import PricingSection from "@/components/PricingSection";
 import Footer from "../components/footer";
 import { LightRays } from "@/components/LightRays";
+import { useNavigate } from "react-router-dom";
 
 const ScrollSection = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef(null);
@@ -40,6 +41,7 @@ const ScrollSection = ({ children }: { children: React.ReactNode }) => {
 };
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [exitAnimation, setExitAnimation] = useState(false);
@@ -86,6 +88,7 @@ const LandingPage = () => {
     );
   }
 
+
   return (
     <div className="min-h-screen flex flex-col overflow-hidden relative">
       <LandingNav />
@@ -130,7 +133,10 @@ const LandingPage = () => {
           <p className="text-center text-[#F4EDFF] text-wrap:balance md:text-2xl pt-4 font-normal mb-10">
             Streamline your Workflow with Ease
           </p>
-          <button className="custom-get-started-button flex justify-center items-center bg-purple-600 py-3 w-44 text-sm text-center border border-white rounded-full">
+          <button
+            onClick={() => navigate("/login")}
+            className="custom-get-started-button flex justify-center items-center bg-purple-600 py-3 w-44 text-sm text-center border border-white rounded-full"
+          >
             Login
           </button>
         </div>

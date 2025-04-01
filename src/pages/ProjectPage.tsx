@@ -235,7 +235,7 @@ const ProjectPage = () => {
                 <Button
                   onClick={() => setShowForm(true)}
                   size="icon"
-                  className="custom-get-started-button"
+                  className="custom-get-started-button w-full"
                   style={{ padding: "16px" }}
                 >
                   <Plus className="h-4 w-4" />

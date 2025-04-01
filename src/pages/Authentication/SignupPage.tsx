@@ -125,7 +125,7 @@ const SignupPage: React.FC = () => {
               </div>
               <Button
                 type="submit"
-                className="custom-get-started-button" style={{height:"44px", fontSize:"12px"}}
+                className="custom-get-started-button w-full" style={{height:"44px", fontSize:"12px"}}
               >
                 CREATE ACCOUNT
               </Button>

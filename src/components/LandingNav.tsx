@@ -15,13 +15,13 @@ const LandingNav = () => {
         <div className="flex-1 flex items-center justify-around">
           <Link
             to="/features"
-            className="text-md text-gray-300 hover:text-white transition-colors"
+            className="text-md text-gray-400 hover:text-white transition-colors"
           >
             Features
           </Link>
           <Link
             to="/why-taskflow"
-            className="text-md text-gray-300 hover:text-white transition-colors"
+            className="text-md text-gray-400 hover:text-white transition-colors"
           >
             Why Taskflow?
           </Link>
@@ -33,12 +33,12 @@ const LandingNav = () => {
 
           <Link
             to="/pricing"
-            className="text-md text-gray-300 hover:text-white transition-colors"
+            className="text-md text-gray-400 hover:text-white transition-colors"
           >
             Pricing
           </Link>
           <Button
-            className="w-36 bg-white text-black rounded-xl"
+            className="w-36 bg-purple-200/60 text-purple-950 font-bold rounded-xl blur-xs"
             onClick={() => navigate("/signup")}
           >
             Get started

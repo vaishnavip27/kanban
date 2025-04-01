@@ -88,7 +88,7 @@ const LoginPage: React.FC = () => {
     };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#3B246E] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#090B0D]  px-4">
       <div className="flex flex-col items-center space-y-4 w-full max-w-[430px]">
         {/* Glow effects */}
         <div className="absolute w-[450px] h-[480px] rounded-full bg-purple-500/20 blur-[120px] translate-x-1/4 -z-100" />
@@ -122,7 +122,7 @@ const LoginPage: React.FC = () => {
               </div>
               <Button
                 type="submit"
-                className="custom-get-started-button" style={{height:"44px"}}
+                className="custom-get-started-button w-full" style={{height:"44px"}}
               >
                 Sign in
               </Button>

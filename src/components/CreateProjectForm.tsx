@@ -38,14 +38,14 @@ export default function CreateProjectForm({ onSubmit, onCancel }: CreateProjectF
         animate={{ y: 0, opacity: 1 }}
         className="bg-[#121216] rounded-lg shadow-xl w-full max-w-md"
       >
-        <div className="flex justify-between items-center p-6 border-b border-gray-800">
-          <h3 className="text-2xl font-light text-white">New Project</h3>
-          <Button variant="ghost" size="icon" onClick={onCancel} className="text-gray-400 hover:text-white">
+        <div className="flex justify-between items-center py-1.5 px-6 border-b border-gray-800/80">
+          <h3 className="text-lg font-normal text-white">New Project</h3>
+          <Button variant="ghost" size="icon" onClick={onCancel} className="text-gray-400 ">
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
           </Button>
         </div>
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="px-6 py-2 space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name" className="text-gray-200">
               Project Name
@@ -55,7 +55,7 @@ export default function CreateProjectForm({ onSubmit, onCancel }: CreateProjectF
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="bg-[#0B0B0E] border-gray-800 text-white focus:border-blue-500 focus:ring-blue-500"
+              className="bg-[#0B0B0E] border-gray-800 text-white focus:border-purple-500 focus:ring-purple-500 py-2"
             />
           </div>
           <div className="space-y-2">
@@ -67,7 +67,7 @@ export default function CreateProjectForm({ onSubmit, onCancel }: CreateProjectF
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
-              className="bg-[#0B0B0E] border-gray-800 text-white focus:border-blue-500 focus:ring-blue-500"
+              className="bg-[#0B0B0E] border-gray-800/80 text-white focus:border-blue-500 focus:ring-blue-500"
             />
           </div>
           <div className="space-y-2">
@@ -79,14 +79,14 @@ export default function CreateProjectForm({ onSubmit, onCancel }: CreateProjectF
               id="deadline"
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
-              className="bg-[#0B0B0E] border-gray-800 text-white focus:border-blue-500 focus:ring-blue-500"
+              className="bg-[#0B0B0E] border-gray-800/80 text-white focus:border-purple-500 focus:ring-purple-500 py-2"
             />
           </div>
-          <div className="flex justify-end space-x-3 mt-6">
-            <Button variant="outline" onClick={onCancel} className="border-gray-700 text-gray-300 hover:bg-[#1A1A1F]">
+          <div className="flex justify-end space-x-3 ">
+            <Button variant="outline" onClick={onCancel} className="bg-slate-100 text-black hover:bg-[#1A1A1F]">
               Cancel
             </Button>
-            <Button type="submit" className="bg-blue-600 text-white hover:bg-blue-700">
+            <Button type="submit" className=" text-white custom-get-started-button">
               Create Project
             </Button>
           </div>
